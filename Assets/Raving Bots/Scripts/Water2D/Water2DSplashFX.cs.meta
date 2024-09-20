@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: f029e799d14a039469223e268cce8919
+timeCreated: 1454466447
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 55290
+  packageName: Water 2D Kit
+  packageVersion: 1.4
+  assetPath: Assets/Raving Bots/Scripts/Water2D/Water2DSplashFX.cs
+  uploadId: 301179

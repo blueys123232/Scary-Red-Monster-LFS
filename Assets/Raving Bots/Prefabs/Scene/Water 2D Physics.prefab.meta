@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 481cfb28fcec19343b11e4b5249c4c36
+timeCreated: 1478976094
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 55290
+  packageName: Water 2D Kit
+  packageVersion: 1.4
+  assetPath: Assets/Raving Bots/Prefabs/Scene/Water 2D Physics.prefab
+  uploadId: 301179

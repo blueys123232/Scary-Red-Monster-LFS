@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 3691eeae9233aeb4c8495efde515492d
+timeCreated: 1454380563
+licenseType: Store
+ShaderImporter:
+  defaultTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 55290
+  packageName: Water 2D Kit
+  packageVersion: 1.4
+  assetPath: Assets/Raving Bots/Shaders/GrabPass Water 2D Plain.shader
+  uploadId: 301179

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 226867ed1367b834284b01d952aaad68
+timeCreated: 1478976084
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 55290
+  packageName: Water 2D Kit
+  packageVersion: 1.4
+  assetPath: Assets/Raving Bots/Prefabs/Scene/Background.prefab
+  uploadId: 301179

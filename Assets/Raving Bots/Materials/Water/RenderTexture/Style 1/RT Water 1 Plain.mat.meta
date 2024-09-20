@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 077b072b7f55564498247f3d314707cc
+timeCreated: 1455295707
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 55290
+  packageName: Water 2D Kit
+  packageVersion: 1.4
+  assetPath: Assets/Raving Bots/Materials/Water/RenderTexture/Style 1/RT Water 1
+    Plain.mat
+  uploadId: 301179

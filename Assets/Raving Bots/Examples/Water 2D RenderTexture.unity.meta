@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 1a7135406e2892b46bc2af5bd279721a
+timeCreated: 1449849648
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 55290
+  packageName: Water 2D Kit
+  packageVersion: 1.4
+  assetPath: Assets/Raving Bots/Examples/Water 2D RenderTexture.unity
+  uploadId: 301179

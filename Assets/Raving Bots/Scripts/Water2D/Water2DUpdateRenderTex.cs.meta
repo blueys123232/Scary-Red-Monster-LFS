@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 16dd2d60794e49046872b5a2932df229
+timeCreated: 1478994409
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 55290
+  packageName: Water 2D Kit
+  packageVersion: 1.4
+  assetPath: Assets/Raving Bots/Scripts/Water2D/Water2DUpdateRenderTex.cs
+  uploadId: 301179

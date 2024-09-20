@@ -1,0 +1,45 @@
+{
+    "name": "MenuActions",
+    "maps": [
+        {
+            "name": "menu",
+            "id": "b4dfd1ae-1ec8-451e-95e7-9db2bb686578",
+            "actions": [
+                {
+                    "name": "Buttonup",
+                    "type": "Button",
+                    "id": "2773227a-6842-4444-b593-40934c1621af",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "91278dbd-e5e6-4d98-99b7-7101f085b74a",
+                    "path": "<Gamepad>/leftStick/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Buttonup",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "16cd742f-4d8c-4177-ae15-6b908a3797c3",
+                    "path": "<Gamepad>/dpad/up",
+                    "interactions": "",
+                    "processors": "AxisDeadzone",
+                    "groups": "",
+                    "action": "Buttonup",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 3495f03d891c0964e83f653eabfdb079
+timeCreated: 1478970802
+licenseType: Store
+ShaderImporter:
+  defaultTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 55290
+  packageName: Water 2D Kit
+  packageVersion: 1.4
+  assetPath: Assets/Raving Bots/Shaders/RenderTexture Water 2D Waves.shader
+  uploadId: 301179
