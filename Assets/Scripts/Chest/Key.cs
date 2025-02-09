@@ -9,13 +9,14 @@ public class Key : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Inventory playerInventoryUI = other.GetComponentInChildren<Inventory>();
+            PlayerInventory pInv = other.GetComponent<PlayerInventory>();
 
             if (playerInventoryUI != null)
             {
                 // Add the key sprite to the currently selected inventory slot
                 playerInventoryUI.AddItem(keySprite);
                 Debug.Log("Key added to inventory UI.");
-
+                pInv.AddKey();
                 // Destroy the key game object after collection
                 Destroy(gameObject);
                 Debug.Log("Key collected and destroyed.");

@@ -7,6 +7,8 @@ public class Inventory : MonoBehaviour
     public ScrollRect scrollRect; // Reference to the ScrollRect component
     private int selectedSlotIndex = 0; // Tracks the currently selected slot index
 
+    public Sprite DefaultSlotSprite;
+
     void Start()
     {
         // Initialize the inventory slots
@@ -110,6 +112,24 @@ public class Inventory : MonoBehaviour
             Debug.Log("Selected slot is null or already occupied");
         }
     }
+
+    public void RemoveItem()
+    
+    {
+        if (slots[selectedSlotIndex] != null && slots[selectedSlotIndex].sprite != DefaultSlotSprite)
+        {
+            slots[selectedSlotIndex].sprite = DefaultSlotSprite;
+            slots[selectedSlotIndex].color = Color.white;
+            Debug.Log("Item Removed From   " + slots[selectedSlotIndex].name);
+
+        }
+        else
+        {
+            Debug.Log("No item Cannot be Removed from the slot");
+        }
+
+
+}
 
     // Method to scroll to a specific slot
     void ScrollToSlot(int slotIndex)

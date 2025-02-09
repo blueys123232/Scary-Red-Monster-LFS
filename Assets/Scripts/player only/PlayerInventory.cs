@@ -3,8 +3,15 @@ using UnityEngine;
 public class PlayerInventory : MonoBehaviour
 {
     private int keyCount = 0; // Current number of keys the player has
+    private int potCount = 0;
+    Inventory inventoryUI;
+    HealingPotion hPot;
 
     // Method to add a key to the player's inventory
+    private void Start()
+    {
+        inventoryUI = GetComponent<Inventory>();
+    }
     public void AddKey()
     {
         keyCount++;
@@ -30,10 +37,38 @@ public class PlayerInventory : MonoBehaviour
         {
             keyCount--;
             Debug.Log("Key used. Keys remaining: " + keyCount);
+            if(keyCount <= 0)
+            {
+                inventoryUI.AddItem(inventoryUI.DefaultSlotSprite);
+            }
         }
         else
         {
             Debug.Log("No keys left to use.");
         }
+    }
+
+    public void AddPotion()
+    {
+        // Add Number of Healing Potions Specified in the healing potion Script
+        potCount += hPot.potionPickupAmount;
+    }
+
+
+public void UsePotion()
+{
+    if (potCount > 0)
+    {
+        potCount--;
+        Debug.Log("Pots Used, Now Pots Remaining" + potCount);
+            if(potCount <= 0)
+            {
+                inventoryUI.AddItem(inventoryUI.DefaultSlotSprite);
+            }
+    }
+    else
+       {
+        Debug.Log("No more Potions anymore");
+       }
     }
 }

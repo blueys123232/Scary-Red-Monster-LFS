@@ -6,28 +6,48 @@ using UnityEngine.SceneManagement;
 public class RestartGame : MonoBehaviour
 {
 
-    public string resetStringName;
+    public GameObject gameoverPanel;
+    public GameObject pausemenuPanel;
     
     public void Restart()
    
     {
-        if (!string.IsNullOrEmpty(resetStringName))
+        if (pausemenuPanel != null)
         {
-            SceneManager.LoadScene(resetStringName);
+            pausemenuPanel.SetActive(false);
         }
-        else
+
+        if (gameoverPanel != null)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            pausemenuPanel.SetActive(false);
         }
+
+
+
+
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void LoadMainMenu()
     {
+       
+        
+        if (pausemenuPanel != null)
+        {
+            pausemenuPanel.SetActive(false);
+        }
 
-      
+        if (gameoverPanel != null)
+        {
+            pausemenuPanel.SetActive(false);
+        }
+
+
 
         SceneManager.LoadScene("Main Menu"); // Replace "MainMenu" with the actual name of your main menu scene
-  
+
+
     }
 
     public void QuitGame()

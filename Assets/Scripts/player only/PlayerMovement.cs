@@ -16,7 +16,8 @@ public class PlayerMovement : MonoBehaviour
     private bool isCrouching;
     private bool isRunning;
     private float moveDirection; // For capturing horizontal input
-
+    PlayerInventory inventory;
+    public int healAmount = 50;
     void Start()
     {
         // Get required components
@@ -29,14 +30,28 @@ public class PlayerMovement : MonoBehaviour
         if (animator == null) Debug.LogError("Animator component not found on " + gameObject.name);
         if (playerStamina == null) Debug.LogError("PlayerStamina component not found on " + gameObject.name);
         if (groundCheck == null) Debug.LogError("GroundCheck Transform not assigned in the Inspector on " + gameObject.name);
+        inventory = GetComponent<PlayerInventory>();
     }
 
     void Update()
     {
         HandleInput();
         UpdateAnimations();
-    }
+        // Click the Healing Potion on any Slot
+        if (Input.GetMouseButton(0))
+        {
+            inventory.UsePotion();
+            // Access the Player's Health Script and Heal the Player's Health Bar
+            PlayerHealth playerHealth = GetComponent<PlayerHealth>();
+            if(playerHealth != null)
+            {
+                playerHealth.Heal(healAmount);
+            }
 
+
+        }
+
+    }
     void FixedUpdate()
     {
         Move();

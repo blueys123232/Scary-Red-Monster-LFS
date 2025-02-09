@@ -3,11 +3,17 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    // This method is called when the Play button is pressed
-    public void PlayGame()
+    public void PlayGame(string sceneName)
     {
-        // Load the Chapter Select scene by its name
-        SceneManager.LoadScene("Chapter Select");
+        if (!string.IsNullOrEmpty(sceneName))
+        {
+
+            SceneManager.LoadScene(sceneName);
+        }
+        else
+        {
+            Debug.LogWarning("The Scene is not Setted Up");
+        }
     }
 
     // This method is called when the Exit button is pressed

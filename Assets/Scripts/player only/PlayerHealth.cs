@@ -1,20 +1,25 @@
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
     public int maxHealth = 100;
     public int currentHealth;
     public Image healthBar;
+    public GameObject gameoverPanel;
+    public AudioSource backgroundMusic;
 
-    // The name of the scene to load when the player dies
-    public string sceneToLoadOnDeath; // Any scene name you want to load when the player dies
+    
 
     void Start()
     {
         currentHealth = maxHealth;
         UpdateHealthBar();
+
+        if (gameoverPanel != null)
+        {
+            gameoverPanel.SetActive(false);
+        }
     }
 
     public void TakeDamage(float damage)
@@ -50,21 +55,20 @@ public class PlayerHealth : MonoBehaviour
     {
         if (currentHealth <= 0)
         {
-            // Load the scene specified in the inspector when the player dies
-            LoadSceneOnDeath();
+            ShowGameOverPanel();
         }
     }
 
-    public void LoadSceneOnDeath()
+    public void ShowGameOverPanel()
     {
-        // If a scene name is set, load that scene
-        if (!string.IsNullOrEmpty(sceneToLoadOnDeath))
+        if (backgroundMusic != null && backgroundMusic)
         {
-            SceneManager.LoadScene(sceneToLoadOnDeath);
+            backgroundMusic.Stop();
         }
-        else
+
+        if (gameoverPanel != null)
         {
-            Debug.LogWarning("No scene specified to load on death.");
+            gameoverPanel.SetActive(true);
         }
     }
 }
