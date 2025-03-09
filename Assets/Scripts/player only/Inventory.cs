@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class Inventory : MonoBehaviour
 {
     public Image[] slots; // Array to hold the inventory slots
+    public string[] slotName;
     public ScrollRect scrollRect; // Reference to the ScrollRect component
     private int selectedSlotIndex = 0; // Tracks the currently selected slot index
 
@@ -17,7 +18,7 @@ public class Inventory : MonoBehaviour
             if (slots[i] != null)
             {
                 slots[i].color = Color.clear; // Clear the slots initially
-                Debug.Log(slots[i].name + " found and initialized.");
+                slotName[i] = "Empty";
             }
             else
             {
@@ -101,6 +102,7 @@ public class Inventory : MonoBehaviour
         if (slots[selectedSlotIndex] != null)
         {
             slots[selectedSlotIndex].sprite = itemSprite;
+            slotName[selectedSlotIndex] = itemSprite.name;
             slots[selectedSlotIndex].color = Color.white; // Set the slot to visible with the item image
             Debug.Log("Item added to " + slots[selectedSlotIndex].name);
 

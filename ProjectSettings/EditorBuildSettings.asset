@@ -6,31 +6,31 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/warning.unity
+    path: Assets/Scenes/NewScenes/warning.unity
     guid: 25e689e7ec115c141b4ec1687e0d3c29
   - enabled: 1
     path: Assets/Scenes/MenuScene/Main Menu.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
-    path: Assets/Scenes/MenuScene/Chapter Select.unity
+  - enabled: 0
+    path: Assets/Scenes/Unused Scenes/Chapter Select.unity
     guid: e0dc0dadd8aa7a34aa13b972fe37a1ed
   - enabled: 1
     path: Assets/Scenes/Intro/Cutscene/Intro.unity
     guid: 05f76640d398b6047a35f7f76ac9e833
-  - enabled: 1
-    path: Assets/Scenes/Chapters/Chapter 1.unity
+  - enabled: 0
+    path: Assets/Scenes/Unused Scenes/Chapter 1.unity
     guid: 696e6318c3cf3e749a0019cfbcf06bed
-  - enabled: 1
-    path: Assets/Scenes/Chapters/Chapter 2.unity
+  - enabled: 0
+    path: Assets/Scenes/Unused Scenes/Chapter 2.unity
     guid: 725e737c64097c64fa77920fc4a60318
-  - enabled: 1
-    path: Assets/Scenes/Chapters/Chapter 3.unity
+  - enabled: 0
+    path: Assets/Scenes/Unused Scenes/Chapter 3.unity
     guid: 3328a4fdbe76b6248b2b025026f5608f
-  - enabled: 1
-    path: Assets/Scenes/Chapters/Chapter 4.unity
+  - enabled: 0
+    path: Assets/Scenes/Unused Scenes/Chapter 4.unity
     guid: 5b141124a82d779489b24eb19387c705
-  - enabled: 1
-    path: Assets/Scenes/Chapters/Chapter 5.unity
+  - enabled: 0
+    path: Assets/Scenes/Unused Scenes/Chapter 5.unity
     guid: eb57fbf3c0fc2b74cbcfba3a685d164d
   - enabled: 1
     path: Assets/Scenes/Levels/Chapter 1/Level 1.unity

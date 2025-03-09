@@ -195,7 +195,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Sand Falling Platform_0: 3804527556356660171
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -195,7 +195,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Fall animation Benjin4_0: -2230656990532722700
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

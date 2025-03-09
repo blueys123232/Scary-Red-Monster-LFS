@@ -275,6 +275,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Coins
       objectReference: {fileID: 0}
+    - target: {fileID: 6939488874317987230, guid: 30d30daa163826c4c8eb9761743cc496, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 8586772943136231401, guid: debb55b2f35792243895aaa4cd45b5c7, type: 3}
     - target: {fileID: 7764101591944406058, guid: 30d30daa163826c4c8eb9761743cc496, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -990,6 +994,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1725373424765871814, guid: 1157af82b4438b64e9fae112a9e52398, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 8586772943136231401, guid: debb55b2f35792243895aaa4cd45b5c7, type: 3}
     - target: {fileID: 2161066690647529843, guid: 1157af82b4438b64e9fae112a9e52398, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -1129,6 +1137,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 2582423335207099727}
     m_Modifications:
     - target: {fileID: 103721603195041681, guid: 6e54b74b2164ccf45823d346a3038613, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 8586772943136231401, guid: debb55b2f35792243895aaa4cd45b5c7, type: 3}
+    - target: {fileID: 103721603195041681, guid: 6e54b74b2164ccf45823d346a3038613, type: 3}
       propertyPath: offset.x
       value: -6.29
       objectReference: {fileID: 0}
@@ -1262,6 +1274,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2582423335207099727}
     m_Modifications:
+    - target: {fileID: 403968839078029550, guid: aafed1ab311a3534e87037d70d3e014a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -518.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1110067468737270291, guid: aafed1ab311a3534e87037d70d3e014a, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 8586772943136231401, guid: debb55b2f35792243895aaa4cd45b5c7, type: 3}
     - target: {fileID: 4365999973756189493, guid: aafed1ab311a3534e87037d70d3e014a, type: 3}
       propertyPath: m_Name
       value: Pause Button canvas

@@ -7,25 +7,24 @@ public class HealingPotion : MonoBehaviour
     public int potionPickupAmount;
   
     
-        private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Inventory playerInventoryUI = collision.GetComponentInChildren<Inventory>();
+        PlayerInventory pInv = collision.GetComponent<PlayerInventory>();
+
+        if (playerInventoryUI != null)
         {
-            Inventory playerInventoryUI = collision.GetComponentInChildren<Inventory>();
-            PlayerInventory pInv = collision.GetComponent<PlayerInventory>();
+            // Add the potion sprite to the currently selected inventory slot
+            playerInventoryUI.AddItem(HealingPotionSprite);
+            pInv.AddPotion();
 
-            if (playerInventoryUI != null)
-            {
-                // Add the key sprite to the currently selected inventory slot
-                playerInventoryUI.AddItem(HealingPotionSprite);
-                Debug.Log("Potion Added.");
-
-                // Destroy the key game object after collection
-                Destroy(gameObject);
-                Debug.Log("The Potion is Added in the Collection.");
-            }
-            else
-            {
-                Debug.Log("Player's inventory UI not found.");
-            }
+            // Destroy the Potion game object after collection
+            Destroy(gameObject);
+        }
+        else
+        {
+            Debug.Log("Player's inventory UI not found.");
+        }
     }
 }
 

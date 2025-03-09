@@ -2,13 +2,13 @@ using UnityEngine;
 
 public class MiniToasterBehavior : MonoBehaviour
 {
+    PatrolPointScript ppScript;
+
     public float speed = 2f;
     public float detectionRange = 5f;
     public float attackRange = 1f;
     public int damage = 10;
-    public Transform[] patrolPoints;
 
-    private int currentPatrolIndex = 0;
     private Transform player;
     private bool isChasing = true;
     private Rigidbody2D rb;
@@ -19,6 +19,7 @@ public class MiniToasterBehavior : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         rb = GetComponent<Rigidbody2D>();
+        ppScript = GetComponent<PatrolPointScript>();
     }
 
     void Update()
@@ -48,25 +49,11 @@ public class MiniToasterBehavior : MonoBehaviour
         }
         else
         {
-            Patrol();
+            ppScript.Patrol();
         }
     }
 
-    void Patrol()
-    {
-        if (patrolPoints.Length == 0)
-            return;
-
-        Transform targetPoint = patrolPoints[currentPatrolIndex];
-        Vector2 targetPosition = new Vector2(targetPoint.position.x, transform.position.y); // Ensure it stays on the ground
-
-        rb.MovePosition(Vector2.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime));
-
-        if (Vector2.Distance(transform.position, targetPosition) < 0.2f)
-        {
-            currentPatrolIndex = (currentPatrolIndex + 1) % patrolPoints.Length;
-        }
-    }
+   
 
     void ChasePlayer()
     {

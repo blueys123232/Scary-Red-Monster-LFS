@@ -1,13 +1,19 @@
+using Unity.PlasticSCM.Editor.WebApi;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    HealingPotion hPotScript;
+
     public float moveSpeed = 10f; // Movement speed
     public float runSpeed = 20f; // Running speed
     public float crouchSpeed = 5f; // Crouch speed
     public float jumpForce = 15f; // Jump force
     public Transform groundCheck; // Ground check position
     public LayerMask groundLayer; // Layer mask for ground
+
+    PlayerHealth playerHealth;
 
     private Rigidbody2D rb;
     private Animator animator;
@@ -24,7 +30,8 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         playerStamina = GetComponent<PlayerStamina>();
-
+        hPotScript = FindAnyObjectByType<HealingPotion>();
+        playerHealth = GetComponent<PlayerHealth>();
         // Check for component assignments
         if (rb == null) Debug.LogError("Rigidbody2D component not found on " + gameObject.name);
         if (animator == null) Debug.LogError("Animator component not found on " + gameObject.name);
@@ -37,19 +44,10 @@ public class PlayerMovement : MonoBehaviour
     {
         HandleInput();
         UpdateAnimations();
-        // Click the Healing Potion on any Slot
-        if (Input.GetMouseButton(0))
-        {
-            inventory.UsePotion();
-            // Access the Player's Health Script and Heal the Player's Health Bar
-            PlayerHealth playerHealth = GetComponent<PlayerHealth>();
-            if(playerHealth != null)
-            {
-                playerHealth.Heal(healAmount);
-            }
 
+        Debug.Log(inventory.potCount);
 
-        }
+        HealPlayer();
 
     }
     void FixedUpdate()
@@ -158,6 +156,22 @@ public class PlayerMovement : MonoBehaviour
         if (((1 << collision.gameObject.layer) & groundLayer) != 0)
         {
             isGrounded = false;
+        }
+    }
+
+    void HealPlayer()
+    {
+        // Click the Healing Potion on any Slot
+        //can only use potions if we have more than 0
+        if (Input.GetMouseButton(0) && inventory.potCount > 0 && playerHealth.currentHealth < playerHealth.maxHealth)
+        {
+            inventory.UsePotion();
+            if (playerHealth != null)
+            {
+                playerHealth.Heal(healAmount);
+            }
+
+
         }
     }
 }

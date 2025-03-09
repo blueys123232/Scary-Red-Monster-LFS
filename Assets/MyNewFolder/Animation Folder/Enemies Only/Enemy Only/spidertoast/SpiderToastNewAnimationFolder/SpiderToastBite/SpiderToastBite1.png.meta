@@ -195,7 +195,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      SpiderToastBite1_0: -834861619366064293
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

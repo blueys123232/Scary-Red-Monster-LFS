@@ -9,6 +9,8 @@ public class PatrolPointScript : MonoBehaviour
     // the point that becomes the one it move to after its gotten to the last one
     private Transform target;
 
+    Spider2d spider2d;
+    public bool needsToFlip;
 
     //Numbers othe waypoints and also specify the minimum distance the entity needs to be before it has got to its destination
     private int targetWaypointNumber = 0;
@@ -23,24 +25,36 @@ public class PatrolPointScript : MonoBehaviour
     {
         lastWaypointNumber = points.Count - 1;
         target = points[targetWaypointNumber];
+        spider2d = GetComponent<Spider2d>();
+        
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Patrol()
     {
-        //how fast we are moving each point
-        float moveStep = moveSpeed * Time.deltaTime;
+        //how fast they move to each point
+        float enemyMoveSpeed = moveSpeed * Time.deltaTime;
 
         //Distance betwwn the entity and whatever the current tart is
         float distance = Vector2.Distance(transform.position, target.position);
         CheckDistance(distance);
+
+        //Move our enemy from its current Waypoint/position to the next one
+        transform.position = Vector2.MoveTowards(transform.position, target.position, enemyMoveSpeed);
     }
+
+
     void CheckDistance(float curentDistance)
     {
         if (curentDistance < miniumDistance)
         {
             targetWaypointNumber++;
             ChangeTarget();
+            if (needsToFlip) 
+            {
+                spider2d.FlipDirection();
+
+            }
+
         }
     }
 

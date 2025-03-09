@@ -195,7 +195,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Healing potion Inventory Slot_0: 2041795973183336754
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerInventory : MonoBehaviour
 {
     private int keyCount = 0; // Current number of keys the player has
-    private int potCount = 0;
+    public int potCount = 0;
     Inventory inventoryUI;
     HealingPotion hPot;
 
@@ -11,6 +11,7 @@ public class PlayerInventory : MonoBehaviour
     private void Start()
     {
         inventoryUI = GetComponent<Inventory>();
+        hPot = FindAnyObjectByType<HealingPotion>();
     }
     public void AddKey()
     {
@@ -59,8 +60,7 @@ public void UsePotion()
 {
     if (potCount > 0)
     {
-        potCount--;
-        Debug.Log("Pots Used, Now Pots Remaining" + potCount);
+        potCount = potCount - 1;
             if(potCount <= 0)
             {
                 inventoryUI.AddItem(inventoryUI.DefaultSlotSprite);
