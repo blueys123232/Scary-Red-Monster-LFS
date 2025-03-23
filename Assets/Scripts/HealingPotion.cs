@@ -12,7 +12,7 @@ public class HealingPotion : MonoBehaviour
         Inventory playerInventoryUI = collision.GetComponentInChildren<Inventory>();
         PlayerInventory pInv = collision.GetComponent<PlayerInventory>();
 
-        if (playerInventoryUI != null)
+        if (playerInventoryUI != null && playerInventoryUI.slotsEmpty[playerInventoryUI.selectedSlotIndex] == true)
         {
             // Add the potion sprite to the currently selected inventory slot
             playerInventoryUI.AddItem(HealingPotionSprite);

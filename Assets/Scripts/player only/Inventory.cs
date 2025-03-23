@@ -1,14 +1,23 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+public enum ItemType
+{
+    Empty,
+    Key,
+    HealingPotion,
+}
+
 public class Inventory : MonoBehaviour
 {
     public Image[] slots; // Array to hold the inventory slots
-    public string[] slotName;
-    public ScrollRect scrollRect; // Reference to the ScrollRect component
-    private int selectedSlotIndex = 0; // Tracks the currently selected slot index
+    public ItemType[] itemType;
+    public bool[] slotsEmpty;
+    public int selectedSlotIndex = 0; // Tracks the currently selected slot index
+    //public bool slotOccupied;
 
     public Sprite DefaultSlotSprite;
+    
 
     void Start()
     {
@@ -18,7 +27,8 @@ public class Inventory : MonoBehaviour
             if (slots[i] != null)
             {
                 slots[i].color = Color.clear; // Clear the slots initially
-                slotName[i] = "Empty";
+                itemType[i] = global::ItemType.Empty;
+                slotsEmpty[i] = true;
             }
             else
             {
@@ -99,12 +109,14 @@ public class Inventory : MonoBehaviour
     // Method to add an item to the currently selected inventory slot
     public void AddItem(Sprite itemSprite)
     {
-        if (slots[selectedSlotIndex] != null)
+        if (slots[selectedSlotIndex] != null && slotsEmpty[selectedSlotIndex] == true)
         {
             slots[selectedSlotIndex].sprite = itemSprite;
-            slotName[selectedSlotIndex] = itemSprite.name;
             slots[selectedSlotIndex].color = Color.white; // Set the slot to visible with the item image
+            slotsEmpty[selectedSlotIndex] = false;
             Debug.Log("Item added to " + slots[selectedSlotIndex].name);
+            //slotOccupied = true;
+            Debug.Log("Sprite is " + slots[selectedSlotIndex].sprite);
 
             // Automatically scroll to the slot
             ScrollToSlot(selectedSlotIndex);
@@ -113,15 +125,18 @@ public class Inventory : MonoBehaviour
         {
             Debug.Log("Selected slot is null or already occupied");
         }
+
+       
     }
 
     public void RemoveItem()
     
     {
-        if (slots[selectedSlotIndex] != null && slots[selectedSlotIndex].sprite != DefaultSlotSprite)
+        if (slots[selectedSlotIndex] != null && slots[selectedSlotIndex].sprite != DefaultSlotSprite && slotsEmpty[selectedSlotIndex] == false)
         {
             slots[selectedSlotIndex].sprite = DefaultSlotSprite;
             slots[selectedSlotIndex].color = Color.white;
+            slotsEmpty[selectedSlotIndex] = true;
             Debug.Log("Item Removed From   " + slots[selectedSlotIndex].name);
 
         }
@@ -136,11 +151,6 @@ public class Inventory : MonoBehaviour
     // Method to scroll to a specific slot
     void ScrollToSlot(int slotIndex)
     {
-        if (scrollRect != null)
-        {
-            // Calculate the position to scroll to based on the slot index
-            float scrollPosition = (float)slotIndex / (slots.Length - 1);
-            scrollRect.horizontalNormalizedPosition = scrollPosition;
-        }
+        Debug.Log("Scroll to Slot");
     }
 }

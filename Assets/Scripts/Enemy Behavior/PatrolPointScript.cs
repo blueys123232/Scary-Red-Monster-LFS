@@ -9,7 +9,7 @@ public class PatrolPointScript : MonoBehaviour
     // the point that becomes the one it move to after its gotten to the last one
     private Transform target;
 
-    Spider2d spider2d;
+    FlipEnemy flipE;
     public bool needsToFlip;
 
     //Numbers othe waypoints and also specify the minimum distance the entity needs to be before it has got to its destination
@@ -25,8 +25,7 @@ public class PatrolPointScript : MonoBehaviour
     {
         lastWaypointNumber = points.Count - 1;
         target = points[targetWaypointNumber];
-        spider2d = GetComponent<Spider2d>();
-        
+        flipE = GetComponent<FlipEnemy>();
     }
 
     public void Patrol()
@@ -51,8 +50,7 @@ public class PatrolPointScript : MonoBehaviour
             ChangeTarget();
             if (needsToFlip) 
             {
-                spider2d.FlipDirection();
-
+                flipE.FlipDirection();
             }
 
         }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class Spider2d : MonoBehaviour
 {
     PatrolPointScript ppScript;
+    FlipEnemy flipE;
 
     // the public and private starts
     public float speed = 2f;
@@ -33,6 +34,7 @@ public class Spider2d : MonoBehaviour
         player = GameObject.FindWithTag("Player").transform;
         animator = GetComponent<Animator>();
         ppScript = GetComponent<PatrolPointScript>();
+        flipE = GetComponent<FlipEnemy>();
     }
 
     // Update is called once per frame
@@ -78,20 +80,14 @@ public class Spider2d : MonoBehaviour
         if (moveDirection.x > 0 && transform.localScale.x < 0) // facing right and left 
         {
             Debug.Log("flipping the Right");
-            FlipDirection();
+            flipE.FlipDirection();
         }
         else if (moveDirection.x < 0 && transform.localScale.x > 0) // facing left and right
         {
             Debug.Log("flipping the Left");
-            FlipDirection();
+            flipE.FlipDirection();
         }
 
-    }
-    public void FlipDirection()
-    {
-        Vector3 scale = transform.localScale;
-        scale.x = -scale.x;
-        transform.localScale = scale;
     }
 
     void AttackPlayer()

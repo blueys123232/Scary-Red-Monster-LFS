@@ -1,3 +1,5 @@
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerInventory : MonoBehaviour
@@ -34,13 +36,15 @@ public class PlayerInventory : MonoBehaviour
     // Method to use a key, reducing the key count by 1
     public void UseKey()
     {
-        if (keyCount > 0)
+        if (keyCount > 0 )
         {
+            //if(inventoryUI.slots[inventoryUI.selectedSlotIndex].sprite)
             keyCount--;
             Debug.Log("Key used. Keys remaining: " + keyCount);
             if(keyCount <= 0)
             {
-                inventoryUI.AddItem(inventoryUI.DefaultSlotSprite);
+                //inventoryUI.AddItem(inventoryUI.DefaultSlotSprite);
+                inventoryUI.RemoveItem();
             }
         }
         else
@@ -63,7 +67,8 @@ public void UsePotion()
         potCount = potCount - 1;
             if(potCount <= 0)
             {
-                inventoryUI.AddItem(inventoryUI.DefaultSlotSprite);
+                //inventoryUI.AddItem(inventoryUI.DefaultSlotSprite);
+                inventoryUI.RemoveItem();
             }
     }
     else

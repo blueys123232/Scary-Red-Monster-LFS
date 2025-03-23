@@ -295,6 +295,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91980b2faf8cff54d9ffb48ae7eb996a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  potCount: 0
 --- !u!114 &1189357227547147810
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -313,7 +314,9 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  scrollRect: {fileID: 0}
+  itemType: 0000000000000000000000000000000000000000
+  slotsEmpty: 0000000000
+  selectedSlotIndex: 0
   DefaultSlotSprite: {fileID: 3436466735575706393, guid: 3e730c9914c2b0a4f8fbfb761cd528e3, type: 3}
 --- !u!1001 &97493306774043578
 PrefabInstance:

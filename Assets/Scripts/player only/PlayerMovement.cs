@@ -170,8 +170,6 @@ public class PlayerMovement : MonoBehaviour
             {
                 playerHealth.Heal(healAmount);
             }
-
-
         }
     }
 }

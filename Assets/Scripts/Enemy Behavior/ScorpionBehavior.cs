@@ -5,11 +5,12 @@ using UnityEngine;
 public class ScorpionBehavior : MonoBehaviour
 {
     PatrolPointScript ppScript; // Reference to PatrolPointScript
+    FlipEnemy flipE;
     // Public and Private 
     public float speed = 6f;
     public float damage = 2f;
 
-    public float detectonRange = 5f;
+    public float detectonRange = 3f;
     public float attackRange = 1.5f;
 
     private Rigidbody2D rb;
@@ -18,7 +19,7 @@ public class ScorpionBehavior : MonoBehaviour
 
     private bool canTakeDamage = true;
     public float damageCooldown = 1f;
-    private float damageCooldowntime = 0f;
+    private float damageCooldowntime = 2f;
 
     private bool IsAttacking = false;
 
@@ -30,6 +31,7 @@ public class ScorpionBehavior : MonoBehaviour
         animator = GetComponent<Animator>();
         player = GameObject.FindWithTag("Player").transform;
         ppScript = GetComponent<PatrolPointScript>();
+        flipE = GetComponent<FlipEnemy>();
     }
 
     // Update is called once per frame
@@ -64,11 +66,11 @@ public class ScorpionBehavior : MonoBehaviour
         // Flip direction based of the Player position (if needed)
         if (moveDirection.x > 0 && transform.localScale.x < 0)
         {
-            FlipDirection();
+            flipE.FlipDirection();
         }
         else if (moveDirection.x < 0 && transform.localScale.x > 0)
         {
-            FlipDirection();
+            flipE.FlipDirection();
         }
     }
 
@@ -95,11 +97,5 @@ public class ScorpionBehavior : MonoBehaviour
         yield return new WaitForSeconds(damageCooldowntime); // Wait For attack cooldown
         IsAttacking = false;
         animator.SetBool("IsAttacking", false); // Reset the attack animation 
-    }
-    void FlipDirection()
-    {
-        Vector3 scale = transform.localScale;
-        scale.x = -scale.x; // Flip the image horizontally by negating the x-axis scale
-        transform.localScale = scale;
     }
 }
