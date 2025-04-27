@@ -8,7 +8,17 @@ public class PauseMenu : MonoBehaviour
 
     void Update()
     {
-        
+       if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if(GameIsPaused)
+            {
+                Resume();
+            }
+            else
+            {
+                Pause();
+            }
+        }
     }
 
     public void Resume()
@@ -33,7 +43,12 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f;
         SceneManager.LoadScene("Main Menu"); // Replace "MainMenu" with the actual name of your main menu scene
     }
-
+    public void RestartGame()
+    {
+        Debug.Log("Restarting Game");
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
     public void QuitGame()
     {
         Debug.Log("Quitting game"); // Debug log
