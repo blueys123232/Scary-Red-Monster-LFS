@@ -1,58 +1,34 @@
 using UnityEngine;
+using System.Collections;
+using UnityEngine.Audio;
 
 public class Key : MonoBehaviour
 {
-    public Sprite keySprite; // The sprite representing the key
-    public bool AlreadyAkey;
-
-    Inventory playerInventoryUI;
-    PlayerInventory pInv;
+    private bool isCollected = false;
+    private AudioSource AudioSource;
+    PickUpmanager puManager;
 
     private void Start()
     {
-        playerInventoryUI = FindAnyObjectByType<Inventory>();
-        pInv = FindAnyObjectByType<PlayerInventory>();
-
+        AudioSource = GetComponent<AudioSource>();
+        puManager = FindAnyObjectByType<PickUpmanager>();
     }
 
-    private void Update()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
+        if (!isCollected && collision.CompareTag("Player"))
         {
-
-            if (playerInventoryUI != null && playerInventoryUI.slotsEmpty[playerInventoryUI.selectedSlotIndex] == true && !AlreadyAkey)
-            {
-                PickupKey();
-            }
-            else
-            {
-                Debug.Log("Player's inventory UI not found.");
-            }
-        }
-
-        if (AlreadyAkey)
-        {
-            pInv.AddKey();
-            Destroy(gameObject);
+            isCollected = true;
+            puManager.AddKey();
+            AudioSource.Play();
+            StartCoroutine(DestroyAfterSound()); // Destroy the coin after the sound plays
         }
     }
 
-    void PickupKey()
+    private IEnumerator DestroyAfterSound()
     {
-        AlreadyAkey = true;
-        // Add the key sprite to the currently selected inventory slot
-        playerInventoryUI.itemType[playerInventoryUI.selectedSlotIndex] = ItemType.Key;
-        playerInventoryUI.AddItem(keySprite);
-        pInv.AddKey();
-
-        // Destroy the key game object after collection
-        Destroy(gameObject);
+        yield return new WaitForSeconds(AudioSource.clip.length);
+        Destroy(gameObject); // Destroy the coin after the sound has played
     }
 
-    
 }

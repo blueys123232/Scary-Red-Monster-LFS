@@ -5,10 +5,12 @@ public class Coin : MonoBehaviour
 {
     private bool isCollected = false;
     private AudioSource audioSource;
+    PickUpmanager puManager;
 
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        puManager = FindAnyObjectByType<PickUpmanager>();
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -16,7 +18,7 @@ public class Coin : MonoBehaviour
         if (!isCollected && other.CompareTag("Player"))
         {
             isCollected = true; // Mark as collected to prevent multiple triggers
-            CoinManager.instance.AddCoin();
+            puManager = FindAnyObjectByType<PickUpmanager>();
             audioSource.Play(); // Play the coin collection sound
             StartCoroutine(DestroyAfterSound()); // Destroy the coin after the sound plays
         }

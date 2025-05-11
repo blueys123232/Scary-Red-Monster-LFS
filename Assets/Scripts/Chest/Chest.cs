@@ -11,15 +11,15 @@ public class Chest : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            PlayerInventory playerInventory = other.GetComponent<PlayerInventory>();
+            PickUpmanager puManager = FindAnyObjectByType<PickUpmanager>();
 
-            if (playerInventory != null && playerInventory.HasKey() && !isOpened)
+            if (puManager != null && puManager.keyCount > 0 && !isOpened)
             {
                 // Use the key to open the chest
-                playerInventory.UseKey(); // This will remove the key and reduce the key count to 0
+                puManager.UseKey(); // This will remove the key and reduce the key count to 0
                 OpenChest();
             }
-            else if (!playerInventory.HasKey())
+            else
             {
                 Debug.Log("Chest is locked. You need a key to open it.");
             }
@@ -32,6 +32,7 @@ public class Chest : MonoBehaviour
         {
             // Change the chest's sprite to the open chest sprite
             GetComponent<SpriteRenderer>().sprite = openChestSprite;
+            GetComponent<BoxCollider2D>().enabled = false;
 
             // Reveal the item inside the chest
             if (itemInside != null)

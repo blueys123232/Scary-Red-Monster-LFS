@@ -4,8 +4,7 @@ using UnityEngine.UI;
 public enum ItemType
 {
     Empty,
-    Key,
-    HealingPotion,
+
 }
 
 public class Inventory : MonoBehaviour

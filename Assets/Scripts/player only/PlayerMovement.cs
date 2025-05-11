@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    HealingPotion hPotScript;
 
     public float moveSpeed = 10f; // Movement speed
     public float runSpeed = 20f; // Running speed
@@ -14,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask groundLayer; // Layer mask for ground
 
     PlayerHealth playerHealth;
+    PickUpmanager puManager;
 
     private Rigidbody2D rb;
     private Animator animator;
@@ -22,7 +22,6 @@ public class PlayerMovement : MonoBehaviour
     private bool isCrouching;
     private bool isRunning;
     private float moveDirection; // For capturing horizontal input
-    PlayerInventory inventory;
     public int healAmount = 50;
     void Start()
     {
@@ -30,25 +29,20 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         playerStamina = GetComponent<PlayerStamina>();
-        hPotScript = FindAnyObjectByType<HealingPotion>();
         playerHealth = GetComponent<PlayerHealth>();
+        puManager = FindAnyObjectByType<PickUpmanager>();
         // Check for component assignments
         if (rb == null) Debug.LogError("Rigidbody2D component not found on " + gameObject.name);
         if (animator == null) Debug.LogError("Animator component not found on " + gameObject.name);
         if (playerStamina == null) Debug.LogError("PlayerStamina component not found on " + gameObject.name);
         if (groundCheck == null) Debug.LogError("GroundCheck Transform not assigned in the Inspector on " + gameObject.name);
-        inventory = GetComponent<PlayerInventory>();
     }
 
     void Update()
     {
         HandleInput();
         UpdateAnimations();
-
-        Debug.Log(inventory.potCount);
-
         HealPlayer();
-
     }
     void FixedUpdate()
     {
@@ -163,9 +157,9 @@ public class PlayerMovement : MonoBehaviour
     {
         // Click the Healing Potion on any Slot
         //can only use potions if we have more than 0
-        if (Input.GetMouseButton(0) && inventory.potCount > 0 && playerHealth.currentHealth < playerHealth.maxHealth)
+        if (Input.GetKeyDown(KeyCode.H) && puManager.hPotCount > 0 && playerHealth.currentHealth < playerHealth.maxHealth)
         {
-            inventory.UsePotion();
+            puManager.UsePotion();
             if (playerHealth != null)
             {
                 playerHealth.Heal(healAmount);

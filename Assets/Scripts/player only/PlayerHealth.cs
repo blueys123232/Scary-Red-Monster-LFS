@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -9,12 +11,13 @@ public class PlayerHealth : MonoBehaviour
     public GameObject gameoverPanel;
     public AudioSource backgroundMusic;
 
-    
+    public TextMeshProUGUI healthText;
 
     void Start()
     {
         currentHealth = maxHealth;
         UpdateHealthBar();
+        UpdatedHealthText();
 
         if (gameoverPanel != null)
         {
@@ -30,6 +33,7 @@ public class PlayerHealth : MonoBehaviour
             currentHealth = 0;
         }
         UpdateHealthBar();
+        UpdatedHealthText();
         CheckIfDead();
     }
 
@@ -41,6 +45,7 @@ public class PlayerHealth : MonoBehaviour
             currentHealth = maxHealth;
         }
         UpdateHealthBar();
+        UpdatedHealthText();
     }
 
     public void UpdateHealthBar()
@@ -48,6 +53,13 @@ public class PlayerHealth : MonoBehaviour
         if (healthBar != null)
         {
             healthBar.fillAmount = (float)currentHealth / maxHealth;
+        }
+    }
+    public void UpdatedHealthText()
+    {
+        if (healthText != null)
+        {
+            healthText.text = "Health: " + currentHealth + "/" + maxHealth;
         }
     }
 

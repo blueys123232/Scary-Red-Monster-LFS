@@ -1039,17 +1039,17 @@ TextureImporter:
         rgba: 4278255360
     - name: 5th Leg
       guid: 37746282d992ef743aaf927bedd3f744
-      position: {x: -29.464058, y: -183.52092, z: 0}
-      rotation: {x: 0, y: -0, z: -0.9159828, w: 0.4012177}
-      length: 79.12249
+      position: {x: -27.322859, y: -183.98637, z: 0}
+      rotation: {x: 0, y: -0, z: -0.9227889, w: 0.38530597}
+      length: 81.03852
       parentId: 0
       color:
         serializedVersion: 2
         rgba: 4294967040
     - name: bone_27
       guid: 4d69cc496d7021f4aa93682cf7f9bf50
-      position: {x: 130.36522, y: 19.237862, z: 0}
-      rotation: {x: 0, y: 0, z: -0.3975615, w: 0.91757554}
+      position: {x: 130.79543, y: 21.888062, z: 0}
+      rotation: {x: 0, y: 0, z: -0.38162208, w: 0.9243185}
       length: 13.116913
       parentId: 25
       color:
