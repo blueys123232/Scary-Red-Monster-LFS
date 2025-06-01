@@ -1,5 +1,3 @@
-using Unity.PlasticSCM.Editor.WebApi;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -61,7 +59,7 @@ public class PlayerMovement : MonoBehaviour
         moveDirection = Input.GetAxisRaw("Horizontal");
 
         // Handle crouch input
-        isCrouching = Input.GetKey(KeyCode.S);
+        isCrouching = Input.GetKeyDown(KeyCode.S);
         if (animator != null)
         {
             animator.SetBool("isCrouching", isCrouching);

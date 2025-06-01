@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.Audio;
 
 public class Coin : MonoBehaviour
 {
@@ -18,7 +19,7 @@ public class Coin : MonoBehaviour
         if (!isCollected && other.CompareTag("Player"))
         {
             isCollected = true; // Mark as collected to prevent multiple triggers
-            puManager = FindAnyObjectByType<PickUpmanager>();
+            puManager.AddCoin();
             audioSource.Play(); // Play the coin collection sound
             StartCoroutine(DestroyAfterSound()); // Destroy the coin after the sound plays
         }

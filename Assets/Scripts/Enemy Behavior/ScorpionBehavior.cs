@@ -17,7 +17,7 @@ public class ScorpionBehavior : MonoBehaviour
     private Animator animator;
     private Transform player;
 
-    private bool canTakeDamage = true;
+    
     public float damageCooldown = 1f;
     private float damageCooldowntime = 2f;
 

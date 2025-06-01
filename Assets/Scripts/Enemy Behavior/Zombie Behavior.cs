@@ -8,6 +8,7 @@ public class ZombieBehavior : MonoBehaviour
     public float detectionRange = 5f;
     public float attackRange = 1.5f;
 
+
     private Animator animator;
     private Rigidbody2D rb;
     private Transform player;
@@ -48,6 +49,7 @@ public class ZombieBehavior : MonoBehaviour
             else
             {
                 ppScript.Patrol();
+                animator.SetBool("isAttacking", false);
             }
 
     }
@@ -56,8 +58,14 @@ public class ZombieBehavior : MonoBehaviour
         Vector2 moveDirection = (player.position - transform.position).normalized;
         rb.velocity = new Vector2(moveDirection.x * speed, rb.velocity.y);
 
-        animator.SetBool("isWalking", true);
-        flipE.FlipDirection();  // Flip to face the player
+        animator.SetBool("isAttacking", false);
+
+        // Flip only if moving direction is different from facing direction
+        if ((moveDirection.x > 0 && transform.localScale.x < 0) ||
+            (moveDirection.x < 0 && transform.localScale.x > 0))
+        {
+            flipE.FlipDirection();
+        }
     }
     void AttackPlayer()
     {

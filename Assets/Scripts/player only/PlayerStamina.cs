@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class PlayerStamina : MonoBehaviour
 {
@@ -9,18 +10,22 @@ public class PlayerStamina : MonoBehaviour
     public float staminaDrainRate = 10f;
     public Image staminaBar;
 
+    public TextMeshProUGUI staminatext;
+
     private bool isRunning = false;
 
     void Start()
     {
         currentStamina = maxStamina;
         UpdateStaminaBar();
+        UpdateStaminaText();
     }
 
     void Update()
     {
         HandleStamina();
         UpdateStaminaBar();
+        UpdateStaminaText();
     }
 
     void HandleStamina()
@@ -48,6 +53,13 @@ public class PlayerStamina : MonoBehaviour
         if (staminaBar != null)
         {
             staminaBar.fillAmount = currentStamina / maxStamina;
+        }
+    }
+    public void UpdateStaminaText()
+    {
+        if (staminatext != null)
+        {
+            staminatext.text = Mathf.RoundToInt(currentStamina) + " / " + Mathf.RoundToInt(maxStamina);
         }
     }
 
