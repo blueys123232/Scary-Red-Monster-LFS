@@ -195,7 +195,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Zombie Walking3_0: -1098804045454282499
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

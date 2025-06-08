@@ -195,7 +195,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Zombie Attack2_0: -3816576348709936318
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
