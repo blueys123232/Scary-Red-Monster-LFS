@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 02d3f67ef8a8a01429dcb6c9a7f65327
+guid: 49cfff4aa0712ba4192e37811bc89259
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1915911710813820918
-    second: newpistol_0
+      213: 3513015462325553995
+    second: WhiteChainsawnew_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -165,13 +165,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: newpistol_0
+      name: WhiteChainsawnew_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 28
-        height: 14
+        x: 8
+        y: 8
+        width: 62
+        height: 33
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -179,8 +179,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6f79110dc8fa69a10800000000000000
-      internalID: 1915911710813820918
+      spriteID: b4b8e5243fcb0c030800000000000000
+      internalID: 3513015462325553995
       vertices: []
       indices: 
       edges: []
@@ -195,7 +195,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      WhiteChainsawnew_0: 3513015462325553995
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

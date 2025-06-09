@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 410d849da8e89ec48a4e5e53aae6d230
+guid: 302f5d61602760540be5ac64797ce5fd
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6454969007074664543
-    second: Shuriken_0
+      213: -3025506533778247446
+    second: LightSpearpixelated_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -165,13 +165,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Shuriken_0
+      name: LightSpearpixelated_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 61
-        height: 65
+        width: 58
+        height: 14
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -179,8 +179,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1af982153e75b66a0800000000000000
-      internalID: -6454969007074664543
+      spriteID: ae0368c56dd3306d0800000000000000
+      internalID: -3025506533778247446
       vertices: []
       indices: 
       edges: []
@@ -195,7 +195,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      LightSpearpixelated_0: -3025506533778247446
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

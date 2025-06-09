@@ -195,7 +195,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Sharkbite3_0: 3398617072873363976
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

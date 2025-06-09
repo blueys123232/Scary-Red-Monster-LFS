@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: fc538866f82230346af302d8e3fdcd05
+guid: a554205ffa03be8439ae964ef8905e10
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1473447779972251282
-    second: bow2_0
+      213: 7328437799567196571
+    second: SharkLauncher_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -165,13 +165,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: bow2_0
+      name: SharkLauncher_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 4
         y: 0
-        width: 64
-        height: 64
+        width: 90
+        height: 50
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -179,8 +179,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 29e755003fcb27410800000000000000
-      internalID: 1473447779972251282
+      spriteID: b918fb9d957d3b560800000000000000
+      internalID: 7328437799567196571
       vertices: []
       indices: 
       edges: []
@@ -195,7 +195,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      SharkLauncher_0: 7328437799567196571
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

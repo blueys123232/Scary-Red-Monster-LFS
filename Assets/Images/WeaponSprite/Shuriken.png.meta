@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: d8d3420fa123a9d439169e45a151600c
+guid: 410d849da8e89ec48a4e5e53aae6d230
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2408530018317867212
-    second: Shotgun_0
+      213: -6454969007074664543
+    second: Shuriken_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -165,13 +165,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Shotgun_0
+      name: Shuriken_0
       rect:
         serializedVersion: 2
-        x: 52
-        y: 24
-        width: 756
-        height: 518
+        x: 0
+        y: 0
+        width: 61
+        height: 65
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -179,8 +179,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4376c4395be239ed0800000000000000
-      internalID: -2408530018317867212
+      spriteID: 1af982153e75b66a0800000000000000
+      internalID: -6454969007074664543
       vertices: []
       indices: 
       edges: []
@@ -195,7 +195,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Shuriken_0: -6454969007074664543
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
