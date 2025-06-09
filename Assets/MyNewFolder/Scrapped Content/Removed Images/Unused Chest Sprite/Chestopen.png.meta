@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 48034f99b7374b840b5b998c2811f435
+guid: 46d6796b458ed1b4bb5723256392e112
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7307277422553973846
-    second: piranha8_0
+      213: -7527812829114552382
+    second: Chestopen_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -165,13 +165,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: piranha8_0
+      name: Chestopen_0
       rect:
         serializedVersion: 2
-        x: 36
-        y: 40
-        width: 471
-        height: 199
+        x: 0
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -179,8 +179,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: aab307956e5579a90800000000000000
-      internalID: -7307277422553973846
+      spriteID: 2cfaff0bd16d78790800000000000000
+      internalID: -7527812829114552382
       vertices: []
       indices: 
       edges: []
@@ -196,7 +196,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      piranha8_0: -7307277422553973846
+      Chestopen_0: -7527812829114552382
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

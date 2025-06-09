@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 084017accb705a34c8a4d1a64a834a0e
+guid: 72c728b057cb67b4d97264295674cd55
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2408530018317867212
-    second: Shotgun_0
+      213: 8578110055188399531
+    second: Devil jellyfish Attack3_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -165,13 +165,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Shotgun_0
+      name: Devil jellyfish Attack3_0
       rect:
         serializedVersion: 2
-        x: 52
-        y: 24
-        width: 756
-        height: 518
+        x: 8
+        y: 0
+        width: 92
+        height: 98
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -179,8 +179,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4376c4395be239ed0800000000000000
-      internalID: -2408530018317867212
+      spriteID: ba506bb75a19b0770800000000000000
+      internalID: 8578110055188399531
       vertices: []
       indices: 
       edges: []
@@ -195,8 +195,7 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      Shotgun_0: -2408530018317867212
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,13 +1,10 @@
 fileFormatVersion: 2
-guid: 11d8bbeb040975b4e8dc9f9fa18fe4d0
+guid: 5588ec3e35cf15b4a971b05dbddd093e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5825250732961213246
-    second: Axe_0
-  - first:
-      213: -316209040919722149
-    second: Axe_1
+      213: 4357174131791955559
+    second: Piranhaattack3_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -49,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -168,13 +165,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Axe_0
+      name: Piranhaattack3_0
       rect:
         serializedVersion: 2
-        x: 148
-        y: 21
-        width: 455
-        height: 855
+        x: 0
+        y: 0
+        width: 94
+        height: 44
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -182,29 +179,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2c45346625d882fa0800000000000000
-      internalID: -5825250732961213246
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Axe_1
-      rect:
-        serializedVersion: 2
-        x: 629
-        y: 60
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b5786397d899c9bf0800000000000000
-      internalID: -316209040919722149
+      spriteID: 7660bfd99cac77c30800000000000000
+      internalID: 4357174131791955559
       vertices: []
       indices: 
       edges: []
@@ -212,16 +188,14 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      Axe_0: -5825250732961213246
-      Axe_1: -316209040919722149
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

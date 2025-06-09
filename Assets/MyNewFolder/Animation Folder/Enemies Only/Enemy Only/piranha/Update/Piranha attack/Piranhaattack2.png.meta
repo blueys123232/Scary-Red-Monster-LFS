@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: ed4c591932fdb124895011b800541267
+guid: a294046729e0d3e498882e6640d7ba50
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4697855325320989610
-    second: piranha3_0
+      213: -2087184729378401766
+    second: Piranhaattack2_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -165,13 +165,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: piranha3_0
+      name: Piranhaattack2_0
       rect:
         serializedVersion: 2
-        x: 36
-        y: 40
-        width: 467
-        height: 199
+        x: 0
+        y: 0
+        width: 94
+        height: 44
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -179,8 +179,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 654b010d87dddceb0800000000000000
-      internalID: -4697855325320989610
+      spriteID: a12d7c80c84d803e0800000000000000
+      internalID: -2087184729378401766
       vertices: []
       indices: 
       edges: []
@@ -195,8 +195,7 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      piranha3_0: -4697855325320989610
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
