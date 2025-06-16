@@ -110,15 +110,23 @@ public class Inventory : MonoBehaviour
     {
         if (slots[selectedSlotIndex] != null && slotsEmpty[selectedSlotIndex] == true)
         {
-            slots[selectedSlotIndex].sprite = itemSprite;
-            slots[selectedSlotIndex].color = Color.white; // Set the slot to visible with the item image
-            slotsEmpty[selectedSlotIndex] = false;
-            Debug.Log("Item added to " + slots[selectedSlotIndex].name);
-            //slotOccupied = true;
-            Debug.Log("Sprite is " + slots[selectedSlotIndex].sprite);
+            if(itemSprite == null)
+            {
+                slots[selectedSlotIndex].sprite = itemSprite;
+                slots[selectedSlotIndex].color = Color.white; // Set the slot to visible with the item image
+                slotsEmpty[selectedSlotIndex] = false;
+                Debug.Log("Item added to " + slots[selectedSlotIndex].name);
+                //slotOccupied = true;
+                Debug.Log("Sprite is " + slots[selectedSlotIndex].sprite);
 
-            // Automatically scroll to the slot
-            ScrollToSlot(selectedSlotIndex);
+                // Automatically scroll to the slot
+                ScrollToSlot(selectedSlotIndex);
+            }
+            else
+            {
+                Debug.Log("Inventory Slot occupied");
+            }
+
         }
         else
         {
@@ -150,6 +158,6 @@ public class Inventory : MonoBehaviour
     // Method to scroll to a specific slot
     void ScrollToSlot(int slotIndex)
     {
-        Debug.Log("Scroll to Slot");
+        
     }
 }

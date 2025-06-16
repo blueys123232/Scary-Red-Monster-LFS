@@ -20,6 +20,7 @@ public class weaponScript : MonoBehaviour
         totalWeapons = weaponHolder.transform.childCount;
         Weapons = new GameObject[totalWeapons];
 
+
         for (int i = 0; i < totalWeapons; i++)
         {
             Weapons[i] = weaponHolder.transform.GetChild(i).gameObject;
@@ -31,6 +32,14 @@ public class weaponScript : MonoBehaviour
    // Update is called once per frame
     void Update()
     {
+        totalWeapons = weaponHolder.transform.childCount;
+        Weapons = new GameObject[totalWeapons];
+
+        for (int i = 0; i < totalWeapons; i++)
+        {
+            Weapons[i] = weaponHolder.transform.GetChild(i).gameObject;
+        }
+
         if (Input.GetKeyDown(KeyCode.E))
         {
             // next Gun

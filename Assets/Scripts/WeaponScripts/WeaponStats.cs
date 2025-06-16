@@ -8,6 +8,4 @@ public class WeaponStats : MonoBehaviour
     public Sprite weaponImage;
     public int Damage;
     public float fireRate;
-
-
 }

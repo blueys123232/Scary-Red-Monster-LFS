@@ -1,23 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.UI;
 using UnityEngine;
 
-public class WeaponPickup : MonoBehaviour
+public class Invtest : MonoBehaviour
 {
-    public GameObject UnactiveWeapon;
-    public GameObject WeaponHolder;
-    public Transform weaponPositionOnPlayer;
+    Inventory inventory;
+    public Sprite _sprite;
 
     // Start is called before the first frame update
     void Start()
     {
-
+       inventory = FindAnyObjectByType<Inventory>(); 
     }
 
     // Update is called once per frame
     void Update()
     {
+       
+
         
     }
 
@@ -25,12 +25,8 @@ public class WeaponPickup : MonoBehaviour
     {
         if (collision.collider.CompareTag("Player"))
         {
-            UnactiveWeapon.transform.parent = WeaponHolder.transform;
-            UnactiveWeapon.transform.position = weaponPositionOnPlayer.position;
-            Destroy(this.gameObject);
+            inventory.AddItem(_sprite);
+            Destroy(this);
         }
-
-
-        
     }
 }
