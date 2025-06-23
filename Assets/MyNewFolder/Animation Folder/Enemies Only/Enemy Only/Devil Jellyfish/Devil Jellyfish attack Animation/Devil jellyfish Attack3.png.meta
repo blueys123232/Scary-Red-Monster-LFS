@@ -195,7 +195,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Devil jellyfish Attack3_0: 8578110055188399531
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

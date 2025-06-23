@@ -3,15 +3,17 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
 
-    public float moveSpeed = 10f; // Movement speed
-    public float runSpeed = 20f; // Running speed
-    public float crouchSpeed = 5f; // Crouch speed
-    public float jumpForce = 15f; // Jump force
+    [SerializeField] private float moveSpeed = 10f; // Movement speed
+    [SerializeField] private float runSpeed = 20f; // Running speed
+    [SerializeField] private float crouchSpeed = 5f; // Crouch speed
+    [SerializeField] private float jumpForce = 15f; // Jump force
+    [SerializeField] private int healAmount = 50; //how much potions heal
+
     public Transform groundCheck; // Ground check position
     public LayerMask groundLayer; // Layer mask for ground
 
-    PlayerHealth playerHealth;
-    PickUpmanager puManager;
+    private PlayerHealth playerHealth;
+    private PickUpmanager puManager;
 
     private Rigidbody2D rb;
     private Animator animator;
@@ -20,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isCrouching;
     private bool isRunning;
     private float moveDirection; // For capturing horizontal input
-    public int healAmount = 50;
+    
     void Start()
     {
         // Get required components

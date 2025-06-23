@@ -195,7 +195,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Scorpin Sting9_0: 706020915216113706
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

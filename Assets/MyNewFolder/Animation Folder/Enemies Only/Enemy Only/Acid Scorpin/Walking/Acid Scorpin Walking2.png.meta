@@ -195,7 +195,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Acid Scorpin Walking2_0: -4078401022173215664
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

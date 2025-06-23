@@ -195,7 +195,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Piranhaattack1_0: -706911222995184937
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

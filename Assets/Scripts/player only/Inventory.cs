@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public enum ItemType
 {
     Empty,
-
+    Full, 
 }
 
 public class Inventory : MonoBehaviour
@@ -13,10 +13,8 @@ public class Inventory : MonoBehaviour
     public ItemType[] itemType;
     public bool[] slotsEmpty;
     public int selectedSlotIndex = 0; // Tracks the currently selected slot index
-    //public bool slotOccupied;
-
     public Sprite DefaultSlotSprite;
-    
+
 
     void Start()
     {
@@ -25,13 +23,14 @@ public class Inventory : MonoBehaviour
         {
             if (slots[i] != null)
             {
-                slots[i].color = Color.clear; // Clear the slots initially
-                itemType[i] = global::ItemType.Empty;
+                slots[i].sprite = DefaultSlotSprite;
+                slots[i].color = Color.gray; // Clear the slots initially
+                itemType[i] = ItemType.Empty;
                 slotsEmpty[i] = true;
             }
             else
             {
-                Debug.Log("Slot " + (i + 1) + " is not assigned in the inspector.");
+                Debug.LogWarning($"Slot {i + 1} not assigned in inspector.");
             }
         }
 
@@ -60,21 +59,14 @@ public class Inventory : MonoBehaviour
     {
         if (Input.GetAxis("Mouse ScrollWheel") > 0f)
         {
-            // Scroll up
             selectedSlotIndex--;
-            if (selectedSlotIndex < 0)
-            {
-                selectedSlotIndex = slots.Length - 1;
-            }
+            if (selectedSlotIndex < 0) selectedSlotIndex = slots.Length - 1;
         }
         else if (Input.GetAxis("Mouse ScrollWheel") < 0f)
         {
-            // Scroll down
+            
             selectedSlotIndex++;
-            if (selectedSlotIndex >= slots.Length)
-            {
-                selectedSlotIndex = 0;
-            }
+            if (selectedSlotIndex >= slots.Length) selectedSlotIndex = 0;
         }
 
         // Ensure the selected slot is within the visible range
@@ -95,14 +87,34 @@ public class Inventory : MonoBehaviour
         for (int i = 0; i < slots.Length; i++)
         {
             if (i == slotIndex)
+                slots[i].color = new Color(0.8f, 0.8f, 0.8f, 1f); // Highlighted
+            else
+                slots[i].color = slotsEmpty[i] ? Color.gray : Color.white;
+        }
+    }
+
+    // Add item to the currently selected slot if empty
+    public void AddItem(Sprite itemSprite, ItemType newItemType = ItemType.Full)
+    {
+        if (slotsEmpty[selectedSlotIndex] && slots[selectedSlotIndex] != null)
+        {
+            if (itemSprite != null)
             {
-                slots[i].color = new Color(0.8f, 0.8f, 0.8f, 1f); // Highlight the selected slot with a light grey color
+                slots[selectedSlotIndex].sprite = itemSprite;
+                slots[selectedSlotIndex].color = Color.white; // Occupied
+                slotsEmpty[selectedSlotIndex] = false;
+                itemType[selectedSlotIndex] = newItemType;
+
+                Debug.Log($"Item added to slot {selectedSlotIndex + 1}");
+                ScrollToSlot(selectedSlotIndex);
             }
             else
             {
-                slots[i].color = slots[i].sprite != null ? Color.white : Color.clear; // Set color based on whether the slot is occupied
+                Debug.LogWarning("Item sprite is null, cannot add.");
             }
         }
+<<<<<<< HEAD
+=======
     }
 
     // Method to add an item to the currently selected inventory slot
@@ -110,46 +122,603 @@ public class Inventory : MonoBehaviour
     {
         if (slots[selectedSlotIndex] != null && slotsEmpty[selectedSlotIndex] == true)
         {
-            slots[selectedSlotIndex].sprite = itemSprite;
-            slots[selectedSlotIndex].color = Color.white; // Set the slot to visible with the item image
-            slotsEmpty[selectedSlotIndex] = false;
-            Debug.Log("Item added to " + slots[selectedSlotIndex].name);
-            //slotOccupied = true;
-            Debug.Log("Sprite is " + slots[selectedSlotIndex].sprite);
+            if(itemSprite == null)
+            {
+                slots[selectedSlotIndex].sprite = itemSprite;
+                slots[selectedSlotIndex].color = Color.white; // Set the slot to visible with the item image
+                slotsEmpty[selectedSlotIndex] = false;
+                Debug.Log("Item added to " + slots[selectedSlotIndex].name);
+                //slotOccupied = true;
+                Debug.Log("Sprite is " + slots[selectedSlotIndex].sprite);
 
-            // Automatically scroll to the slot
-            ScrollToSlot(selectedSlotIndex);
+                // Automatically scroll to the slot
+                ScrollToSlot(selectedSlotIndex);
+            }
+            else
+            {
+                Debug.Log("Inventory Slot occupied");
+            }
+
         }
+>>>>>>> 0e1d4cbcd3fb9157acae26a0ba8f3ee0f3f67ee3
         else
         {
-            Debug.Log("Selected slot is null or already occupied");
+            Debug.LogWarning("Selected slot is occupied or invalid.");
         }
-
-       
     }
 
-    public void RemoveItem()
-    
+    // Add item to the first empty slot found
+    public bool AddItemToFirstEmptySlot(Sprite itemSprite, ItemType newItemType = ItemType.Full)
     {
-        if (slots[selectedSlotIndex] != null && slots[selectedSlotIndex].sprite != DefaultSlotSprite && slotsEmpty[selectedSlotIndex] == false)
+        for (int i = 0; i < slots.Length; i++)
+        {
+            if (slotsEmpty[i] && slots[i] != null)
+            {
+                slots[i].sprite = itemSprite;
+                slots[i].color = Color.white;
+                slotsEmpty[i] = false;
+                itemType[i] = newItemType;
+
+                Debug.Log($"Item added to first empty slot: {i + 1}");
+                ScrollToSlot(i);
+                HighlightSlot(i);
+                return true;
+            }
+        }
+        Debug.LogWarning("No empty slot available to add the item.");
+        return false;
+    }
+
+    // Remove item from the currently selected slot
+    public void RemoveItem()
+    {
+        if (!slotsEmpty[selectedSlotIndex] && slots[selectedSlotIndex] != null)
         {
             slots[selectedSlotIndex].sprite = DefaultSlotSprite;
-            slots[selectedSlotIndex].color = Color.white;
+            slots[selectedSlotIndex].color = Color.gray;
             slotsEmpty[selectedSlotIndex] = true;
-            Debug.Log("Item Removed From   " + slots[selectedSlotIndex].name);
+            itemType[selectedSlotIndex] = ItemType.Empty;
 
+            Debug.Log($"Item removed from slot {selectedSlotIndex + 1}");
         }
         else
         {
-            Debug.Log("No item Cannot be Removed from the slot");
+            Debug.LogWarning("No item to remove from this slot.");
         }
-
-
-}
-
-    // Method to scroll to a specific slot
+    }
+    public bool FullSlot()
+    { 
+        for (int i = 0; i < slotsEmpty.Length; i++)
+        {
+            if (slotsEmpty[i]) return false;
+        }
+        return true;
+    }
     void ScrollToSlot(int slotIndex)
     {
-        Debug.Log("Scroll to Slot");
+<<<<<<< HEAD
+        // Optional: add UI scroll logic if needed
+=======
+        
+>>>>>>> 0e1d4cbcd3fb9157acae26a0ba8f3ee0f3f67ee3
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
