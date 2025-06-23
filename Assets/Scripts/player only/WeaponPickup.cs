@@ -15,19 +15,6 @@ public class WeaponPickup : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-=======
-        
->>>>>>> 0e1d4cbcd3fb9157acae26a0ba8f3ee0f3f67ee3
-=======
-        
->>>>>>> 0e1d4cbcd3fb9157acae26a0ba8f3ee0f3f67ee3
-    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -38,19 +25,5 @@ public class WeaponPickup : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-
     }
 }
-=======
-        
-    }
-}
->>>>>>> 0e1d4cbcd3fb9157acae26a0ba8f3ee0f3f67ee3
-=======
-        
-    }
-}
->>>>>>> 0e1d4cbcd3fb9157acae26a0ba8f3ee0f3f67ee3

@@ -93,60 +93,6 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    // Add item to the currently selected slot if empty
-    public void AddItem(Sprite itemSprite, ItemType newItemType = ItemType.Full)
-    {
-        if (slotsEmpty[selectedSlotIndex] && slots[selectedSlotIndex] != null)
-        {
-            if (itemSprite != null)
-            {
-                slots[selectedSlotIndex].sprite = itemSprite;
-                slots[selectedSlotIndex].color = Color.white; // Occupied
-                slotsEmpty[selectedSlotIndex] = false;
-                itemType[selectedSlotIndex] = newItemType;
-
-                Debug.Log($"Item added to slot {selectedSlotIndex + 1}");
-                ScrollToSlot(selectedSlotIndex);
-            }
-            else
-            {
-                Debug.LogWarning("Item sprite is null, cannot add.");
-            }
-        }
-<<<<<<< HEAD
-=======
-    }
-
-    // Method to add an item to the currently selected inventory slot
-    public void AddItem(Sprite itemSprite)
-    {
-        if (slots[selectedSlotIndex] != null && slotsEmpty[selectedSlotIndex] == true)
-        {
-            if(itemSprite == null)
-            {
-                slots[selectedSlotIndex].sprite = itemSprite;
-                slots[selectedSlotIndex].color = Color.white; // Set the slot to visible with the item image
-                slotsEmpty[selectedSlotIndex] = false;
-                Debug.Log("Item added to " + slots[selectedSlotIndex].name);
-                //slotOccupied = true;
-                Debug.Log("Sprite is " + slots[selectedSlotIndex].sprite);
-
-                // Automatically scroll to the slot
-                ScrollToSlot(selectedSlotIndex);
-            }
-            else
-            {
-                Debug.Log("Inventory Slot occupied");
-            }
-
-        }
->>>>>>> 0e1d4cbcd3fb9157acae26a0ba8f3ee0f3f67ee3
-        else
-        {
-            Debug.LogWarning("Selected slot is occupied or invalid.");
-        }
-    }
-
     // Add item to the first empty slot found
     public bool AddItemToFirstEmptySlot(Sprite itemSprite, ItemType newItemType = ItemType.Full)
     {
@@ -196,15 +142,7 @@ public class Inventory : MonoBehaviour
     }
     void ScrollToSlot(int slotIndex)
     {
-<<<<<<< HEAD
-<<<<<<< HEAD
-        // Optional: add UI scroll logic if needed
-=======
-        
->>>>>>> 0e1d4cbcd3fb9157acae26a0ba8f3ee0f3f67ee3
-=======
-        
->>>>>>> 0e1d4cbcd3fb9157acae26a0ba8f3ee0f3f67ee3
+
     }
 }
 

@@ -25,7 +25,8 @@ public class Invtest : MonoBehaviour
     {
         if (collision.collider.CompareTag("Player"))
         {
-            inventory.AddItem(_sprite);
+            inventory.AddItemToFirstEmptySlot(_sprite);
+            //inventory.AddItem(_sprite);
             Destroy(this);
         }
     }
