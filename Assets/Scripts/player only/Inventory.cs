@@ -197,7 +197,11 @@ public class Inventory : MonoBehaviour
     void ScrollToSlot(int slotIndex)
     {
 <<<<<<< HEAD
+<<<<<<< HEAD
         // Optional: add UI scroll logic if needed
+=======
+        
+>>>>>>> 0e1d4cbcd3fb9157acae26a0ba8f3ee0f3f67ee3
 =======
         
 >>>>>>> 0e1d4cbcd3fb9157acae26a0ba8f3ee0f3f67ee3
