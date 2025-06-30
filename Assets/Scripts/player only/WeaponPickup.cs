@@ -15,14 +15,12 @@ public class WeaponPickup : MonoBehaviour
 
     }
 
-<<<<<<< HEAD
+
     // Update is called once per frame
     void Update()
     {
 
     }
-=======
->>>>>>> 08de1bc0fa1e482b247ea91216b788fbe3155b00
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -33,15 +31,10 @@ public class WeaponPickup : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-<<<<<<< HEAD
 
 
 
     }
 }
 
-        
-=======
-    }
-}
->>>>>>> 08de1bc0fa1e482b247ea91216b788fbe3155b00
+

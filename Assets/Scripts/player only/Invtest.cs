@@ -27,11 +27,9 @@ public class Invtest : MonoBehaviour
         {
             inventory.AddItemToFirstEmptySlot(_sprite);
             //inventory.AddItem(_sprite);
-<<<<<<< HEAD
-            Destroy(this);
-=======
+
             Destroy(this.gameObject);
->>>>>>> 08de1bc0fa1e482b247ea91216b788fbe3155b00
+
         }
     }
 }
