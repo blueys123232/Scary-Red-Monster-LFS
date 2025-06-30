@@ -49,7 +49,7 @@ public class weaponScript : MonoBehaviour
                 CurrentWeaponIndex += 1;
                 Weapons[CurrentWeaponIndex].SetActive(true);
                 currentWeapon = Weapons[CurrentWeaponIndex];
-                currentWeaponSprite = FindAnyObjectByType<WeaponStats>().weaponImage;
+                //currentWeaponSprite = FindAnyObjectByType<WeaponStats>().weaponImage;
             }
         }
         if (Input.GetKeyDown(KeyCode.Q))
@@ -61,7 +61,7 @@ public class weaponScript : MonoBehaviour
                 CurrentWeaponIndex -= 1;
                 Weapons[CurrentWeaponIndex].SetActive(true);
                 currentWeapon = Weapons[CurrentWeaponIndex];
-                currentWeaponSprite = FindAnyObjectByType<WeaponStats>().weaponImage;
+                //currentWeaponSprite = FindAnyObjectByType<WeaponStats>().weaponImage;
             }
         }
     }
