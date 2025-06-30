@@ -10,15 +10,15 @@ public class Invtest : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       inventory = FindAnyObjectByType<Inventory>(); 
+        inventory = FindAnyObjectByType<Inventory>();
     }
 
     // Update is called once per frame
     void Update()
     {
-       
 
-        
+
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -27,7 +27,9 @@ public class Invtest : MonoBehaviour
         {
             inventory.AddItemToFirstEmptySlot(_sprite);
             //inventory.AddItem(_sprite);
+
             Destroy(this.gameObject);
+
         }
     }
 }

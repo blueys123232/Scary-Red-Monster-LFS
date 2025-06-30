@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public enum ItemType
 {
     Empty,
-    Full, 
+    Full,
 }
 
 public class Inventory : MonoBehaviour
@@ -64,7 +64,7 @@ public class Inventory : MonoBehaviour
         }
         else if (Input.GetAxis("Mouse ScrollWheel") < 0f)
         {
-            
+
             selectedSlotIndex++;
             if (selectedSlotIndex >= slots.Length) selectedSlotIndex = 0;
         }
@@ -133,7 +133,7 @@ public class Inventory : MonoBehaviour
         }
     }
     public bool FullSlot()
-    { 
+    {
         for (int i = 0; i < slotsEmpty.Length; i++)
         {
             if (slotsEmpty[i]) return false;
@@ -145,10 +145,6 @@ public class Inventory : MonoBehaviour
 
     }
 }
-
-
-
-
 
 
 
