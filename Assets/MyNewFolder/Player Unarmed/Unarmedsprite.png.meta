@@ -195,7 +195,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Unarmedsprite_0: 3648631744591560683
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

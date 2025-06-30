@@ -22,7 +22,9 @@ public class PlayerMovement : MonoBehaviour
     private bool isCrouching;
     private bool isRunning;
     private float moveDirection; // For capturing horizontal input
-    
+
+    private shootScript S_Script;
+
     void Start()
     {
         // Get required components
@@ -36,6 +38,8 @@ public class PlayerMovement : MonoBehaviour
         if (animator == null) Debug.LogError("Animator component not found on " + gameObject.name);
         if (playerStamina == null) Debug.LogError("PlayerStamina component not found on " + gameObject.name);
         if (groundCheck == null) Debug.LogError("GroundCheck Transform not assigned in the Inspector on " + gameObject.name);
+
+        S_Script = FindAnyObjectByType<shootScript>();
     }
 
     void Update()
@@ -43,6 +47,7 @@ public class PlayerMovement : MonoBehaviour
         HandleInput();
         UpdateAnimations();
         HealPlayer();
+
     }
     void FixedUpdate()
     {
@@ -80,6 +85,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Move()
     {
+        S_Script = FindAnyObjectByType<shootScript>();
+
         // Set the movement speed based on the current state
         float speed = isCrouching ? crouchSpeed : (isRunning ? runSpeed : moveSpeed);
 
@@ -87,10 +94,27 @@ public class PlayerMovement : MonoBehaviour
         if (moveDirection < 0)
         {
             transform.localScale = new Vector3(-1, 1, 1);
+            if (S_Script == null)
+            {
+                Debug.Log("Carry on");
+            }
+            else if (S_Script != null)
+            {
+                S_Script.firePoint.Rotate(0f, 0f, 0f);
+            }
         }
         else if (moveDirection > 0)
         {
             transform.localScale = new Vector3(1, 1, 1);
+            if(S_Script == null)
+            {
+                Debug.Log("Carry on");
+            }
+            else if(S_Script != null)
+            {
+                S_Script.firePoint.Rotate(0f, 180f, 0f);
+            }
+
         }
 
         // Apply horizontal velocity

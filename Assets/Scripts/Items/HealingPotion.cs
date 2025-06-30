@@ -27,7 +27,8 @@ public class HealingPotion : MonoBehaviour
 
     private IEnumerator DestroyAfterSound()
     {
-        yield return new WaitForSeconds(AudioSource.clip.length);
+        //yield return new WaitForSeconds(AudioSource.clip.length);
+        yield return new WaitForSeconds(0.5f);
         Destroy(gameObject); // Destroy the coin after the sound has played
     }
 }

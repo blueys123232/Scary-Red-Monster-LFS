@@ -2,12 +2,19 @@ using UnityEngine;
 
 public class Chest : MonoBehaviour
 {
+    Inventory inv;
+
     public GameObject ChestClosed;
     public GameObject ChestOpen; // The object that will be revealed when the chest is opened
+
+    public GameObject chestLoot;
+    public Sprite lootSprite;
 
     private bool isOpened = false;
      void Start()
     {
+        inv = FindAnyObjectByType<Inventory>();
+
         if (ChestClosed != null)
         {
             ChestClosed.SetActive(true);
@@ -52,6 +59,8 @@ public class Chest : MonoBehaviour
             {
                 ChestOpen.SetActive(true); // Activate the hidden object
             }
+
+            inv.AddItemToFirstEmptySlot(lootSprite);
 
             GetComponent<BoxCollider2D>().enabled = false;
             isOpened = true;
