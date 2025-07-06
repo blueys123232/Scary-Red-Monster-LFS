@@ -42,7 +42,7 @@ public class weaponScript : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            // next Gun
+            // Next weapon
             if (CurrentWeaponIndex < totalWeapons - 1)
             {
                 Weapons[CurrentWeaponIndex].SetActive(false);
@@ -54,7 +54,7 @@ public class weaponScript : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            // Previous Gun
+            // Previous Weapon
             if (CurrentWeaponIndex > 0)
             {
                 Weapons[CurrentWeaponIndex].SetActive(false);
