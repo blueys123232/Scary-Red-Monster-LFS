@@ -10,34 +10,44 @@ public class weaponScript : MonoBehaviour
     int totalWeapons;
     public int CurrentWeaponIndex;
 
-    public GameObject[] Weapons;
-    public GameObject weaponHolder;
-    public GameObject currentWeapon;
-    public Sprite currentWeaponSprite;
+    [SerializeField] GameObject[] Weapons;
+    [SerializeField] GameObject[] WeaponsUI;
+    [SerializeField] GameObject weaponHolder;
+    [SerializeField] GameObject weaponUIHolder;
+    [SerializeField] GameObject currentWeapon;
+
+
+
 
     void Start()
     {
         totalWeapons = weaponHolder.transform.childCount;
         Weapons = new GameObject[totalWeapons];
-
+        WeaponsUI = new GameObject[totalWeapons];
 
         for (int i = 0; i < totalWeapons; i++)
         {
             Weapons[i] = weaponHolder.transform.GetChild(i).gameObject;
             Weapons[i].SetActive(false);
+            WeaponsUI[i] = weaponUIHolder.transform.GetChild (i).gameObject;
+            WeaponsUI[i].SetActive(false);
+            
         }
 
         Weapons[0].SetActive(true);
+        WeaponsUI[0].SetActive(true);
     }
     // Update is called once per frame
     void Update()
     {
         totalWeapons = weaponHolder.transform.childCount;
         Weapons = new GameObject[totalWeapons];
+        WeaponsUI = new GameObject[totalWeapons];
 
         for (int i = 0; i < totalWeapons; i++)
         {
             Weapons[i] = weaponHolder.transform.GetChild(i).gameObject;
+            WeaponsUI[i] = weaponUIHolder.transform.GetChild(i).gameObject;
         }
 
         if (Input.GetKeyDown(KeyCode.E))
@@ -46,10 +56,11 @@ public class weaponScript : MonoBehaviour
             if (CurrentWeaponIndex < totalWeapons - 1)
             {
                 Weapons[CurrentWeaponIndex].SetActive(false);
+                WeaponsUI[CurrentWeaponIndex].SetActive(false);
                 CurrentWeaponIndex += 1;
                 Weapons[CurrentWeaponIndex].SetActive(true);
+                WeaponsUI[CurrentWeaponIndex].SetActive(true);
                 currentWeapon = Weapons[CurrentWeaponIndex];
-                //currentWeaponSprite = FindAnyObjectByType<WeaponStats>().weaponImage;
             }
         }
         if (Input.GetKeyDown(KeyCode.Q))
@@ -58,10 +69,11 @@ public class weaponScript : MonoBehaviour
             if (CurrentWeaponIndex > 0)
             {
                 Weapons[CurrentWeaponIndex].SetActive(false);
+                WeaponsUI[CurrentWeaponIndex].SetActive(false);
                 CurrentWeaponIndex -= 1;
                 Weapons[CurrentWeaponIndex].SetActive(true);
+                WeaponsUI[CurrentWeaponIndex].SetActive(true);
                 currentWeapon = Weapons[CurrentWeaponIndex];
-                //currentWeaponSprite = FindAnyObjectByType<WeaponStats>().weaponImage;
             }
         }
     }
