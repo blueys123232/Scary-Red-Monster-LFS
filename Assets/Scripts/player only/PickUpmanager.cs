@@ -5,18 +5,25 @@ using UnityEngine;
 public class PickUpmanager : MonoBehaviour
 {
     //Script which handles picking up, Coins, healing potions and Keys.
-    public TextMeshProUGUI coinText, hPotText, keyText;
+    public TextMeshProUGUI coinText, hPotText, keyText, ammoText;
     [HideInInspector] public int coinCount, hPotCount, keyCount;
-
+    WeaponStats wStats;
 
     // Start is called before the first frame update
     void Start()
     {
+       
+
         coinCount = 0;
         hPotCount = 0;
         keyCount = 0;
 
         UpdatePickupText();
+    }
+
+    private void Update()
+    {
+        wStats = FindAnyObjectByType<WeaponStats>();
     }
 
     public void AddCoin()
@@ -37,12 +44,19 @@ public class PickUpmanager : MonoBehaviour
         UpdatePickupText();
     }
 
+    public void AddAmmo(int AmmoToAdd)
+    {
+        wStats.AmmoCount = wStats.AmmoCount + AmmoToAdd;
+        UpdatePickupText();
+    }
+
 
     void UpdatePickupText()
     {
         coinText.text = "Coins: " + coinCount.ToString();
         hPotText.text = "Healing Potions: " + hPotCount.ToString();
         keyText.text = "Keys: " + keyCount.ToString();
+        ammoText.text = "Ammo: " + wStats.AmmoCount.ToString();
     }
 
 
@@ -70,6 +84,12 @@ public class PickUpmanager : MonoBehaviour
         {
             Debug.Log("No Keys");
         }
+    }
+
+    public void AmmoLoss()
+    {
+        wStats.AmmoCount--;
+        UpdatePickupText();  
     }
 
 }
