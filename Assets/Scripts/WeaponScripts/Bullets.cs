@@ -22,7 +22,7 @@ public class Bullets : MonoBehaviour
         rb.velocity = transform.right * projectileSpeed;
 
         ActiveTime -= Time.deltaTime;
-
+        
         if (ActiveTime <= 0f)
         {
             Destroy(gameObject);

@@ -5,10 +5,11 @@ using UnityEngine;
 
 public class shootScript : MonoBehaviour
 {
-    [SerializeField] int AmmoCount;
+    public int AmmoCount;
 
     [SerializeField] private GameObject projectilePreFab;
     public Transform firePoint;
+
 
     //public float fireRate = 0.5f;
 

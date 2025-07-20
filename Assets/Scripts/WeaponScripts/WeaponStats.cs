@@ -5,6 +5,6 @@ using UnityEngine;
 
 public class WeaponStats : MonoBehaviour
 {
-    public int Damage;
+    public int Damage, AmmoCount;
     public float ProjectileSpeed;
 }

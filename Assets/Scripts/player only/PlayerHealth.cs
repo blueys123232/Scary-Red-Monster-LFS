@@ -13,6 +13,8 @@ public class PlayerHealth : MonoBehaviour
 
     public TextMeshProUGUI healthText;
 
+    public AudioSource hurtSound;
+
     void Start()
     {
         currentHealth = maxHealth;
@@ -32,6 +34,14 @@ public class PlayerHealth : MonoBehaviour
         {
             currentHealth = 0;
         }
+
+        if (hurtSound != null)
+        {
+            hurtSound.Play();
+        }
+
+
+
         UpdateHealthBar();
         UpdatedHealthText();
         CheckIfDead();
