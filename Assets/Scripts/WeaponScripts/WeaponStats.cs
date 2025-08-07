@@ -7,4 +7,5 @@ public class WeaponStats : MonoBehaviour
 {
     public int Damage, AmmoCount;
     public float ProjectileSpeed;
+
 }

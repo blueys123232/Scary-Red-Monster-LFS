@@ -10,6 +10,7 @@ public class PlayerHealth : MonoBehaviour
     public Image healthBar;
     public GameObject gameoverPanel;
     public AudioSource backgroundMusic;
+    public AudioSource hurtSound;
 
     public TextMeshProUGUI healthText;
 
@@ -30,6 +31,8 @@ public class PlayerHealth : MonoBehaviour
     public void TakeDamage(float damage)
     {
         currentHealth -= Mathf.RoundToInt(damage);
+        hurtSound.Play();
+        
         if (currentHealth < 0)
         {
             currentHealth = 0;

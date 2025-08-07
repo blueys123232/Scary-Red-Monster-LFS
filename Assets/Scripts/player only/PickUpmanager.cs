@@ -13,7 +13,6 @@ public class PickUpmanager : MonoBehaviour
     void Start()
     {
 
-
         coinCount = 0;
         hPotCount = 0;
         keyCount = 0;
@@ -93,3 +92,4 @@ public class PickUpmanager : MonoBehaviour
     }
 
 }
+

@@ -29,8 +29,14 @@ public class weaponScript : MonoBehaviour
         {
             Weapons[i] = weaponHolder.transform.GetChild(i).gameObject;
             Weapons[i].SetActive(false);
+
             WeaponsUI[i] = weaponUIHolder.transform.GetChild(i).gameObject;
             WeaponsUI[i].SetActive(false);
+
+
+            WeaponsUI[i] = weaponUIHolder.transform.GetChild (i).gameObject;
+            WeaponsUI[i].SetActive(false);
+            
 
         }
 

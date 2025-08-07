@@ -94,25 +94,28 @@ public class PlayerMovement : MonoBehaviour
         if (moveDirection < 0)
         {
             transform.localScale = new Vector3(-1, 1, 1);
+
             if (S_Script == null)
             {
                 Debug.Log("Carry on");
             }
             else if (S_Script != null)
             {
-                S_Script.firePoint.Rotate(0f, 0f, 0f);
+                S_Script.firePoint.transform.eulerAngles = new Vector3(0f, 180f, 0f);
+
             }
         }
         else if (moveDirection > 0)
         {
             transform.localScale = new Vector3(1, 1, 1);
-            if(S_Script == null)
+            if (S_Script == null)
             {
                 Debug.Log("Carry on");
             }
-            else if(S_Script != null)
+            else if (S_Script != null)
             {
-                S_Script.firePoint.Rotate(0f, 180f, 0f);
+                S_Script.firePoint.transform.eulerAngles = new Vector3(0f,0f,0f);
+
             }
 
         }
