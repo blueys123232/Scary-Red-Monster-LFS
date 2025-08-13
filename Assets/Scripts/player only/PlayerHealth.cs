@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-
 public class PlayerHealth : MonoBehaviour
 {
     public int maxHealth = 100;
@@ -10,10 +9,10 @@ public class PlayerHealth : MonoBehaviour
     public Image healthBar;
     public GameObject gameoverPanel;
     public AudioSource backgroundMusic;
-    public AudioSource hurtSound;
 
     public TextMeshProUGUI healthText;
 
+    // New: Hurt sound AudioSource (can be a separate AudioSource or same with clip)
     public AudioSource hurtSound;
 
     void Start()
@@ -31,19 +30,16 @@ public class PlayerHealth : MonoBehaviour
     public void TakeDamage(float damage)
     {
         currentHealth -= Mathf.RoundToInt(damage);
-        hurtSound.Play();
-        
         if (currentHealth < 0)
         {
             currentHealth = 0;
         }
 
+        // Play hurt sound when damaged
         if (hurtSound != null)
         {
             hurtSound.Play();
         }
-
-
 
         UpdateHealthBar();
         UpdatedHealthText();
@@ -68,6 +64,7 @@ public class PlayerHealth : MonoBehaviour
             healthBar.fillAmount = (float)currentHealth / maxHealth;
         }
     }
+
     public void UpdatedHealthText()
     {
         if (healthText != null)
@@ -86,7 +83,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void ShowGameOverPanel()
     {
-        if (backgroundMusic != null && backgroundMusic)
+        if (backgroundMusic != null && backgroundMusic.isPlaying)
         {
             backgroundMusic.Stop();
         }
