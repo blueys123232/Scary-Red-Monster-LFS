@@ -4,15 +4,16 @@ public class Chest : MonoBehaviour
 {
     Inventory inv;
 
-    public GameObject ChestClosed;
-    public GameObject ChestOpen; // The object that will be revealed when the chest is opened
+   
 
-    public GameObject chestLoot;
-    public Sprite lootSprite;
+    [SerializeField] private GameObject ChestClosed, ChestOpen, chestLoot, lootSpawnPosGameObject; // The object that will be revealed when the chest is opened
+    [SerializeField] Vector3 lootSpawnPos;
 
     private bool isOpened = false;
      void Start()
     {
+        lootSpawnPos = lootSpawnPosGameObject.transform.position;
+
         inv = FindAnyObjectByType<Inventory>();
 
         if (ChestClosed != null)
@@ -60,9 +61,8 @@ public class Chest : MonoBehaviour
                 ChestOpen.SetActive(true); // Activate the hidden object
             }
 
-            inv.AddItemToFirstEmptySlot(lootSprite);
-
             GetComponent<BoxCollider2D>().enabled = false;
+            Instantiate(chestLoot, lootSpawnPos, Quaternion.identity);
             isOpened = true;
             Debug.Log("Chest opened.");
         }

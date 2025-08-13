@@ -3,6 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+public enum Ammotypes
+{   
+    None,
+    Bullet,
+    Shell
+}
+
 public class weaponScript : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -16,8 +23,7 @@ public class weaponScript : MonoBehaviour
     [SerializeField] GameObject weaponUIHolder;
     [SerializeField] GameObject currentWeapon;
 
-
-
+    public Ammotypes aTypes;
 
     void Start()
     {
@@ -39,7 +45,7 @@ public class weaponScript : MonoBehaviour
             
 
         }
-
+        //Weapons[0] should by default be unarmed
         Weapons[0].SetActive(true);
         WeaponsUI[0].SetActive(true);
     }
@@ -64,6 +70,7 @@ public class weaponScript : MonoBehaviour
                 Weapons[CurrentWeaponIndex].SetActive(false);
                 WeaponsUI[CurrentWeaponIndex].SetActive(false);
                 CurrentWeaponIndex += 1;
+                
                 //puManager.wStats = FindAnyObjectByType<WeaponStats>()
                 Weapons[CurrentWeaponIndex].SetActive(true);
                 WeaponsUI[CurrentWeaponIndex].SetActive(true);
