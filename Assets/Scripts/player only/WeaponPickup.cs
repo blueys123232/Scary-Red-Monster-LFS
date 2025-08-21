@@ -9,31 +9,25 @@ public class WeaponPickup : MonoBehaviour
     public GameObject WeaponHolder;
     public Transform weaponPositionOnPlayer;
 
-    // Start is called before the first frame update
-    void Start()
+    PickUpmanager puManager;
+
+    private void Start()
     {
-
-    }
-
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        puManager = FindAnyObjectByType<PickUpmanager>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.collider.CompareTag("Player"))
         {
+     
             UnactiveWeapon.transform.parent = WeaponHolder.transform;
             UnactiveWeapon.transform.position = weaponPositionOnPlayer.position;
             Destroy(this.gameObject);
+
+            
+
         }
-
-
-
-
     }
 }
 

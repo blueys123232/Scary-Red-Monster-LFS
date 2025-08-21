@@ -11,7 +11,12 @@ public class AmmoTypes : MonoBehaviour
     public Image selectedAmmoImage;
 
     [Header("Ammo Sprites")]
+    
+    //Keep this line just to prevent errors that cannot be fixed right now but will most likely remove this later as we implement a system similar to weapon
+    //switching for changing ammo
     public List<Sprite> ammoSprites;
+
+    public Sprite[] aSprite;
 
     private int selectedAmmoIndex = 0;
     // Start is called before the first frame update
@@ -41,7 +46,7 @@ public class AmmoTypes : MonoBehaviour
     {
         if (selectedAmmoImage != null && selectedAmmoIndex >= 0 && selectedAmmoIndex < ammoSprites.Count)
         {
-
+            //Change ammo UI
         }
     }
 

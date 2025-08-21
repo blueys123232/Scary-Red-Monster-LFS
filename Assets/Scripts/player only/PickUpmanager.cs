@@ -23,6 +23,7 @@ public class PickUpmanager : MonoBehaviour
     private void Update()
     {
         wStats = FindAnyObjectByType<WeaponStats>();
+
     }
 
     public void AddCoin()
@@ -50,7 +51,7 @@ public class PickUpmanager : MonoBehaviour
     }
 
 
-    void UpdatePickupText()
+    public void UpdatePickupText()
     {
         coinText.text = "Coins: " + coinCount.ToString();
         hPotText.text = "Healing Potions: " + hPotCount.ToString();

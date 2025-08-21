@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class shootScript : MonoBehaviour
 {
-    public int AmmoCount;
-
 
     [SerializeField] private GameObject projectilePreFab;
     public Transform firePoint;
@@ -21,6 +19,7 @@ public class shootScript : MonoBehaviour
     {
         weaponStats = GetComponent<WeaponStats>();
         puManager = FindAnyObjectByType<PickUpmanager>();
+        
     }
 
     private float nextFireTime = 0f;
@@ -30,6 +29,7 @@ public class shootScript : MonoBehaviour
         if (Input.GetButtonDown("Fire1") && weaponStats.AmmoCount > 0)
         {
             Shoot();
+
         }
         else
         {
