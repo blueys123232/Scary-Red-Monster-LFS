@@ -195,7 +195,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      5 difficulties5_0: -1229251787217946656
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -6,9 +6,9 @@ using UnityEngine;
 public class AmmoPickup : MonoBehaviour
 {
 
-    private bool isCollected = false;
-    private AudioSource audioSource;
-    PickUpmanager pickupmanager;
+    public bool isCollected = false;
+
+    //private AudioSource audioSource;
     public int AmmoPickupAmount;
     WeaponStats wStats;
 
@@ -16,26 +16,27 @@ public class AmmoPickup : MonoBehaviour
     void Start()
     {
         wStats = FindAnyObjectByType<WeaponStats>();
-        audioSource = GetComponent<AudioSource>();
-        pickupmanager = FindAnyObjectByType<PickUpmanager>();
+        //audioSource = GetComponent<AudioSource>();
     }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (!isCollected && collision.CompareTag("Player"))
         {
-            isCollected = true;
-            pickupmanager.AddAmmo(AmmoPickupAmount);
-            audioSource.Play();
-            StartCoroutine(DestroyAfterSound());
+            Debug.Log("Pickup Ammo");
+            //isCollected = true;
+            wStats.AmmoCount += AmmoPickupAmount;
+            //audioSource.Play();
+            //StartCoroutine(DestroyAfterSound());
         }
     }
 
-    private IEnumerator DestroyAfterSound()
-    {
-        yield return new WaitForSeconds(audioSource.clip.length);
-        Destroy(gameObject); // Destroy the coin after the sound has played
-    }
+    //private IEnumerator DestroyAfterSound()
+    //{
+    //    //yield return new WaitForSeconds(audioSource.clip.length);
+    //    Destroy(gameObject); // Destroy the coin after the sound has played
+    //}
 }
 
 

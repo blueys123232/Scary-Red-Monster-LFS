@@ -97,7 +97,7 @@ public class PlayerMovement : MonoBehaviour
 
             if (S_Script == null)
             {
-                Debug.Log("Carry on");
+                //Debug.Log("Carry on");
             }
             else if (S_Script != null)
             {
@@ -110,7 +110,7 @@ public class PlayerMovement : MonoBehaviour
             transform.localScale = new Vector3(1, 1, 1);
             if (S_Script == null)
             {
-                Debug.Log("Carry on");
+                //Debug.Log("Carry on");
             }
             else if (S_Script != null)
             {

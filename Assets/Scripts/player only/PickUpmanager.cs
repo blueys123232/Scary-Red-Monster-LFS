@@ -5,7 +5,7 @@ using UnityEngine;
 public class PickUpmanager : MonoBehaviour
 {
     //Script which handles picking up, Coins, healing potions and Keys.
-    public TextMeshProUGUI coinText, hPotText, keyText, ammoText;
+    public TextMeshProUGUI coinText, hPotText, keyText;
     [HideInInspector] public int coinCount, hPotCount, keyCount;
     WeaponStats wStats;
 
@@ -56,7 +56,7 @@ public class PickUpmanager : MonoBehaviour
         coinText.text = "Coins: " + coinCount.ToString();
         hPotText.text = "Healing Potions: " + hPotCount.ToString();
         keyText.text = "Keys: " + keyCount.ToString();
-        ammoText.text = "Ammo: " + wStats.AmmoCount.ToString();
+        //ammoText.text = "Ammo: " + wStats.AmmoCount.ToString();
     }
 
 

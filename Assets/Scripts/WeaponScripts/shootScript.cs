@@ -31,7 +31,7 @@ public class shootScript : MonoBehaviour
             Shoot();
 
         }
-        else
+        else if (weaponStats.AmmoCount == 0) 
         {
             Debug.Log("Out of Ammo");
         }
@@ -40,7 +40,6 @@ public class shootScript : MonoBehaviour
     {
         {
             {
-                Debug.Log("Firing " + gameObject.name);
                 Instantiate(projectilePreFab, firePoint.transform.position, firePoint.rotation);
                 puManager.AmmoLoss();
             }
