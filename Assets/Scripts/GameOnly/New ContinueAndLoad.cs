@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 
-public class NewAndLoad : MonoBehaviour
+public class NewContinueAndLoad : MonoBehaviour
 {
     // Public string to specify the first level of the game
     public string firstLevelSceneName;

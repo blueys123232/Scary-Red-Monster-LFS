@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public enum Ammotypes
-{   
+{
     None,
     Bullet,
     Shell
@@ -23,6 +23,8 @@ public class weaponScript : MonoBehaviour
     [SerializeField] GameObject weaponUIHolder;
     [SerializeField] GameObject currentWeapon;
 
+    PickUpmanager puManager;
+
     public Ammotypes aTypes;
 
     void Start()
@@ -30,6 +32,8 @@ public class weaponScript : MonoBehaviour
         totalWeapons = weaponHolder.transform.childCount;
         Weapons = new GameObject[totalWeapons];
         WeaponsUI = new GameObject[totalWeapons];
+        puManager = FindAnyObjectByType<PickUpmanager>();
+
 
         for (int i = 0; i < totalWeapons; i++)
         {
@@ -40,9 +44,9 @@ public class weaponScript : MonoBehaviour
             WeaponsUI[i].SetActive(false);
 
 
-            WeaponsUI[i] = weaponUIHolder.transform.GetChild (i).gameObject;
+            WeaponsUI[i] = weaponUIHolder.transform.GetChild(i).gameObject;
             WeaponsUI[i].SetActive(false);
-            
+
 
         }
         //Weapons[0] should by default be unarmed
@@ -67,15 +71,19 @@ public class weaponScript : MonoBehaviour
             // Next weapon
             if (CurrentWeaponIndex < totalWeapons - 1)
             {
+
                 Weapons[CurrentWeaponIndex].SetActive(false);
                 WeaponsUI[CurrentWeaponIndex].SetActive(false);
                 CurrentWeaponIndex += 1;
-                
+
                 //puManager.wStats = FindAnyObjectByType<WeaponStats>()
                 Weapons[CurrentWeaponIndex].SetActive(true);
                 WeaponsUI[CurrentWeaponIndex].SetActive(true);
                 currentWeapon = Weapons[CurrentWeaponIndex];
+
+
             }
+            puManager.UpdatePickupText();
         }
         if (Input.GetKeyDown(KeyCode.Q))
         {
@@ -85,10 +93,13 @@ public class weaponScript : MonoBehaviour
                 Weapons[CurrentWeaponIndex].SetActive(false);
                 WeaponsUI[CurrentWeaponIndex].SetActive(false);
                 CurrentWeaponIndex -= 1;
+
                 Weapons[CurrentWeaponIndex].SetActive(true);
                 WeaponsUI[CurrentWeaponIndex].SetActive(true);
                 currentWeapon = Weapons[CurrentWeaponIndex];
+
             }
+            puManager.UpdatePickupText();
         }
     }
 }
