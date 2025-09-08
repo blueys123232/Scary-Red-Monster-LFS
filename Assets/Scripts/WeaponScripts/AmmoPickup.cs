@@ -6,7 +6,11 @@ using UnityEngine;
 public class AmmoPickup : MonoBehaviour
 {
 
+
     private bool isCollected = false;
+
+
+
 
     //private AudioSource audioSource;
     public int AmmoPickupAmount;
@@ -25,11 +29,17 @@ public class AmmoPickup : MonoBehaviour
         if (!isCollected && collision.CompareTag("Player"))
         {
             Debug.Log("Pickup Ammo");
+
             isCollected = true;
             wStats.AmmoCount += AmmoPickupAmount;
             //audioSource.Play();
             //StartCoroutine(DestroyAfterSound());
             
+
+            //isCollected = true;
+            wStats.AmmoCount += AmmoPickupAmount;
+            //audioSource.Play();
+            //StartCoroutine(DestroyAfterSound());
 
         }
     }

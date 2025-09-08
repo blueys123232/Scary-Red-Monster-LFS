@@ -26,13 +26,17 @@ public class WeaponStats : MonoBehaviour
         {
             ammoText.text = "Ammo: " + AmmoCount.ToString();
         }
-        else if (wType == WeaponType.Melee)
+
+ 
+
+        else if(wType == WeaponType.Melee)
+
         {
             ammoText.text = "Melee";
         }
 
     }
-    
+
 }
 
 public enum WeaponType
@@ -40,4 +44,5 @@ public enum WeaponType
     None,
     Melee,
     Projectile,
+
 }

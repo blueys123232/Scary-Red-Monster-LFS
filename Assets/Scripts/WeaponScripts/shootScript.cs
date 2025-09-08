@@ -31,7 +31,9 @@ public class shootScript : MonoBehaviour
             Shoot();
 
         }
-        else if (weaponStats.AmmoCount == 0)
+
+        else if (weaponStats.AmmoCount == 0) 
+
         {
             Debug.Log("Out of Ammo");
         }
