@@ -9,7 +9,7 @@ public class AmmoPickup : MonoBehaviour
 
     private bool isCollected = false;
 
-
+    //public AmmoType Atype;
 
 
     //private AudioSource audioSource;
@@ -26,20 +26,15 @@ public class AmmoPickup : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!isCollected && collision.CompareTag("Player"))
+        if (!isCollected && collision.CompareTag("Player") && wStats.wType == WeaponType.Pistol)
         {
-            Debug.Log("Pickup Ammo");
-
+            Debug.Log("jfiweihlkjweadaonlkjw");
             isCollected = true;
             wStats.AmmoCount += AmmoPickupAmount;
-            //audioSource.Play();
-            //StartCoroutine(DestroyAfterSound());
-            
 
-            //isCollected = true;
-            wStats.AmmoCount += AmmoPickupAmount;
             //audioSource.Play();
             //StartCoroutine(DestroyAfterSound());
+
 
         }
     }
@@ -51,3 +46,10 @@ public class AmmoPickup : MonoBehaviour
     //}
 }
 
+//public enum AmmoType 
+//{ 
+//    None,
+//    Bullet,
+//    Shell,
+
+//}

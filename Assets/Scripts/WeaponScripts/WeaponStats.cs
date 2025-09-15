@@ -9,7 +9,7 @@ public class WeaponStats : MonoBehaviour
 {
     public WeaponType wType;
 
-    public TextMeshProUGUI ammoText;
+    [SerializeField] TextMeshProUGUI ammoText;
 
 
     public int Damage, AmmoCount;
@@ -20,20 +20,33 @@ public class WeaponStats : MonoBehaviour
 
     }
 
+    private void WeaponTypeSwitch()
+    {
+        switch (wType)
+        {
+            case WeaponType.None:
+                //Nothing should be NONE but if it is having this case should prevent errors
+                break;
+
+            case WeaponType.Melee:
+                ammoText.text = "Melee";
+                //No pickups or anything for this one
+                break;
+
+            case WeaponType.Pistol:
+                ammoText.text = "Ammo: " + AmmoCount.ToString();
+
+                break;
+
+            case WeaponType.Shotgun:
+                ammoText.text = "Ammo: " + AmmoCount.ToString();
+                break;
+
+        }
+    }
     private void Update()
     {
-        if (wType == WeaponType.Projectile)
-        {
-            ammoText.text = "Ammo: " + AmmoCount.ToString();
-        }
-
- 
-
-        else if(wType == WeaponType.Melee)
-
-        {
-            ammoText.text = "Melee";
-        }
+        WeaponTypeSwitch();
 
     }
 
@@ -43,6 +56,7 @@ public enum WeaponType
 {
     None,
     Melee,
-    Projectile,
+    Pistol,
+    Shotgun,
 
 }
