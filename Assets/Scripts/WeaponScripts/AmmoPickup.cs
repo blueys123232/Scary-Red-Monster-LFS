@@ -26,14 +26,26 @@ public class AmmoPickup : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+
         if (!isCollected && collision.CompareTag("Player") && wStats.wType == WeaponType.Pistol)
+
+       if (!isCollected && collision.CompareTag("Player") && wStats.wType == WeaponType.Pistol)
+
         {
             Debug.Log("jfiweihlkjweadaonlkjw");
             isCollected = true;
             wStats.AmmoCount += AmmoPickupAmount;
 
+
             //audioSource.Play();
             //StartCoroutine(DestroyAfterSound());
+
+
+
+            
+            //audioSource.Play();
+            //StartCoroutine(DestroyAfterSound());
+            
 
 
         }
@@ -52,4 +64,3 @@ public class AmmoPickup : MonoBehaviour
 //    Bullet,
 //    Shell,
 
-//}
