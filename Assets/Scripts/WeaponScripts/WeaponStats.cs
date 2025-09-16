@@ -35,11 +35,13 @@ public class WeaponStats : MonoBehaviour
 
             case WeaponType.Pistol:
                 ammoText.text = "Ammo: " + AmmoCount.ToString();
-
                 break;
 
             case WeaponType.Shotgun:
                 ammoText.text = "Ammo: " + AmmoCount.ToString();
+                break;
+            case WeaponType.Bow:
+                ammoText.text = "Arrows: " + AmmoCount.ToString();
                 break;
 
         }
@@ -47,7 +49,6 @@ public class WeaponStats : MonoBehaviour
     private void Update()
     {
         WeaponTypeSwitch();
-
     }
 
 }
@@ -58,5 +59,7 @@ public enum WeaponType
     Melee,
     Pistol,
     Shotgun,
+    Bow,
+    Launcher
 
 }

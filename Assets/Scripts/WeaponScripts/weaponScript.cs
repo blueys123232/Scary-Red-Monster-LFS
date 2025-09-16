@@ -12,11 +12,7 @@ public class weaponScript : MonoBehaviour
 
     [SerializeField] GameObject[] Weapons;
     [SerializeField] GameObject[] WeaponsUI;
-    [SerializeField] GameObject weaponHolder;
-    [SerializeField] GameObject weaponUIHolder;
-    [SerializeField] GameObject currentWeapon;
-
-    PickUpmanager puManager;
+    [SerializeField] GameObject weaponHolder, weaponUIHolder, currentWeapon;
 
     WeaponStats wStats;
 
@@ -25,7 +21,6 @@ public class weaponScript : MonoBehaviour
         totalWeapons = weaponHolder.transform.childCount;
         Weapons = new GameObject[totalWeapons];
         WeaponsUI = new GameObject[totalWeapons];
-        puManager = FindAnyObjectByType<PickUpmanager>();
         wStats = FindAnyObjectByType<WeaponStats>();
 
         for (int i = 0; i < totalWeapons; i++)
@@ -65,14 +60,11 @@ public class weaponScript : MonoBehaviour
                 Weapons[CurrentWeaponIndex].SetActive(false);
                 WeaponsUI[CurrentWeaponIndex].SetActive(false);
                 CurrentWeaponIndex += 1;
-
+                wStats.wType++;
                 Weapons[CurrentWeaponIndex].SetActive(true);
                 WeaponsUI[CurrentWeaponIndex].SetActive(true);
                 currentWeapon = Weapons[CurrentWeaponIndex];
-
-
             }
-            puManager.UpdatePickupText();
         }
         if (Input.GetKeyDown(KeyCode.Q))
         {
@@ -82,13 +74,11 @@ public class weaponScript : MonoBehaviour
                 Weapons[CurrentWeaponIndex].SetActive(false);
                 WeaponsUI[CurrentWeaponIndex].SetActive(false);
                 CurrentWeaponIndex -= 1;
-
+                wStats.wType--;
                 Weapons[CurrentWeaponIndex].SetActive(true);
                 WeaponsUI[CurrentWeaponIndex].SetActive(true);
                 currentWeapon = Weapons[CurrentWeaponIndex];
-
             }
-            puManager.UpdatePickupText();
         }
     }
 }

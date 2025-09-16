@@ -195,7 +195,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      BowAnimationSprite2_0: 9194372568655273544
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
