@@ -12,7 +12,6 @@ public class PickUpmanager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
         coinCount = 0;
         hPotCount = 0;
         keyCount = 0;
@@ -23,7 +22,6 @@ public class PickUpmanager : MonoBehaviour
     private void Update()
     {
         wStats = FindAnyObjectByType<WeaponStats>();
-
     }
 
     public void AddCoin()
@@ -56,7 +54,6 @@ public class PickUpmanager : MonoBehaviour
         coinText.text = "Coins: " + coinCount.ToString();
         hPotText.text = "Healing Potions: " + hPotCount.ToString();
         keyText.text = "Keys: " + keyCount.ToString();
-        //ammoText.text = "Ammo: " + wStats.AmmoCount.ToString();
     }
 
 
