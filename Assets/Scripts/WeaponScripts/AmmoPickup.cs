@@ -22,7 +22,7 @@ public class AmmoPickup : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //To Do: seperate ammo by weapon, try and add ability to add ammo to weapons not currently equipped.
-        if (collision.CompareTag("Player") && wStats.wType != WeaponType.Melee || wStats.wType != WeaponType.None)
+        if (collision.CompareTag("Player") && wStats.wType != WeaponType.Melee)
         {
             puMan.AddAmmo(AmmoPickupAmount);
             audioSource.Play();

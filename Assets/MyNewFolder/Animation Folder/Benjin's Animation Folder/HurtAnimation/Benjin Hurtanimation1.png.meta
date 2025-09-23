@@ -195,7 +195,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Benjin Hurtanimation1_0: 640186147666023684
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

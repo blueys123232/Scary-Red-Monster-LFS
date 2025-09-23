@@ -10,10 +10,7 @@ public class shootScript : MonoBehaviour
     public Transform firePoint;
     private PickUpmanager puManager;
     WeaponStats weaponStats;
-
-
-
-    //public float fireRate = 0.5f;
+    public bool weaponFired;
 
     private void Start()
     {
@@ -28,7 +25,8 @@ public class shootScript : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire1") && weaponStats.AmmoCount > 0)
         {
-            Shoot();
+            weaponFired = true;
+            StartCoroutine(Shoot());
 
         }
 
@@ -38,12 +36,15 @@ public class shootScript : MonoBehaviour
             Debug.Log("Out of Ammo");
         }
     }
-    void Shoot()
+    private IEnumerator Shoot()
     {
         {
             {
                 Instantiate(projectilePreFab, firePoint.transform.position, firePoint.rotation);
                 puManager.AmmoLoss();
+                yield return null;
+                //When sound effect added use that as timer for weaponfired boolean
+                weaponFired = false;
             }
         }
     }
