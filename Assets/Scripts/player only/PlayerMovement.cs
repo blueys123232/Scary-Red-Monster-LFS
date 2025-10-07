@@ -24,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
     private float moveDirection; // For capturing horizontal input
 
     private shootScript S_Script;
+    private weaponScript W_Script;
 
     void Start()
     {
@@ -32,14 +33,17 @@ public class PlayerMovement : MonoBehaviour
         animator = GetComponent<Animator>();
         playerStamina = GetComponent<PlayerStamina>();
         playerHealth = GetComponent<PlayerHealth>();
+        //find components on other objects
         puManager = FindAnyObjectByType<PickUpmanager>();
+        S_Script = FindAnyObjectByType<shootScript>();
+        W_Script = FindAnyObjectByType<weaponScript>();
         // Check for component assignments
         if (rb == null) Debug.LogError("Rigidbody2D component not found on " + gameObject.name);
         if (animator == null) Debug.LogError("Animator component not found on " + gameObject.name);
         if (playerStamina == null) Debug.LogError("PlayerStamina component not found on " + gameObject.name);
         if (groundCheck == null) Debug.LogError("GroundCheck Transform not assigned in the Inspector on " + gameObject.name);
 
-        S_Script = FindAnyObjectByType<shootScript>();
+
     }
 
     void Update()
@@ -66,7 +70,7 @@ public class PlayerMovement : MonoBehaviour
         moveDirection = Input.GetAxisRaw("Horizontal");
 
         // Handle crouch input
-        isCrouching = Input.GetKeyDown(KeyCode.S);
+        isCrouching = Input.GetKey(KeyCode.S);
         if (animator != null)
         {
             animator.SetBool("isCrouching", isCrouching);
@@ -160,6 +164,9 @@ public class PlayerMovement : MonoBehaviour
         animator.SetFloat("xVelocity", Mathf.Abs(rb.velocity.x));
         animator.SetFloat("yVelocity", rb.velocity.y);
         animator.SetBool("isJumping", !isGrounded);
+        animator.SetBool("isFiring", S_Script.weaponFired);
+
+        animator.SetInteger("CurWepIndex", W_Script.CurrentWeaponIndex);
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -193,4 +200,5 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
+
 }
