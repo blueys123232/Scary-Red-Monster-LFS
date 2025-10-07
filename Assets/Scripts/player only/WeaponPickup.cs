@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class WeaponPickup : MonoBehaviour
 {
-    [SerializeField] private GameObject UnactiveWeapon;
-    [SerializeField] private GameObject WeaponHolder;
+    [SerializeField] private GameObject UnactiveWeapon, UnactiveWeaponUI;
+    [SerializeField] private GameObject WeaponHolder, WeaponUIHolder;
     [SerializeField] private Transform weaponPositionOnPlayer;
 
     PickUpmanager puManager;
@@ -21,6 +21,7 @@ public class WeaponPickup : MonoBehaviour
         if (collision.collider.CompareTag("Player"))
         {
             UnactiveWeapon.transform.parent = WeaponHolder.transform;
+            UnactiveWeaponUI.transform.parent = WeaponUIHolder.transform;
             UnactiveWeapon.transform.position = weaponPositionOnPlayer.position;
             Destroy(this.gameObject);
         }
