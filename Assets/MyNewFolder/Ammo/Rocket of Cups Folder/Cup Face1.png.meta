@@ -195,7 +195,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Cup Face1_0: -3834916962931574355
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
