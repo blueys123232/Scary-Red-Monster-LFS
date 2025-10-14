@@ -187,11 +187,16 @@ public void LoadNextLevel(int currentLevelIndex)
     }
     public void UpdateLevelText()
     {
+        if (levelText == null) return;
 
-
-
-
-
+        string savedName = PlayerPrefs.GetString(KEY_LAST_NAME, "");
+        int savedIndex = PlayerPrefs.GetInt(KEY_LAST_NAME, -1);
+        if (!string.IsNullOrEmpty(savedName))
+            levelText.text = $"Level: {savedName}";
+        else if (savedIndex >= 0)
+            levelText.text = $"Level: Build #{savedIndex}";
+        else
+            levelText.text = "Level: None";
     }
 
 
