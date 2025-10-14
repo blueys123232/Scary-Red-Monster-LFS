@@ -128,15 +128,15 @@ public class NewContinueAndLoad : MonoBehaviour
         }
     }
     public void StartNewGameInSlot(int slotIndex)
-{
-    string key = $"SaveSlot_{slotIndex}_Level";
-    PlayerPrefs.SetString(key, "Tutorial");
-    PlayerPrefs.Save();
+    {
+        string key = $"SaveSlot_{slotIndex}_Level";
+        PlayerPrefs.SetString(key, "Tutorial");
+        PlayerPrefs.Save();
 
-    Debug.Log($"New game started in slot {slotIndex + 1}");
-    UpdateSaveSlots();
-    SceneManager.LoadScene(levelIntroSceneName);
-}
+        Debug.Log($"New game started in slot {slotIndex + 1}");
+        UpdateSaveSlots();
+        SceneManager.LoadScene(levelIntroSceneName);
+    }
 
 public void DeleteSaveSlot(int slotIndex)
 {

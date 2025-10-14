@@ -195,7 +195,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      ToxicPokey_0: 2465338740307304947
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
