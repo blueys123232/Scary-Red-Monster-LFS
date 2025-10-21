@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Spider2d : MonoBehaviour
+public class Spider2c : MonoBehaviour
 {
     PatrolPointScript ppScript;
     FlipEnemy flipE;

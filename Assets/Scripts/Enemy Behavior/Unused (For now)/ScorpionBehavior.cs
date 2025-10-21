@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScorpionBehavior : MonoBehaviour
+public class ScorpionBehaviour : MonoBehaviour
 {
     PatrolPointScript ppScript; // Reference to PatrolPointScript
     FlipEnemy flipE;
@@ -10,8 +10,8 @@ public class ScorpionBehavior : MonoBehaviour
     public float speed = 6f;
     public float damage = 2f;
 
-    public float detectonRange = 3f;
-    public float attackRange = 1.5f;
+    private float detectonRange = 3f;
+    private float attackRange = 1.5f;
 
     private Rigidbody2D rb;
     private Animator animator;
@@ -37,7 +37,7 @@ public class ScorpionBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Check if the Plaer is within detection range
+        // Check if the Player is within detection range
         if (Vector2.Distance(transform.position, player.position) <= detectonRange)
         {
             // If Within attack range, attack the player

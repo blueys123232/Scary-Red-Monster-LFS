@@ -1,25 +1,27 @@
 using UnityEngine;
 
-public class MiniToasterBehavior : MonoBehaviour
+public class MiniToasterBehaviour : MonoBehaviour
 {
     PatrolPointScript ppScript;
 
-    public float speed = 2f;
-    public float detectionRange = 5f;
-    public float attackRange = 1f;
-    public int damage = 10;
+    private float speed = 2f;
+    private float detectionRange = 5f;
+    private float attackRange = 1f;
+    private int damage = 10;
 
     private Transform player;
-    private bool isChasing = true;
     private Rigidbody2D rb;
     private float attackCooldown = 1.0f; // Cooldown time between attacks
     private float lastAttackTime = 0;
+
+    FlipEnemy flipE;
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         rb = GetComponent<Rigidbody2D>();
         ppScript = GetComponent<PatrolPointScript>();
+        flipE = GetComponent<FlipEnemy>();
     }
 
     void Update()
@@ -28,18 +30,10 @@ public class MiniToasterBehavior : MonoBehaviour
 
         if (distanceToPlayer <= detectionRange)
         {
-            isChasing = true;
-        }
-        else
-        {
-            isChasing = false;
+            FollowPlayer();
         }
 
-        if (isChasing && distanceToPlayer > attackRange)
-        {
-            ChasePlayer();
-        }
-        else if (isChasing && distanceToPlayer <= attackRange)
+        else if (distanceToPlayer <= attackRange)
         {
             if (Time.time >= lastAttackTime + attackCooldown)
             {
@@ -53,7 +47,21 @@ public class MiniToasterBehavior : MonoBehaviour
         }
     }
 
-   
+    void FollowPlayer()
+    {
+        Vector2 moveDirection = (player.position - transform.position).normalized;
+        rb.velocity = new Vector2(moveDirection.x * speed, rb.velocity.y); // Move towards the Player
+
+        // Flip direction based of the Player position (if needed)
+        if (moveDirection.x > 0 && transform.localScale.x < 0)
+        {
+            flipE.FlipDirection();
+        }
+        else if (moveDirection.x < 0 && transform.localScale.x > 0)
+        {
+            flipE.FlipDirection();
+        }
+    }
 
     void ChasePlayer()
     {

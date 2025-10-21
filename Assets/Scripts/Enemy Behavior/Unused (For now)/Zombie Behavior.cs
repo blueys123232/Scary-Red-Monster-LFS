@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ZombieBehavior : MonoBehaviour
+public class ZombieBehaviour : MonoBehaviour
 {
     public float speed = 2f;
     public float detectionRange = 5f;
