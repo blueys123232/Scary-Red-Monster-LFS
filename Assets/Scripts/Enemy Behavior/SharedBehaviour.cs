@@ -5,9 +5,9 @@ using UnityEngine;
 public class SharedBehaviour : MonoBehaviour
 {
     PatrolPointScript ppScript;
+    EnemyDetection enemyDetectionScript;
+    FlipEnemy flipE;
 
-    [SerializeField] private float speed = 2f;
-    [SerializeField] private float detectionRange = 5f;
     [SerializeField] private float attackRange = 1f;
     [SerializeField] private int damage = 10;
     [SerializeField] private float attackCooldown = 1.0f; // Cooldown time between attacks
@@ -15,11 +15,9 @@ public class SharedBehaviour : MonoBehaviour
     private Rigidbody2D rb;
     private Transform player;
     private Animator animator;
-
     private float lastAttackTime = 0;
     private bool IsAttacking = false;
 
-    FlipEnemy flipE;
 
     // Start is called before the first frame update
     void Start()
@@ -29,14 +27,16 @@ public class SharedBehaviour : MonoBehaviour
         flipE = GetComponent<FlipEnemy>();
         ppScript = GetComponent<PatrolPointScript>();
         animator = GetComponent<Animator>();
+        enemyDetectionScript = GetComponent<EnemyDetection>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Vector2.Distance(transform.position, player.position) <= detectionRange)
+        if (enemyDetectionScript.isPlayerInRange)
         {
-            if(Vector2.Distance(transform.position, player.position) <= attackRange)
+
+            if (Vector2.Distance(transform.position, player.position) <= attackRange)
             {
                 AttackPlayer();
             }
@@ -55,7 +55,7 @@ public class SharedBehaviour : MonoBehaviour
     void FollowPlayer()
     {
         Vector2 moveDirection = (player.position - transform.position).normalized;
-        rb.velocity = new Vector2(moveDirection.x * speed, rb.velocity.y); // Move towards the Player
+        rb.velocity = new Vector2(moveDirection.x * enemyDetectionScript.moveSpeed, rb.velocity.y); // Move towards the Player
 
         // Flip direction based of the Player position (if needed)
         if (moveDirection.x > 0 && transform.localScale.x < 0)
@@ -91,4 +91,6 @@ public class SharedBehaviour : MonoBehaviour
         IsAttacking = false;
         animator.SetBool("IsAttacking", false);
     }
+
+
 }
