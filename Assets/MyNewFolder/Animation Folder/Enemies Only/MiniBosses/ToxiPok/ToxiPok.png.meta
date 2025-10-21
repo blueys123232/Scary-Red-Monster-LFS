@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 3b0b5d04e3e92944084ef78bbac9e0e4
+guid: 5e56d942cf5e9054fbe852aa5749d58c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5754591004909626452
-    second: ToxicPokey1_0
+      213: -995802613829925237
+    second: ToxiPok_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -165,13 +165,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ToxicPokey1_0
+      name: ToxiPok_0
       rect:
         serializedVersion: 2
         x: 10
-        y: 0
+        y: 1
         width: 75
-        height: 67
+        height: 68
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -179,8 +179,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 454eb43a70a6cdf40800000000000000
-      internalID: 5754591004909626452
+      spriteID: b8603487cc23e22f0800000000000000
+      internalID: -995802613829925237
       vertices: []
       indices: 
       edges: []
@@ -195,8 +195,7 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      ToxicPokey1_0: 5754591004909626452
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
