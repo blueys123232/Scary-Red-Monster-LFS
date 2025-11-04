@@ -8,8 +8,9 @@ public class SharedBehaviour : MonoBehaviour
     EnemyDetection enemyDetectionScript;
     FlipEnemy flipE;
 
+    //All these variables can be adjusted in the inspector so each enemy type can be customised
     [SerializeField] private float attackRange = 1f;
-    [SerializeField] private int damage = 10;
+    [SerializeField] private int damage = 10; 
     [SerializeField] private float attackCooldown = 1.0f; // Cooldown time between attacks
 
     private Rigidbody2D rb;
@@ -33,9 +34,11 @@ public class SharedBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //using the boolean from EnemyDetection check if player is in Range
         if (enemyDetectionScript.isPlayerInRange)
         {
-
+            //if its in range and is close enough attack
+            //otherwise continue following
             if (Vector2.Distance(transform.position, player.position) <= attackRange)
             {
                 AttackPlayer();
@@ -45,7 +48,7 @@ public class SharedBehaviour : MonoBehaviour
                 FollowPlayer();
             }
         }
-
+        //if player is outside of the follow range then go back on to patrol
         else
         {
             ppScript.Patrol();
@@ -70,23 +73,29 @@ public class SharedBehaviour : MonoBehaviour
 
     void AttackPlayer()
     {
+        //if enemy hasnt already attacked then attack 
         if (!IsAttacking)
         {
+            //set isAttacking true so there can  a cooldown
             IsAttacking = true;
             animator.SetBool("IsAttacking", true);
 
+            //access player health and use the TakeDamage function to remove amount of health
+            //Damage to health is determined by Enemy by a variable in the inspector
             PlayerHealth pHealth = player.GetComponent<PlayerHealth>();
             if(pHealth != null)
             {
                 pHealth.TakeDamage(damage);
             }
 
+            //One enemy has attacked activate this coroutine to reset attack bool so enemy is able to attack again
             StartCoroutine(resetAttack());
         }
     }
 
     IEnumerator resetAttack()
     {
+        //use the attack cooldown variable to determine how long before enemy can attack again
         yield return new WaitForSeconds(attackCooldown);
         IsAttacking = false;
         animator.SetBool("IsAttacking", false);

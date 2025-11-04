@@ -58,6 +58,9 @@ public class PatrolPointScript : MonoBehaviour
 
     void ChangeTarget()
     {
+        //Go through the list of points on the enemy patrol points access the next one
+        //most enemies have two by default but some have a couple more points this scripts should work 
+        //no matter how many points there are
         if(targetWaypointNumber > lastWaypointNumber)
         {
             targetWaypointNumber = 0;
