@@ -10,7 +10,7 @@ public class SharedBehaviour : MonoBehaviour
 
     //All these variables can be adjusted in the inspector so each enemy type can be customised
     [SerializeField] private float attackRange = 1f;
-    [SerializeField] private int damage = 10;
+    [SerializeField] private int damage = 10; 
     [SerializeField] private float attackCooldown = 1.0f; // Cooldown time between attacks
 
     private Rigidbody2D rb;

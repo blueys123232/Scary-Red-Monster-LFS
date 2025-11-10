@@ -195,7 +195,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      ToxiPok_0: -995802613829925237
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
