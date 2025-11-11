@@ -74,7 +74,7 @@ public class Spider2c : MonoBehaviour
     void FollowPlayer()
     {
         Vector2 moveDirection = (player.position - transform.position).normalized;
-        rb.velocity = new Vector2(moveDirection.x * speed, rb.velocity.y);
+        rb.linearVelocity = new Vector2(moveDirection.x * speed, rb.linearVelocity.y);
 
         // flip the image of the player's position 
         if (moveDirection.x > 0 && transform.localScale.x < 0) // facing right and left 

@@ -58,7 +58,7 @@ public class SharedBehaviour : MonoBehaviour
     void FollowPlayer()
     {
         Vector2 moveDirection = (player.position - transform.position).normalized;
-        rb.velocity = new Vector2(moveDirection.x * enemyDetectionScript.moveSpeed, rb.velocity.y); // Move towards the Player
+        rb.linearVelocity = new Vector2(moveDirection.x * enemyDetectionScript.moveSpeed, rb.linearVelocity.y); // Move towards the Player
 
         // Flip direction based of the Player position (if needed)
         if (moveDirection.x > 0 && transform.localScale.x < 0)

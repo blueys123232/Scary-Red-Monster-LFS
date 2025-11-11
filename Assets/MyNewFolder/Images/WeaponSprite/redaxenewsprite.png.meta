@@ -195,7 +195,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      redaxenewsprite_0: 2126858667490669213
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

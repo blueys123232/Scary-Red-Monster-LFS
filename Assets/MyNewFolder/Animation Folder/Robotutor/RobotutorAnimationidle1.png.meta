@@ -195,7 +195,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      RobotutorAnimationidle1_0: 5344288785964194536
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

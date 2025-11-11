@@ -195,7 +195,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Bloodfang dagger_0: 2561359619086168021
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

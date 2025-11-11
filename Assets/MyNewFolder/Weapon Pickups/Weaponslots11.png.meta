@@ -195,7 +195,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Weaponslots11_0: 7664470788841598894
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

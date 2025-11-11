@@ -7,8 +7,12 @@ public class EnemyHealth : MonoBehaviour
 {
     // Start is called before the first frame update
     [Header("Health Settings")]
-    public float maxHealth = 50;
-    public float currentHealth;
+    private int maxHealth = 50;
+    public int currentHealth;
+
+    //int = whole number (1, 2, 5, 7 etc)
+    //double = decimal number (1.3, 5.4, etc)
+    //float = both (1, 2, 3, 5.7, 6.3, 1.2)
 
     [Header("Health Bar UI")]
     public Image healthBarFill;
@@ -18,7 +22,7 @@ public class EnemyHealth : MonoBehaviour
         UpdateHealthBar();
     }
 
-    public void TakeDamage(float damageAmount)
+    public void TakeDamage(int damageAmount)
     {
         currentHealth -= damageAmount;
 

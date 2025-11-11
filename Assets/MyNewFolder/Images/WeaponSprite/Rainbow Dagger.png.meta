@@ -195,7 +195,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Rainbow Dagger_0: -6240504718618039560
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

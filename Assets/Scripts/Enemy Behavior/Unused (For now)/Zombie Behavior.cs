@@ -56,7 +56,7 @@ public class ZombieBehaviour : MonoBehaviour
     void FollowPlayer()
     {
         Vector2 moveDirection = (player.position - transform.position).normalized;
-        rb.velocity = new Vector2(moveDirection.x * speed, rb.velocity.y);
+        rb.linearVelocity = new Vector2(moveDirection.x * speed, rb.linearVelocity.y);
 
         animator.SetBool("isAttacking", false);
 

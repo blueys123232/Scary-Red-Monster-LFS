@@ -195,7 +195,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      new shotgun sprite 1_0: -8762233439107624340
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
