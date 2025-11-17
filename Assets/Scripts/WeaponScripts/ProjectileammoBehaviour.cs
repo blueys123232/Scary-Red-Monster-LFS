@@ -33,6 +33,7 @@ public class ProjectileAmmoBehaviour : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+
       if (collision.gameObject.CompareTag("Enemy"))
         {
             EnemyHealth eHealth = collision.GetComponent<EnemyHealth>();
@@ -44,9 +45,17 @@ public class ProjectileAmmoBehaviour : MonoBehaviour
         }
 
         if (collision.gameObject.CompareTag("Tilemap"))
+
+        if (collision.gameObject.CompareTag("Tilemap") || collision.gameObject.CompareTag("Ground"))
+
         {
             Destroy(gameObject);
 
+        }
+
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            eHealth.TakeDamage(wStats.Damage);
         }
     }
 }
