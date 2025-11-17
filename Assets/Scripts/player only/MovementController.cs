@@ -60,7 +60,7 @@ public class MovementController : MonoBehaviour
     public void FixedUpdate()
     {
         float targetSpeed = speed * moveInput.x * (isRunning ? runSpeedMultiplier : 1);
-        rb.velocity = new Vector2(targetSpeed, rb.velocity.y);
+        rb.linearVelocity = new Vector2(targetSpeed, rb.linearVelocity.y);
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -69,7 +69,7 @@ public class MovementController : MonoBehaviour
 
         // Update animator with movement speed
         animator.SetFloat("xVelocity", moveInput.x);
-        animator.SetFloat("yVelocity", rb.velocity.y);
+        animator.SetFloat("yVelocity", rb.linearVelocity.y);
     }
 
     public void OnJump(InputAction.CallbackContext context)

@@ -24,7 +24,7 @@ public class KeyController : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             Debug.Log("Key collided with the ground.");
-            rb.velocity = Vector2.zero; // Stop the key's movement
+            rb.linearVelocity = Vector2.zero; // Stop the key's movement
         }
     }
 

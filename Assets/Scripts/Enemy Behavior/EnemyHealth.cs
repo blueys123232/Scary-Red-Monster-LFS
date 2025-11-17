@@ -7,7 +7,7 @@ public class EnemyHealth : MonoBehaviour
 {
     // Start is called before the first frame update
     [Header("Health Settings")]
-    public float maxHealth = 50;
+    public float maxHealth = 100f;
     public float currentHealth;
 
     [Header("Health Bar UI")]
@@ -18,25 +18,33 @@ public class EnemyHealth : MonoBehaviour
         UpdateHealthBar();
     }
 
-    public void TakeDamage(float damageAmount)
+    public void TakeDamage(float amount)
     {
-        currentHealth -= damageAmount;
-
-        if (currentHealth < 0)
-            currentHealth = 0;
-
+        currentHealth -= amount;
+        currentHealth = Mathf.Clamp(currentHealth, 0f, maxHealth);
         UpdateHealthBar();
 
         if (currentHealth <= 0)
+        {
             Die();
+        }
+            
     }
-    
-   void UpdateHealthBar()
+
+    void UpdateHealthBar()
     {
         if (healthBarFill != null)
-            healthBarFill.fillAmount = currentHealth / maxHealth;
+        {
+            float fillValue = currentHealth / maxHealth;
+            healthBarFill.fillAmount = fillValue;
+        }
+        else
+        {
+            Debug.LogWarning("Health Bar Fill is not assigned in EnemyHealth for " + gameObject.name);
+        }
+            
     }
-    
+
     void Die()
     {
         Destroy(gameObject);

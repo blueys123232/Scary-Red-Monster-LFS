@@ -6,12 +6,14 @@ public class ProjectileAmmoBehaviour : MonoBehaviour
 
     public Rigidbody2D rb;
     WeaponStats wStats;
+    EnemyHealth eHealth;
 
     [SerializeField] private float ActiveTime;
 
     // Start is called before the first frame update
     void Start()
     {
+        eHealth = FindAnyObjectByType<EnemyHealth>();
         wStats = FindAnyObjectByType<WeaponStats>();
         rb = GetComponent<Rigidbody2D>();
     }
@@ -19,7 +21,7 @@ public class ProjectileAmmoBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rb.velocity = transform.right * wStats.ProjectileSpeed;
+        rb.linearVelocity = transform.right * wStats.ProjectileSpeed;
 
         ActiveTime -= Time.deltaTime;
 
@@ -29,14 +31,22 @@ public class ProjectileAmmoBehaviour : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+      if (collision.gameObject.CompareTag("Enemy"))
+        {
+            EnemyHealth eHealth = collision.GetComponent<EnemyHealth>();
+            if (eHealth != null && wStats != null)
+            {
+                eHealth.TakeDamage(wStats.Damage);
+                Destroy(gameObject);
+            }
+        }
 
-
-    private void OnCollisionEnter2D(Collision2D collision)
-  {
         if (collision.gameObject.CompareTag("Tilemap"))
-
         {
             Destroy(gameObject);
+
         }
     }
 }

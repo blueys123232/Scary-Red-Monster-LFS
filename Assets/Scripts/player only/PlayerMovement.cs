@@ -127,7 +127,7 @@ public class PlayerMovement : MonoBehaviour
         // Apply horizontal velocity
         if (rb != null)
         {
-            rb.velocity = new Vector2(moveDirection * speed, rb.velocity.y);
+            rb.linearVelocity = new Vector2(moveDirection * speed, rb.linearVelocity.y);
         }
     }
 
@@ -147,7 +147,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (rb != null)
             {
-                rb.velocity = new Vector2(rb.velocity.x, jumpForce); // y velocity for jumping
+                rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce); // y velocity for jumping
             }
         }
     }
@@ -161,8 +161,8 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // Update animator parameters for movement and jumping
-        animator.SetFloat("xVelocity", Mathf.Abs(rb.velocity.x));
-        animator.SetFloat("yVelocity", rb.velocity.y);
+        animator.SetFloat("xVelocity", Mathf.Abs(rb.linearVelocity.x));
+        animator.SetFloat("yVelocity", rb.linearVelocity.y);
         animator.SetBool("isJumping", !isGrounded);
         animator.SetBool("isFiring", S_Script.weaponFired);
 
