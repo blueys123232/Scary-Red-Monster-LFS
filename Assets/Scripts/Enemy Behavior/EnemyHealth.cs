@@ -5,40 +5,31 @@ using UnityEngine.UI;
 
 public class EnemyHealth : MonoBehaviour
 {
-    // Start is called before the first frame update
-    [Header("Health Settings")]
-
+    [Header("Enemy Health Settings")]
     public float maxHealth = 100f;
     public float currentHealth;
-    private int maxHealth = 50;
-    public int currentHealth;
-
-
-
+    // Start is called before the first frame update
     [Header("Health Bar UI")]
     public Image healthBarFill;
-    void Start()
+    private void Start()
     {
         currentHealth = maxHealth;
         UpdateHealthBar();
     }
 
-
     public void TakeDamage(float amount)
-    public void TakeDamage(int damageAmount)
     {
         currentHealth -= amount;
         currentHealth = Mathf.Clamp(currentHealth, 0f, maxHealth);
         UpdateHealthBar();
 
-        if (currentHealth <= 0)
+        if (currentHealth <= 0f)
         {
             Die();
         }
-            
     }
 
-    void UpdateHealthBar()
+    private void UpdateHealthBar()
     {
         if (healthBarFill != null)
         {
@@ -49,11 +40,11 @@ public class EnemyHealth : MonoBehaviour
         {
             Debug.LogWarning("Health Bar Fill is not assigned in EnemyHealth for " + gameObject.name);
         }
-            
     }
 
-    void Die()
+    private void Die()
     {
+        Debug.Log($"{gameObject.name} has been defeated!");
         Destroy(gameObject);
     }
 }
