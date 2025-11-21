@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class NewContinueAndLoad : MonoBehaviour
@@ -11,6 +12,13 @@ public class NewContinueAndLoad : MonoBehaviour
     const string KEY_LAST_INDEX = "LastLevelIndex";
     const string KEY_LAST_NAME = "LastLevelName";
 
+    private TextMeshProUGUI SavedLevelName;
+
+    private void Start()
+    {
+        SavedLevelName = FindAnyObjectByType<TextMeshProUGUI>();
+    }
+
     public void StartNewGame()
     {
 
@@ -21,6 +29,7 @@ public class NewContinueAndLoad : MonoBehaviour
         if (!string.IsNullOrEmpty(levelIntroSceneName))
         {
             PlayerPrefs.SetString(KEY_LAST_NAME, levelIntroSceneName);
+            SavedLevelName.text = levelIntroSceneName;
             PlayerPrefs.Save();
             SceneManager.LoadScene(levelIntroSceneName);
         }

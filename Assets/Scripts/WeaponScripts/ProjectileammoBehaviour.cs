@@ -31,12 +31,11 @@ public class ProjectileAmmoBehaviour : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-
-      if (collision.gameObject.CompareTag("Enemy"))
+        if (collision.collider.CompareTag("Enemy"))
         {
-            EnemyHealth eHealth = collision.GetComponent<EnemyHealth>();
+            EnemyHealth eHealth = collision.collider.GetComponent<EnemyHealth>();
             if (eHealth != null && wStats != null)
             {
                 eHealth.TakeDamage(wStats.Damage);
@@ -44,9 +43,7 @@ public class ProjectileAmmoBehaviour : MonoBehaviour
             }
         }
 
-        if (collision.gameObject.CompareTag("Tilemap"))
-
-        if (collision.gameObject.CompareTag("Tilemap") || collision.gameObject.CompareTag("Ground"))
+        if (collision.gameObject.CompareTag("Tilemap") || collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Pickup"))
 
         {
             Destroy(gameObject);
