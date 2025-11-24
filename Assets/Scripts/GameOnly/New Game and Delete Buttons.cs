@@ -1,7 +1,9 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-public class NewContinueAndLoad : MonoBehaviour
+public class NewGameandDeleteButtons : MonoBehaviour
 {
     [Header("Scenes")]
     public string firstLevelSceneName;     // e.g., "Level1"
@@ -10,6 +12,28 @@ public class NewContinueAndLoad : MonoBehaviour
     // -------- Global (backward-compat) keys --------
     const string KEY_LAST_INDEX = "LastLevelIndex";
     const string KEY_LAST_NAME = "LastLevelName";
+    [Header("UI")]
+    private TextMeshProUGUI SavedLevelName;
+
+    [Header("Save File and Delete Buttons")]
+    [SerializeField] private GameObject[] SaveFileButtons;
+    [SerializeField] private GameObject[] DeleteButtons;
+    private void Start()
+    {
+        SavedLevelName = FindAnyObjectByType<TextMeshProUGUI>();
+
+        if (SaveFileButtons != null)
+        {
+            foreach (var btn in SaveFileButtons)
+                if (btn != null) btn.SetActive(true);
+        }
+
+        if (DeleteButtons != null)
+        {
+            foreach (var btn in DeleteButtons)
+                if (btn != null) btn.SetActive(true);
+        }
+    }
 
     public void StartNewGame()
     {
@@ -21,6 +45,7 @@ public class NewContinueAndLoad : MonoBehaviour
         if (!string.IsNullOrEmpty(levelIntroSceneName))
         {
             PlayerPrefs.SetString(KEY_LAST_NAME, levelIntroSceneName);
+            SavedLevelName.text = levelIntroSceneName;
             PlayerPrefs.Save();
             SceneManager.LoadScene(levelIntroSceneName);
         }
@@ -35,6 +60,7 @@ public class NewContinueAndLoad : MonoBehaviour
     {
         string saveName = PlayerPrefs.GetString(KEY_LAST_NAME, "");
         int savedIndex = PlayerPrefs.GetInt(KEY_LAST_INDEX, -1);
+
         if (!string.IsNullOrEmpty(saveName))
         {
             SceneManager.LoadScene(saveName);
@@ -52,7 +78,7 @@ public class NewContinueAndLoad : MonoBehaviour
     {
         ContinueGame();
     }
-    public void SaveLevelProgress(int levelIndex, string levelName ="")
+    public void SaveLevelProgress(int levelIndex, string levelName = "")
     {
         PlayerPrefs.SetInt(KEY_LAST_INDEX, levelIndex);
 
@@ -77,10 +103,11 @@ public class NewContinueAndLoad : MonoBehaviour
 
         Debug.Log("Save File Deleted");
 
+        if (SavedLevelName != null)
+            SavedLevelName.text = "None";
     }
 
 }
-
 
 
 
