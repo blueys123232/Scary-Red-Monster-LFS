@@ -7,7 +7,7 @@ public class SkipCutscne : MonoBehaviour
     public string nextSceneName;
 
     // Update is called by a frame 
-     void Update()
+    void Update()
     {
 
 

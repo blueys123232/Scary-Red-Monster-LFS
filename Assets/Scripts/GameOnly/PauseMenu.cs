@@ -6,6 +6,13 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private static bool GameIsPaused = false;
     [SerializeField] private GameObject pauseMenuUI;
 
+    SaveScript sScript;
+
+    private void Awake()
+    {
+        sScript = FindAnyObjectByType<SaveScript>();
+    }
+
     void Update()
     {
        if (Input.GetKeyDown(KeyCode.Escape))
@@ -39,9 +46,13 @@ public class PauseMenu : MonoBehaviour
 
     public void LoadMainMenu()
     {
-        Debug.Log("Loading Main Menu"); // Debug log
         Time.timeScale = 1f;
-        SceneManager.LoadScene("Main Menu"); // Replace "MainMenu" with the actual name of your main menu scene
+
+        sScript.SaveLevelProgress(SceneManager.GetActiveScene().name, SceneManager.GetActiveScene().buildIndex.ToString(),
+            SceneManager.GetActiveScene().buildIndex, SceneManager.GetActiveScene().name);
+
+        SceneManager.LoadScene("Main Menu"); 
+
     }
     public void RestartGame()
     {
