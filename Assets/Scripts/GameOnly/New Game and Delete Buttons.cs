@@ -35,12 +35,6 @@ public class NewGameandDeleteButtons : MonoBehaviour
         }
     }
 
-    private TextMeshProUGUI SavedLevelName;
-
-    private void Start()
-    {
-        SavedLevelName = FindAnyObjectByType<TextMeshProUGUI>();
-    }
 
     public void StartNewGame()
     {
