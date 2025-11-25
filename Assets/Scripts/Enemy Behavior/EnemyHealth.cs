@@ -10,7 +10,7 @@ public class EnemyHealth : MonoBehaviour
     public float currentHealth;
     // Start is called before the first frame update
     [Header("Health Bar UI")]
-    public Image healthBarFill;
+    public Image healthBarImage;
     private void Start()
     {
         currentHealth = maxHealth;
@@ -31,10 +31,10 @@ public class EnemyHealth : MonoBehaviour
 
     private void UpdateHealthBar()
     {
-        if (healthBarFill != null)
+        if (healthBarImage != null)
         {
             float fillValue = currentHealth / maxHealth;
-            healthBarFill.fillAmount = fillValue;
+            healthBarImage.fillAmount = fillValue;
         }
         else
         {

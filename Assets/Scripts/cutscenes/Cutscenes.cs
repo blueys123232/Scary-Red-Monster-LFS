@@ -5,8 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class Cutscenes : MonoBehaviour
 {
-    public string nextSceneName;
-    public float introDuration = 10f;
+    [SerializeField] private string nextSceneName;
+    [SerializeField] private float introDuration = 10f;
 
     private float timer;
 

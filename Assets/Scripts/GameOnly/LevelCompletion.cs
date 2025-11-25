@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class LevelCompletion : MonoBehaviour
 {
 
-    public string sceneName;
+    //public string sceneName;
     public GameObject completionPanel;
 
     public void CompleteLevel()
@@ -21,17 +21,22 @@ public class LevelCompletion : MonoBehaviour
 
     }
 
-    void UnlockLevel()
-    {
-        PlayerPrefs.SetInt(sceneName + "Unlocked", 1);
-        PlayerPrefs.Save();
-    }
+    //void UnlockLevel()
+    //{
+    //    PlayerPrefs.SetInt(sceneName + "Unlocked", 1);
+    //    PlayerPrefs.Save();
+    //}
     public void LoadNextLevel()
     {
-        SceneManager.LoadScene(sceneName);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
-    public void RestartLevel()
+    //public void RestartLevel()
+    //{
+    //   SceneManager.LoadScene(sceneName);
+    //}
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-       SceneManager.LoadScene(sceneName);
+        LoadNextLevel();
     }
 }
