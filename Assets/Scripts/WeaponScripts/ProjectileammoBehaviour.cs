@@ -6,14 +6,12 @@ public class ProjectileAmmoBehaviour : MonoBehaviour
 
     public Rigidbody2D rb;
     WeaponStats wStats;
-    EnemyHealth eHealth;
 
     [SerializeField] private float ActiveTime;
 
     // Start is called before the first frame update
     void Start()
     {
-        eHealth = FindAnyObjectByType<EnemyHealth>();
         wStats = FindAnyObjectByType<WeaponStats>();
         rb = GetComponent<Rigidbody2D>();
     }
@@ -44,15 +42,9 @@ public class ProjectileAmmoBehaviour : MonoBehaviour
         }
 
         if (collision.gameObject.CompareTag("Tilemap") || collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Pickup"))
-
         {
             Destroy(gameObject);
-
         }
 
-        if (collision.gameObject.CompareTag("Enemy"))
-        {
-            eHealth.TakeDamage(wStats.Damage);
-        }
     }
 }

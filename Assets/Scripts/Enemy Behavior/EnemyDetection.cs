@@ -28,7 +28,6 @@ public class EnemyDetection : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("player in range");
             isPlayerInRange = true;
         }
     }
@@ -37,16 +36,8 @@ public class EnemyDetection : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("player escaped");
             isPlayerInRange = false;
         }
-    }
-
-    private void OnDrawGizmos()
-    {
-        //visualize the detection Radius
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, detectionRange);
     }
 }
 

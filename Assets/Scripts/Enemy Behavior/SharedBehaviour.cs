@@ -16,7 +16,6 @@ public class SharedBehaviour : MonoBehaviour
     private Rigidbody2D rb;
     private Transform player;
     private Animator animator;
-    private float lastAttackTime = 0;
     private bool IsAttacking = false;
 
 
