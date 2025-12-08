@@ -48,13 +48,13 @@ public class NewGameandDeleteButtons : MonoBehaviour
             PlayerPrefs.SetString(KEY_LAST_NAME, levelIntroSceneName);
             SavedLevelName.text = levelIntroSceneName;
             PlayerPrefs.Save();
-            SceneManager.LoadScene(levelIntroSceneName);
+            //SceneManager.LoadScene(levelIntroSceneName);
         }
         else
         {
             PlayerPrefs.SetString(KEY_LAST_NAME, firstLevelSceneName);
             PlayerPrefs.Save();
-            SceneManager.LoadScene(firstLevelSceneName);
+            //SceneManager.LoadScene(firstLevelSceneName);
         }
     }
     public void ContinueGame()
@@ -79,23 +79,16 @@ public class NewGameandDeleteButtons : MonoBehaviour
     {
         ContinueGame();
     }
-    public void SaveLevelProgress(int levelIndex, string levelName = "")
-    {
-        PlayerPrefs.SetInt(KEY_LAST_INDEX, levelIndex);
 
-        if (!string.IsNullOrEmpty(levelName))
-            PlayerPrefs.SetString(KEY_LAST_NAME, levelName);
-        PlayerPrefs.Save();
-    }
-    public void LoadNextLevel(int currentLevelIndex, string nextLevelName = "")
-    {
-        int nextIndex = currentLevelIndex + 1;
-        SaveLevelProgress(nextIndex, nextLevelName);
-        if (!string.IsNullOrEmpty(nextLevelName))
-            SceneManager.LoadScene(nextLevelName);
-        else
-            SceneManager.LoadScene(nextIndex);
-    }
+    //public void LoadNextLevel(int currentLevelIndex, string nextLevelName = "")
+    //{
+    //    int nextIndex = currentLevelIndex + 1;
+    //    SaveLevelProgress(nextIndex, nextLevelName);
+    //    if (!string.IsNullOrEmpty(nextLevelName))
+    //        SceneManager.LoadScene(nextLevelName);
+    //    else
+    //        SceneManager.LoadScene(nextIndex);
+    //}
     public void DeleteSaveFile()
     {
         PlayerPrefs.DeleteKey(KEY_LAST_INDEX);
@@ -109,9 +102,3 @@ public class NewGameandDeleteButtons : MonoBehaviour
     }
 
 }
-
-
-
-
-
-

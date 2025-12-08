@@ -32,7 +32,10 @@ public class WeaponStats : MonoBehaviour
                 ammoText.text = "Melee";
                 //No pickups or anything for this one
                 break;
-
+            case WeaponType.Ranger:
+                ammoText.text = "Ammo:" + AmmoCount.ToString();
+                //No pickups or anything for this one
+                break;
             case WeaponType.Pistol:
                 ammoText.text = "Ammo: " + AmmoCount.ToString();
                 break;
@@ -43,7 +46,9 @@ public class WeaponStats : MonoBehaviour
             case WeaponType.Bow:
                 ammoText.text = "Arrows: " + AmmoCount.ToString();
                 break;
-
+            case WeaponType.Thrower:
+                ammoText.text = "Throwable Objects" + AmmoCount.ToString();
+                break;
         }
     }
     private void Update()
@@ -55,6 +60,8 @@ public class WeaponStats : MonoBehaviour
 
 public enum WeaponType
 {
+    Thrower,
+    Ranger,
     None,
     Melee,
     Pistol,
