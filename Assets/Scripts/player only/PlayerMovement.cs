@@ -106,7 +106,6 @@ public class PlayerMovement : MonoBehaviour
             else if (S_Script != null)
             {
                 S_Script.firePoint.transform.eulerAngles = new Vector3(0f, 180f, 0f);
-
             }
         }
         else if (moveDirection > 0)
@@ -119,9 +118,7 @@ public class PlayerMovement : MonoBehaviour
             else if (S_Script != null)
             {
                 S_Script.firePoint.transform.eulerAngles = new Vector3(0f, 0f, 0f);
-
             }
-
         }
 
         // Apply horizontal velocity

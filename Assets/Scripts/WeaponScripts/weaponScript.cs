@@ -45,6 +45,14 @@ public class weaponScript : MonoBehaviour
         Weapons = new GameObject[totalWeapons];
         WeaponsUI = new GameObject[totalWeapons];
 
+
+        WeaponSwitch();
+
+    }
+
+    void WeaponSwitch()
+    {
+
         for (int i = 0; i < totalWeapons; i++)
         {
             Weapons[i] = weaponHolder.transform.GetChild(i).gameObject;
@@ -56,12 +64,13 @@ public class weaponScript : MonoBehaviour
             // Next weapon
             if (CurrentWeaponIndex < totalWeapons - 1)
             {
-
                 Weapons[CurrentWeaponIndex].SetActive(false);
                 WeaponsUI[CurrentWeaponIndex].SetActive(false);
                 CurrentWeaponIndex += 1;
                 wStats.wType++;
+                //Sets next weapon to active
                 Weapons[CurrentWeaponIndex].SetActive(true);
+                //wStats.firePoint.transform.eulerAngles = 
                 WeaponsUI[CurrentWeaponIndex].SetActive(true);
                 currentWeapon = Weapons[CurrentWeaponIndex];
             }

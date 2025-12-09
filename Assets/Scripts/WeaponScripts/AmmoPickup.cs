@@ -32,7 +32,7 @@ public class AmmoPickup : MonoBehaviour
 
     private IEnumerator DestroyAfterSound()
     {
-        yield return new WaitForSeconds(audioSource.clip.length);
+        yield return new WaitForSeconds(audioSource.clip.length); 
         Destroy(gameObject); // Destroy the coin after the sound has played
     }
 }

@@ -18,17 +18,10 @@ public class Key : MonoBehaviour
     {
         if (!isCollected && collision.CompareTag("Player"))
         {
+            AudioSource.Play(); //Rework so sound plays
             isCollected = true;
             puManager.AddKey();
-            AudioSource.Play();
-            StartCoroutine(DestroyAfterSound()); // Destroy the coin after the sound plays
+            Destroy(gameObject);
         }
     }
-
-    private IEnumerator DestroyAfterSound()
-    {
-        yield return new WaitForSeconds(AudioSource.clip.length);
-        Destroy(gameObject); // Destroy the coin after the sound has played
-    }
-
 }

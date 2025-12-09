@@ -16,7 +16,6 @@ public class shootScript : MonoBehaviour
     {
         weaponStats = GetComponent<WeaponStats>();
         puManager = FindAnyObjectByType<PickUpmanager>();
-
     }
 
     private float nextFireTime = 0f;
@@ -27,7 +26,6 @@ public class shootScript : MonoBehaviour
         {
             weaponFired = true;
             StartCoroutine(Shoot());
-
         }
 
         else if (weaponStats.AmmoCount == 0)

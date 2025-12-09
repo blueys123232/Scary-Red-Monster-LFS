@@ -1,7 +1,12 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Prefabs/Pickups.meta
 guid: 911a2f1d25c7cf1499bc1b08b13f516a
 folderAsset: yes
 DefaultImporter:
+========
+guid: b812142b356c3ee41a69cbc470567a9d
+PrefabImporter:
+>>>>>>>> 864e07a4f085af86ae825e1363890c6db9f67025:Assets/Enemies/SpiderToastParent 1.prefab.meta
   externalObjects: {}
   userData: 
   assetBundleName: 
