@@ -5,26 +5,26 @@ using UnityEngine;
 
 public class AmmoPickup : MonoBehaviour
 {
-    [SerializeField] private int AmmoPickupAmount;
+    private PickUpmanager puManager;
+    [SerializeField] int AmmoPickupAmount;
     private AudioSource audioSource;
     private WeaponStats wStats;
-    private PickUpmanager puMan; 
+
 
     // Start is called before the first frame update
     void Start()
     {
         wStats = FindAnyObjectByType<WeaponStats>();
-        puMan = FindAnyObjectByType<PickUpmanager>();
         audioSource = GetComponent<AudioSource>();
+        puManager = FindAnyObjectByType<PickUpmanager>();
     }
-
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //To Do: seperate ammo by weapon, try and add ability to add ammo to weapons not currently equipped.
         if (collision.CompareTag("Player") && wStats.wType != WeaponType.Melee)
         {
-            puMan.AddAmmo(AmmoPickupAmount);
+            puManager.AddAmmo(AmmoPickupAmount);
             audioSource.Play();
             StartCoroutine(DestroyAfterSound());
         }

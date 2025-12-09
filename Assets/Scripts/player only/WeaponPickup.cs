@@ -11,9 +11,11 @@ public class WeaponPickup : MonoBehaviour
 
     PickUpmanager puManager;
 
+
     private void Start()
     {
         puManager = FindAnyObjectByType<PickUpmanager>();
+      
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

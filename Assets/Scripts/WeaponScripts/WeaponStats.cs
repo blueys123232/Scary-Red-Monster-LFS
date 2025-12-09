@@ -3,14 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using static UnityEditor.PlayerSettings;
 
 
 public class WeaponStats : MonoBehaviour
 {
     public WeaponType wType;
-
     [SerializeField] TextMeshProUGUI ammoText;
 
+
+    AmmoPickup aPickup;
 
     public int Damage, AmmoCount;
     public float ProjectileSpeed;
@@ -18,9 +20,11 @@ public class WeaponStats : MonoBehaviour
     private void Start()
     {
 
+        aPickup = FindAnyObjectByType<AmmoPickup>();
+        WeaponTypeSwitch();
     }
 
-    private void WeaponTypeSwitch()
+    public void WeaponTypeSwitch()
     {
         switch (wType)
         {
@@ -32,14 +36,9 @@ public class WeaponStats : MonoBehaviour
                 ammoText.text = "Melee";
                 //No pickups or anything for this one
                 break;
-            case WeaponType.Ranger:
-                ammoText.text = "Ammo:" + AmmoCount.ToString();
-                //No pickups or anything for this one
-                break;
             case WeaponType.Pistol:
                 ammoText.text = "Ammo: " + AmmoCount.ToString();
                 break;
-
             case WeaponType.Shotgun:
                 ammoText.text = "Ammo: " + AmmoCount.ToString();
                 break;
@@ -61,12 +60,10 @@ public class WeaponStats : MonoBehaviour
 public enum WeaponType
 {
     Thrower,
-    Ranger,
     None,
     Melee,
     Pistol,
     Shotgun,
     Bow,
     Launcher
-
 }

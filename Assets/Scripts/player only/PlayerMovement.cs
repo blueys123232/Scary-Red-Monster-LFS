@@ -161,7 +161,7 @@ public class PlayerMovement : MonoBehaviour
         animator.SetFloat("xVelocity", Mathf.Abs(rb.linearVelocity.x));
         animator.SetFloat("yVelocity", rb.linearVelocity.y);
         animator.SetBool("isJumping", !isGrounded);
-        animator.SetBool("isFiring", S_Script.weaponFired);
+        //animator.SetBool("isFiring", S_Script.weaponFired);
 
         animator.SetInteger("CurWepIndex", W_Script.CurrentWeaponIndex);
     }

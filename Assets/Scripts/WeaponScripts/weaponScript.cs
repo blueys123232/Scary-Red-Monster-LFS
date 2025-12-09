@@ -68,6 +68,7 @@ public class weaponScript : MonoBehaviour
                 WeaponsUI[CurrentWeaponIndex].SetActive(false);
                 CurrentWeaponIndex += 1;
                 wStats.wType++;
+                wStats.WeaponTypeSwitch();
                 //Sets next weapon to active
                 Weapons[CurrentWeaponIndex].SetActive(true);
                 //wStats.firePoint.transform.eulerAngles = 
@@ -84,6 +85,7 @@ public class weaponScript : MonoBehaviour
                 WeaponsUI[CurrentWeaponIndex].SetActive(false);
                 CurrentWeaponIndex -= 1;
                 wStats.wType--;
+                wStats.WeaponTypeSwitch();
                 Weapons[CurrentWeaponIndex].SetActive(true);
                 WeaponsUI[CurrentWeaponIndex].SetActive(true);
                 currentWeapon = Weapons[CurrentWeaponIndex];
