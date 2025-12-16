@@ -30,9 +30,6 @@ public class weaponScript : MonoBehaviour
 
             WeaponsUI[i] = weaponUIHolder.transform.GetChild(i).gameObject;
             WeaponsUI[i].SetActive(false);
-
-            WeaponsUI[i] = weaponUIHolder.transform.GetChild(i).gameObject;
-            WeaponsUI[i].SetActive(false);
         }
         //Weapons[0] should by default be unarmed
         Weapons[0].SetActive(true);
@@ -45,9 +42,7 @@ public class weaponScript : MonoBehaviour
         Weapons = new GameObject[totalWeapons];
         WeaponsUI = new GameObject[totalWeapons];
 
-
         WeaponSwitch();
-
     }
 
     void WeaponSwitch()

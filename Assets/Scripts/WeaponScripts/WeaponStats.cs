@@ -17,6 +17,8 @@ public class WeaponStats : MonoBehaviour
     public int Damage, AmmoCount;
     public float ProjectileSpeed;
 
+    public int wepInt;
+
     private void Start()
     {
 
@@ -34,25 +36,31 @@ public class WeaponStats : MonoBehaviour
 
             case WeaponType.Melee:
                 ammoText.text = "Melee";
+                wepInt = 0;
                 //No pickups or anything for this one
                 break;
             case WeaponType.Pistol:
                 ammoText.text = "Ammo: " + AmmoCount.ToString();
+                wepInt = 1;
                 break;
             case WeaponType.Shotgun:
                 ammoText.text = "Ammo: " + AmmoCount.ToString();
+                wepInt = 2;
                 break;
             case WeaponType.Bow:
                 ammoText.text = "Arrows: " + AmmoCount.ToString();
+                wepInt = 3;
                 break;
-            case WeaponType.Thrower:
-                ammoText.text = "Throwable Objects" + AmmoCount.ToString();
+            case WeaponType.Launcher:
+                ammoText.text = "Explosives: " + AmmoCount.ToString();
+                wepInt = 4;
                 break;
         }
     }
     private void Update()
     {
         WeaponTypeSwitch();
+        Debug.Log(wepInt);
     }
 
 }

@@ -24,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
     private float moveDirection; // For capturing horizontal input
 
     private shootScript S_Script;
-    private weaponScript W_Script;
+    private WeaponStats wStats;
 
     void Start()
     {
@@ -36,7 +36,7 @@ public class PlayerMovement : MonoBehaviour
         //find components on other objects
         puManager = FindAnyObjectByType<PickUpmanager>();
         S_Script = FindAnyObjectByType<shootScript>();
-        W_Script = FindAnyObjectByType<weaponScript>();
+        wStats = FindAnyObjectByType<WeaponStats>();
         // Check for component assignments
         if (rb == null) Debug.LogError("Rigidbody2D component not found on " + gameObject.name);
         if (animator == null) Debug.LogError("Animator component not found on " + gameObject.name);
@@ -161,9 +161,10 @@ public class PlayerMovement : MonoBehaviour
         animator.SetFloat("xVelocity", Mathf.Abs(rb.linearVelocity.x));
         animator.SetFloat("yVelocity", rb.linearVelocity.y);
         animator.SetBool("isJumping", !isGrounded);
-        //animator.SetBool("isFiring", S_Script.weaponFired);
 
-        animator.SetInteger("CurWepIndex", W_Script.CurrentWeaponIndex);
+        //Weapon Animation section
+        animator.SetBool("isFiring", S_Script.weaponFired);
+        animator.SetInteger("WeaponInt", wStats.wepInt);
     }
 
     void OnCollisionEnter2D(Collision2D collision)
