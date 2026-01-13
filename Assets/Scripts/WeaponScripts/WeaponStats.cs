@@ -60,7 +60,7 @@ public class WeaponStats : MonoBehaviour
     private void Update()
     {
         WeaponTypeSwitch();
-        Debug.Log(wepInt);
+        //Debug.Log(wepInt);
     }
 
 }
