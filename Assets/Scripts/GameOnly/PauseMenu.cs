@@ -15,9 +15,9 @@ public class PauseMenu : MonoBehaviour
 
     void Update()
     {
-       if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if(GameIsPaused)
+            if (GameIsPaused)
             {
                 Resume();
             }
@@ -51,7 +51,7 @@ public class PauseMenu : MonoBehaviour
         sScript.SaveLevelProgress(SceneManager.GetActiveScene().name, SceneManager.GetActiveScene().buildIndex.ToString(),
             SceneManager.GetActiveScene().buildIndex, SceneManager.GetActiveScene().name);
 
-        SceneManager.LoadScene("Main Menu"); 
+        SceneManager.LoadScene("Main Menu");
 
     }
     public void RestartGame()

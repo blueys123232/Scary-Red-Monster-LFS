@@ -26,6 +26,6 @@ public class FallingPlatform : MonoBehaviour
         rb.gravityScale = 1; // Enable gravity on the platform
 
         // Platform will fall but won't be destroyed
-        // Destroy(gameObject, destroyDelay); // This line is removed/commented out
+        //Destroy(gameObject, destroyDelay); // This line is removed/commented out
     }
 }

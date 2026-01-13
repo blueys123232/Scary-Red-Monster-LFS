@@ -8,13 +8,13 @@ public class Throwableweaponpickup : MonoBehaviour
 
     [SerializeField] private int Thorwables;
     private AudioSource audioSource;
-    private WeaponStats wStats;
+    private ThrowableWeaponStats TwStats;
     private PickUpmanager puMan;
 
     // Start is called before the first frame update
     void Start()
     {
-        wStats = FindAnyObjectByType<WeaponStats>();
+        TwStats = FindAnyObjectByType<ThrowableWeaponStats>();
         puMan = FindAnyObjectByType<PickUpmanager>();
         audioSource = GetComponent<AudioSource>();
     }
@@ -23,7 +23,7 @@ public class Throwableweaponpickup : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //To Do: seperate ammo by weapon, try and add ability to add ammo to weapons not currently equipped.
-        if (collision.CompareTag("Player") && wStats.wType != WeaponType.Melee)
+        if (collision.CompareTag("Player") && TwStats.TwType != ThrowableWeaponType.None)
         {
             
             audioSource.Play();

@@ -11,9 +11,11 @@ public class WeaponPickup : MonoBehaviour
 
     PickUpmanager puManager;
 
+
     private void Start()
     {
         puManager = FindAnyObjectByType<PickUpmanager>();
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -21,11 +23,9 @@ public class WeaponPickup : MonoBehaviour
         if (collision.collider.CompareTag("Player"))
         {
             UnactiveWeapon.transform.parent = WeaponHolder.transform;
-            UnactiveWeaponUI.transform.parent = WeaponUIHolder.transform;
+            UnactiveWeaponUI.transform.parent = WeaponUIHolder.transform; 
             UnactiveWeapon.transform.position = weaponPositionOnPlayer.position;
             Destroy(this.gameObject);
         }
     }
 }
-
-

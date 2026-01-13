@@ -14,22 +14,19 @@ public class weaponScript : MonoBehaviour
     [SerializeField] GameObject[] WeaponsUI;
     [SerializeField] GameObject weaponHolder, weaponUIHolder, currentWeapon;
 
-    WeaponStats wStats;
+    RangerWeaponStats RwStats;
 
     void Start()
     {
         totalWeapons = weaponHolder.transform.childCount;
         Weapons = new GameObject[totalWeapons];
         WeaponsUI = new GameObject[totalWeapons];
-        wStats = FindAnyObjectByType<WeaponStats>();
+        RwStats = FindAnyObjectByType<RangerWeaponStats>();
 
         for (int i = 0; i < totalWeapons; i++)
         {
             Weapons[i] = weaponHolder.transform.GetChild(i).gameObject;
             Weapons[i].SetActive(false);
-
-            WeaponsUI[i] = weaponUIHolder.transform.GetChild(i).gameObject;
-            WeaponsUI[i].SetActive(false);
 
             WeaponsUI[i] = weaponUIHolder.transform.GetChild(i).gameObject;
             WeaponsUI[i].SetActive(false);
@@ -45,9 +42,7 @@ public class weaponScript : MonoBehaviour
         Weapons = new GameObject[totalWeapons];
         WeaponsUI = new GameObject[totalWeapons];
 
-
         WeaponSwitch();
-
     }
 
     void WeaponSwitch()
@@ -67,7 +62,8 @@ public class weaponScript : MonoBehaviour
                 Weapons[CurrentWeaponIndex].SetActive(false);
                 WeaponsUI[CurrentWeaponIndex].SetActive(false);
                 CurrentWeaponIndex += 1;
-                wStats.wType++;
+                RwStats.RwType++;
+                RwStats.RangerWeaponTypeSwitch();
                 //Sets next weapon to active
                 Weapons[CurrentWeaponIndex].SetActive(true);
                 //wStats.firePoint.transform.eulerAngles = 
@@ -83,7 +79,8 @@ public class weaponScript : MonoBehaviour
                 Weapons[CurrentWeaponIndex].SetActive(false);
                 WeaponsUI[CurrentWeaponIndex].SetActive(false);
                 CurrentWeaponIndex -= 1;
-                wStats.wType--;
+                RwStats.RwType--;
+                RwStats.RangerWeaponTypeSwitch();
                 Weapons[CurrentWeaponIndex].SetActive(true);
                 WeaponsUI[CurrentWeaponIndex].SetActive(true);
                 currentWeapon = Weapons[CurrentWeaponIndex];

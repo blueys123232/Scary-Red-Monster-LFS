@@ -4,20 +4,27 @@ using TMPro;
 
 public class PlayerHealth : MonoBehaviour
 {
+    [Header("Health Settings")]
     public int maxHealth = 100;
     public int currentHealth;
+
+    [Header("UI")]
     public Image healthBar;
     public GameObject gameoverPanel;
-    public AudioSource backgroundMusic;
-
     public TextMeshProUGUI healthText;
 
-    // New: Hurt sound AudioSource (can be a separate AudioSource or same with clip)
+    [Header("Audio")]
+    public AudioSource backgroundMusic;
     public AudioSource hurtSound;
 
+    [Header("State")]
+    public bool isTakingDamage;
+
+    private Animator animator;
     void Start()
     {
         currentHealth = maxHealth;
+        isTakingDamage = false;
         UpdateHealthBar();
         UpdatedHealthText();
 
@@ -34,6 +41,7 @@ public class PlayerHealth : MonoBehaviour
         {
             currentHealth = 0;
         }
+        isTakingDamage = true;
 
         // Play hurt sound when damaged
         if (hurtSound != null)
@@ -44,6 +52,10 @@ public class PlayerHealth : MonoBehaviour
         UpdateHealthBar();
         UpdatedHealthText();
         CheckIfDead();
+    }
+    public void ResetDamageState()
+    {
+            animator.SetBool("isTakingDamage", false);
     }
 
     public void Heal(int amount)

@@ -22,9 +22,9 @@ public class PlayerMovement : MonoBehaviour
     private bool isCrouching;
     private bool isRunning;
     private float moveDirection; // For capturing horizontal input
-
+    private bool isTakingDamage; 
     private shootScript S_Script;
-    private weaponScript W_Script;
+    private RangerWeaponStats RwStats;
 
     void Start()
     {
@@ -36,7 +36,7 @@ public class PlayerMovement : MonoBehaviour
         //find components on other objects
         puManager = FindAnyObjectByType<PickUpmanager>();
         S_Script = FindAnyObjectByType<shootScript>();
-        W_Script = FindAnyObjectByType<weaponScript>();
+        RwStats = FindAnyObjectByType<RangerWeaponStats>();
         // Check for component assignments
         if (rb == null) Debug.LogError("Rigidbody2D component not found on " + gameObject.name);
         if (animator == null) Debug.LogError("Animator component not found on " + gameObject.name);
@@ -161,9 +161,29 @@ public class PlayerMovement : MonoBehaviour
         animator.SetFloat("xVelocity", Mathf.Abs(rb.linearVelocity.x));
         animator.SetFloat("yVelocity", rb.linearVelocity.y);
         animator.SetBool("isJumping", !isGrounded);
-        animator.SetBool("isFiring", S_Script.weaponFired);
 
-        animator.SetInteger("CurWepIndex", W_Script.CurrentWeaponIndex);
+        //Weapon Animation section
+        if (S_Script != null)
+    { 
+        animator.SetBool("isFiring", S_Script.weaponFired);
+    }
+        else
+    {
+            animator.SetBool("isFiring", false);
+    }
+
+        if (S_Script != null)
+        {
+            animator.SetInteger("WeaponInt", RwStats.RwepInt);
+        }
+        else
+        {
+            animator.SetInteger("WeaponInt", 0);
+        }
+
+        if (playerHealth != null)
+            animator.SetBool("isTakingDamage", playerHealth.isTakingDamage);
+        
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -183,8 +203,26 @@ public class PlayerMovement : MonoBehaviour
             isGrounded = false;
         }
     }
+ public void PlayerDamage()
+    {
+        if (isTakingDamage) return;
 
-    void HealPlayer()
+        isTakingDamage = true;
+        if (animator != null)
+        {
+            animator.SetBool("isTakingDamage", true);
+        }
+    }
+    void ResetDamageAnimation()
+    {
+        isTakingDamage = false;
+        if (animator != null)
+        {
+            animator.SetBool("isTakingDamage", false);
+        }
+
+    }
+        void HealPlayer()
     {
         // Click the Healing Potion on any Slot
         //can only use potions if we have more than 0
