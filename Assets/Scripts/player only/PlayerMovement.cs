@@ -26,6 +26,8 @@ public class PlayerMovement : MonoBehaviour
     private shootScript S_Script;
     private RangerWeaponStats RwStats;
 
+
+
     void Start()
     {
         // Get required components
@@ -184,6 +186,10 @@ public class PlayerMovement : MonoBehaviour
         if (playerHealth != null)
             animator.SetBool("isTakingDamage", playerHealth.isTakingDamage);
         
+
+        animator.SetBool("isFiring", S_Script.weaponFired);
+        animator.SetInteger("RangerWeaponInt", RwStats.RwepInt);
+
     }
 
     void OnCollisionEnter2D(Collision2D collision)

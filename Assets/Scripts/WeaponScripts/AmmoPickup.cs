@@ -8,12 +8,17 @@ public class AmmoPickup : MonoBehaviour
     private PickUpmanager puManager;
     [SerializeField] int AmmoPickupAmount;
     private AudioSource audioSource;
+
     private RangerWeaponStats RwStats;
+
+
+
 
 
     // Start is called before the first frame update
     void Start()
     {
+
         RwStats = FindAnyObjectByType<RangerWeaponStats>();
         audioSource = GetComponent<AudioSource>();
         puManager = FindAnyObjectByType<PickUpmanager>();
