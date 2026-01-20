@@ -10,7 +10,6 @@ public class RangerWeaponStats : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI ammoText;
 
-
     AmmoPickup aPickup;
 
     public int Damage, AmmoCount;
@@ -19,8 +18,8 @@ public class RangerWeaponStats : MonoBehaviour
     public int RwepInt;
 
     [Header("Weapon Sprite")]
-    public Sprite BlankImage;         // The blank sprite
-    public SpriteRenderer weaponRenderer;   // Assign the weapon's SpriteRenderer here
+    [SerializeField] Sprite BlankImage;         // The blank sprite
+    [SerializeField] SpriteRenderer weaponRenderer;   // Assign the weapon's SpriteRenderer here
 
     private void Start()
     {
@@ -28,7 +27,7 @@ public class RangerWeaponStats : MonoBehaviour
         RangerWeaponTypeSwitch();
     }
 
-   public  void RangerWeaponTypeSwitch()
+   public void RangerWeaponTypeSwitch()
     {
 
         switch (RwType)

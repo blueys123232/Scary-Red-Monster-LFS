@@ -9,8 +9,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float jumpForce = 15f; // Jump force
     [SerializeField] private int healAmount = 50; //how much potions heal
 
-    public Transform groundCheck; // Ground check position
-    public LayerMask groundLayer; // Layer mask for ground
+    [SerializeField] Transform groundCheck; // Ground check position
+    [SerializeField] LayerMask groundLayer; // Layer mask for ground
 
     private PlayerHealth playerHealth;
     private PickUpmanager puManager;

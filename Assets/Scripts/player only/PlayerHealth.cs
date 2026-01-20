@@ -42,6 +42,7 @@ public class PlayerHealth : MonoBehaviour
             currentHealth = 0;
         }
         isTakingDamage = true;
+        ResetDamageState();
 
         // Play hurt sound when damaged
         if (hurtSound != null)
