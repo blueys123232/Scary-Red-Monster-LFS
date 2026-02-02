@@ -44,8 +44,6 @@ public class PlayerMovement : MonoBehaviour
         if (animator == null) Debug.LogError("Animator component not found on " + gameObject.name);
         if (playerStamina == null) Debug.LogError("PlayerStamina component not found on " + gameObject.name);
         if (groundCheck == null) Debug.LogError("GroundCheck Transform not assigned in the Inspector on " + gameObject.name);
-
-
     }
 
     void Update()
@@ -164,15 +162,6 @@ public class PlayerMovement : MonoBehaviour
         animator.SetFloat("yVelocity", rb.linearVelocity.y);
         animator.SetBool("isJumping", !isGrounded);
 
-        //Weapon Animation section
-        if (S_Script != null)
-    { 
-        animator.SetBool("isFiring", S_Script.weaponFired);
-    }
-        else
-    {
-            animator.SetBool("isFiring", false);
-    }
 
         if (S_Script != null)
         {
@@ -209,26 +198,7 @@ public class PlayerMovement : MonoBehaviour
             isGrounded = false;
         }
     }
- public void PlayerDamage()
-    {
-        if (isTakingDamage) return;
-
-        isTakingDamage = true;
-        if (animator != null)
-        {
-            animator.SetBool("isTakingDamage", true);
-        }
-    }
-    void ResetDamageAnimation()
-    {
-        isTakingDamage = false;
-        if (animator != null)
-        {
-            animator.SetBool("isTakingDamage", false);
-        }
-
-    }
-        void HealPlayer()
+    void HealPlayer()
     {
         // Click the Healing Potion on any Slot
         //can only use potions if we have more than 0

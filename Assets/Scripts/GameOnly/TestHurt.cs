@@ -5,7 +5,7 @@ using UnityEngine;
 public class TestHurt : MonoBehaviour
 {
     private Transform player;
-    public float damage = 6f;
+    public int damage = 6;
 
     // Start is called before the first frame update
     void Start()

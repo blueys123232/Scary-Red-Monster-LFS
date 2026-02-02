@@ -9,7 +9,7 @@ public class Spider2c : MonoBehaviour
 
     // the public and private starts
     public float speed = 2f;
-    public float damage = 6f;
+    public int damage = 6;
 
     public float detectionRange = 5f;
     public float attackRange = 1.5f;

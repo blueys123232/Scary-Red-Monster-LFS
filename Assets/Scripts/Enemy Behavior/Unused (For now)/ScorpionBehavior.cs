@@ -8,7 +8,7 @@ public class ScorpionBehaviour : MonoBehaviour
     FlipEnemy flipE;
     // Public and Private 
     public float speed = 6f;
-    public float damage = 2f;
+    public int damage = 6;
 
     private float detectonRange = 3f;
     private float attackRange = 1.5f;
