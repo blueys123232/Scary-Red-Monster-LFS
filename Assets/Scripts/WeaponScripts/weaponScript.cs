@@ -63,17 +63,14 @@ public class weaponScript : MonoBehaviour
                 WeaponsUI[CurrentWeaponIndex].SetActive(false);
                 CurrentWeaponIndex += 1;
 
-                RwStats.RwType++;
-                RwStats.RangerWeaponTypeSwitch();
-
-                RwStats.RwType++;
-                RwStats.RangerWeaponTypeSwitch();
-
                 //Sets next weapon to active
                 Weapons[CurrentWeaponIndex].SetActive(true);
-                //wStats.firePoint.transform.eulerAngles = 
                 WeaponsUI[CurrentWeaponIndex].SetActive(true);
                 currentWeapon = Weapons[CurrentWeaponIndex];
+
+                RwStats.RwType = Weapons[CurrentWeaponIndex].GetComponent<RangerWeaponStats>().RwType;
+                RwStats.RangerWeaponTypeSwitch();
+
             }
         }
         if (Input.GetKeyDown(KeyCode.Q))
@@ -85,13 +82,12 @@ public class weaponScript : MonoBehaviour
                 WeaponsUI[CurrentWeaponIndex].SetActive(false);
                 CurrentWeaponIndex -= 1;
 
-                RwStats.RwType--;
-                RwStats.RangerWeaponTypeSwitch();
-                RwStats.RwType--;
-                RwStats.RangerWeaponTypeSwitch();
                 Weapons[CurrentWeaponIndex].SetActive(true);
                 WeaponsUI[CurrentWeaponIndex].SetActive(true);
                 currentWeapon = Weapons[CurrentWeaponIndex];
+
+                RwStats.RwType = Weapons[CurrentWeaponIndex].GetComponent<RangerWeaponStats>().RwType;
+                RwStats.RangerWeaponTypeSwitch();
             }
         }
     }

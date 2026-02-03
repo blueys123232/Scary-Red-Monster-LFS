@@ -177,7 +177,9 @@ public class PlayerMovement : MonoBehaviour
         
 
         animator.SetBool("isFiring", S_Script.weaponFired);
-        animator.SetInteger("RangerWeaponInt", RwStats.RwepInt);
+        animator.SetInteger("WeaponInt", RwStats.RwepInt);
+        //Debug.Log(RwStats.RwepInt);
+        //Debug.Log(RwStats.RwType);
 
     }
 

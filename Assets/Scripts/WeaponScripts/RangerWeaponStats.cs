@@ -40,21 +40,24 @@ public class RangerWeaponStats : MonoBehaviour
 
                 if (weaponRenderer != null && BlankImage != null)
                     weaponRenderer.sprite = BlankImage;
-                RwepInt = 1;
+                RwepInt = 0;
+                //Debug.Log(RwepInt);
                 break;
             case RangerWeaponType.Shotgun:
                 ammoText.text = "Ammo:" + AmmoCount.ToString();
 
                 if (weaponRenderer != null && BlankImage != null)
                     weaponRenderer.sprite = BlankImage;
-                RwepInt = 2;
+                RwepInt = 1;
+                //Debug.Log(RwepInt);
                 break;
             case RangerWeaponType.Bow:
                 ammoText.text = "Ammo:" + AmmoCount.ToString();
 
                 if (weaponRenderer != null && BlankImage != null)
                     weaponRenderer.sprite = BlankImage;
-                RwepInt = 3;
+                RwepInt = 2;
+                //Debug.Log(RwepInt);
 
                 break;
             case RangerWeaponType.Launcher:
@@ -62,14 +65,15 @@ public class RangerWeaponStats : MonoBehaviour
 
                 if (weaponRenderer != null && BlankImage != null)
                     weaponRenderer.sprite = BlankImage;
-                RwepInt = 4;
+                RwepInt = 3;
+                //Debug.Log(RwepInt);
                 break;
         }
     }
     private void Update()
     {
         RangerWeaponTypeSwitch();
-        Debug.Log(RwepInt);
+
     }
 
 }
