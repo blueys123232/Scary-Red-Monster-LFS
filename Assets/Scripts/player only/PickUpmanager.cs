@@ -6,7 +6,7 @@ public class PickUpmanager : MonoBehaviour
 {
     //Script which handles picking up, Coins, healing potions and Keys.
     public TextMeshProUGUI coinText, hPotText, keyText;
-    [HideInInspector] public int coinCount, hPotCount, keyCount;
+    public int coinCount, hPotCount, keyCount;
     RangerWeaponStats RwStats;
     ThrowableWeaponStats TwStats;
 
@@ -24,6 +24,11 @@ public class PickUpmanager : MonoBehaviour
     {
         RwStats = FindAnyObjectByType<RangerWeaponStats>();
         TwStats = FindAnyObjectByType<ThrowableWeaponStats>();
+
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            LoadInt();
+        }
     }
 
     public void AddCoin()
@@ -100,5 +105,19 @@ public class PickUpmanager : MonoBehaviour
     {
         TwStats.ThrowableWeapons--;
         UpdatePickupText();
+    }
+
+    public void SaveInt(string keyName, int Value)
+    {
+        PlayerPrefs.SetInt(keyName, Value);
+        PlayerPrefs.Save();
+    }
+
+    public void LoadInt()
+    {
+        coinCount = PlayerPrefs.GetInt("CoinNumber");
+        keyCount = PlayerPrefs.GetInt("KeyNumber");
+        hPotCount = PlayerPrefs.GetInt("PotionNumber");
+        UpdatePickupText(); 
     }
 }

@@ -21,6 +21,7 @@ public class HealingPotion : MonoBehaviour
             isCollected = true;
             puManager.AddPotion();
             AudioSource.Play();
+            puManager.SaveInt("PotionNumber", puManager.hPotCount);
             StartCoroutine(DestroyAfterSound()); // Destroy the coin after the sound plays
         }
     }
