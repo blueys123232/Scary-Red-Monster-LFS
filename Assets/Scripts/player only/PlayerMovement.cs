@@ -183,9 +183,16 @@ public class PlayerMovement : MonoBehaviour
 
         if (playerHealth != null)
             animator.SetBool("isTakingDamage", playerHealth.isTakingDamage);
-        
 
-        animator.SetBool("isFiring", S_Script.weaponFired);
+        if (RwStats.RwType == RangerWeaponType.None)
+        {
+            animator.SetBool("isFiring", false);
+        }
+        else
+        {
+            animator.SetBool("isFiring", S_Script.weaponFired);
+        }
+
         animator.SetInteger("WeaponInt", RwStats.RwepInt);
         //Debug.Log(RwStats.RwepInt);
         //Debug.Log(RwStats.RwType);

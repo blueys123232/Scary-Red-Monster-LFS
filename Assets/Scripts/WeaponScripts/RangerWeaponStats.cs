@@ -27,13 +27,21 @@ public class RangerWeaponStats : MonoBehaviour
         RangerWeaponTypeSwitch();
     }
 
-   public void RangerWeaponTypeSwitch()
+
+    private void Update()
+    {
+        RangerWeaponTypeSwitch();
+    }
+
+    public void RangerWeaponTypeSwitch()
     {
 
         switch (RwType)
         {
             case RangerWeaponType.None:
+                ammoText.text = "Melee";
                 //Nothing should be NONE but if it is having this case should prevent errors
+                RwType = RangerWeaponType.None;
                 break;
             case RangerWeaponType.Pistol:
                 ammoText.text = "Ammo:" + AmmoCount.ToString();
@@ -70,12 +78,6 @@ public class RangerWeaponStats : MonoBehaviour
                 break;
         }
     }
-    private void Update()
-    {
-        RangerWeaponTypeSwitch();
-
-    }
-
 }
 
 public enum RangerWeaponType
