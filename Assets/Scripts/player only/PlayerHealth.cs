@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -23,6 +24,7 @@ public class PlayerHealth : MonoBehaviour
     private Animator animator;
     void Start()
     {
+        animator = GetComponent<Animator>();
         currentHealth = maxHealth;
         isTakingDamage = false;
         UpdateHealthBar();
@@ -34,9 +36,9 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(int damage)
     {
-        currentHealth -= Mathf.RoundToInt(damage);
+        currentHealth -= damage;
         if (currentHealth < 0)
         {
             currentHealth = 0;
@@ -52,10 +54,16 @@ public class PlayerHealth : MonoBehaviour
         UpdateHealthBar();
         UpdatedHealthText();
         CheckIfDead();
+
+        StartCoroutine(DamageReset());
+
+        //ResetDamageState();
+
     }
     public void ResetDamageState()
     {
-            animator.SetBool("isTakingDamage", false);
+        //animator.SetBool("isTakingDamage", false);
+        isTakingDamage = false;
     }
 
     public void Heal(int amount)
@@ -104,5 +112,11 @@ public class PlayerHealth : MonoBehaviour
         {
             gameoverPanel.SetActive(true);
         }
+    }
+
+    public IEnumerator DamageReset()
+    {
+        yield return new WaitForSeconds(0.05f);
+        isTakingDamage = false;
     }
 }

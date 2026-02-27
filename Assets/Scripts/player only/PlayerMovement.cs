@@ -9,8 +9,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float jumpForce = 15f; // Jump force
     [SerializeField] private int healAmount = 50; //how much potions heal
 
-    public Transform groundCheck; // Ground check position
-    public LayerMask groundLayer; // Layer mask for ground
+    [SerializeField] Transform groundCheck; // Ground check position
+    [SerializeField] LayerMask groundLayer; // Layer mask for ground
 
     private PlayerHealth playerHealth;
     private PickUpmanager puManager;
@@ -22,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isCrouching;
     private bool isRunning;
     private float moveDirection; // For capturing horizontal input
-    private bool isTakingDamage; 
+    private bool isTakingDamage;
     private shootScript S_Script;
     private RangerWeaponStats RwStats;
 
@@ -44,8 +44,6 @@ public class PlayerMovement : MonoBehaviour
         if (animator == null) Debug.LogError("Animator component not found on " + gameObject.name);
         if (playerStamina == null) Debug.LogError("PlayerStamina component not found on " + gameObject.name);
         if (groundCheck == null) Debug.LogError("GroundCheck Transform not assigned in the Inspector on " + gameObject.name);
-
-
     }
 
     void Update()
@@ -164,15 +162,6 @@ public class PlayerMovement : MonoBehaviour
         animator.SetFloat("yVelocity", rb.linearVelocity.y);
         animator.SetBool("isJumping", !isGrounded);
 
-        //Weapon Animation section
-        if (S_Script != null)
-    { 
-        animator.SetBool("isFiring", S_Script.weaponFired);
-    }
-        else
-    {
-            animator.SetBool("isFiring", false);
-    }
 
         if (S_Script != null)
         {
@@ -185,7 +174,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (playerHealth != null)
             animator.SetBool("isTakingDamage", playerHealth.isTakingDamage);
-        
+
 
         animator.SetBool("isFiring", S_Script.weaponFired);
         animator.SetInteger("RangerWeaponInt", RwStats.RwepInt);
@@ -209,26 +198,7 @@ public class PlayerMovement : MonoBehaviour
             isGrounded = false;
         }
     }
- public void PlayerDamage()
-    {
-        if (isTakingDamage) return;
-
-        isTakingDamage = true;
-        if (animator != null)
-        {
-            animator.SetBool("isTakingDamage", true);
-        }
-    }
-    void ResetDamageAnimation()
-    {
-        isTakingDamage = false;
-        if (animator != null)
-        {
-            animator.SetBool("isTakingDamage", false);
-        }
-
-    }
-        void HealPlayer()
+    void HealPlayer()
     {
         // Click the Healing Potion on any Slot
         //can only use potions if we have more than 0

@@ -7,8 +7,8 @@ public class PickUpmanager : MonoBehaviour
     //Script which handles picking up, Coins, healing potions and Keys.
     public TextMeshProUGUI coinText, hPotText, keyText;
     [HideInInspector] public int coinCount, hPotCount, keyCount;
-    RangerWeaponStats RwStats;
-    ThrowableWeaponStats TwStats;
+    WeaponStats wStats;
+   
 
     // Start is called before the first frame update
     void Start()
@@ -22,8 +22,8 @@ public class PickUpmanager : MonoBehaviour
 
     private void Update()
     {
-        RwStats = FindAnyObjectByType<RangerWeaponStats>();
-        TwStats = FindAnyObjectByType<ThrowableWeaponStats>();
+        wStats = FindAnyObjectByType<WeaponStats>();
+       
     }
 
     public void AddCoin()
@@ -46,13 +46,13 @@ public class PickUpmanager : MonoBehaviour
 
     public void AddAmmo(int AmmoToAdd)
     {
-        RwStats.AmmoCount = RwStats.AmmoCount + AmmoToAdd;
+        wStats.AmmoCount = wStats.AmmoCount + AmmoToAdd;
         UpdatePickupText();
     }
 
     public void AddThrowables (int ThrowabletoAdd)
     {
-        TwStats.ThrowableWeapons = TwStats.ThrowableWeapons + ThrowabletoAdd;
+        wStats.ThrowableWeapons = wStats.ThrowableWeapons + ThrowabletoAdd;
         UpdatePickupText();
 
     }
@@ -92,13 +92,13 @@ public class PickUpmanager : MonoBehaviour
 
     public void AmmoLoss()
     {
-        RwStats.AmmoCount--;
+        wStats.AmmoCount--;
         UpdatePickupText();
     }
 
     public void ThrowableLoss()
     {
-        TwStats.ThrowableWeapons--;
+        wStats.ThrowableWeapons--;
         UpdatePickupText();
     }
 }

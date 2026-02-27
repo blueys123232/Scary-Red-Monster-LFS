@@ -9,7 +9,7 @@ public class AmmoPickup : MonoBehaviour
     [SerializeField] int AmmoPickupAmount;
     private AudioSource audioSource;
 
-    private RangerWeaponStats RwStats;
+    private WeaponStats wStats;
 
 
 
@@ -19,7 +19,7 @@ public class AmmoPickup : MonoBehaviour
     void Start()
     {
 
-        RwStats = FindAnyObjectByType<RangerWeaponStats>();
+        wStats = FindAnyObjectByType<WeaponStats>();
         audioSource = GetComponent<AudioSource>();
         puManager = FindAnyObjectByType<PickUpmanager>();
     }
@@ -27,7 +27,7 @@ public class AmmoPickup : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //To Do: seperate ammo by weapon, try and add ability to add ammo to weapons not currently equipped.
-        if (collision.CompareTag("Player") && RwStats.RwType != RangerWeaponType.None)
+        if (collision.CompareTag("Player") && wStats.wType != WeaponType.None)
         {
             puManager.AddAmmo(AmmoPickupAmount);
             audioSource.Play();

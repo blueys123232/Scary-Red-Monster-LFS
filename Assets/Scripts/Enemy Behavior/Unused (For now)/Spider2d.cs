@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Spider2c : MonoBehaviour
+public class Spider2d : MonoBehaviour
 {
     PatrolPointScript ppScript;
     FlipEnemy flipE;
 
     // the public and private starts
     public float speed = 2f;
-    public float damage = 6f;
+    public int damage = 6;
 
     public float detectionRange = 5f;
     public float attackRange = 1.5f;
@@ -111,15 +111,15 @@ public class Spider2c : MonoBehaviour
         }
     }
 
-IEnumerator ResetBiting()
+    IEnumerator ResetBiting()
 
-{
-   // apply the new reset Biting in the whole code 
-    yield return new WaitForSeconds(0.5f);
-    isBiting = false;
-    animator.SetBool("isBiting", false);
-}
-    
+    {
+        // apply the new reset Biting in the whole code 
+        yield return new WaitForSeconds(0.5f);
+        isBiting = false;
+        animator.SetBool("isBiting", false);
+    }
+
 
     void OnCollisionEnter2D(Collision2D collision)
     {

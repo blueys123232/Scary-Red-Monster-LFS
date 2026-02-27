@@ -48,13 +48,13 @@ public class NewGameandDeleteButtons : MonoBehaviour
             PlayerPrefs.SetString(KEY_LAST_NAME, levelIntroSceneName);
             SavedLevelName.text = levelIntroSceneName;
             PlayerPrefs.Save();
-            //SceneManager.LoadScene(levelIntroSceneName);
+            SceneManager.LoadScene(levelIntroSceneName);
         }
         else
         {
             PlayerPrefs.SetString(KEY_LAST_NAME, firstLevelSceneName);
             PlayerPrefs.Save();
-            //SceneManager.LoadScene(firstLevelSceneName);
+            SceneManager.LoadScene(firstLevelSceneName);
         }
     }
     public void ContinueGame()
