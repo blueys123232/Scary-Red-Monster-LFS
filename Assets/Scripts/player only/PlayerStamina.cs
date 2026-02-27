@@ -4,10 +4,10 @@ using TMPro;
 
 public class PlayerStamina : MonoBehaviour
 {
-    public float maxStamina = 100f;
     public float currentStamina;
-    public float staminaRegenRate = 5f;
-    public float staminaDrainRate = 10f;
+    [SerializeField] float maxStamina = 100f;
+    [SerializeField] float staminaRegenRate = 5f;
+    [SerializeField] float staminaDrainRate = 10f;
     public Image staminaBar;
 
     public TextMeshProUGUI staminatext;

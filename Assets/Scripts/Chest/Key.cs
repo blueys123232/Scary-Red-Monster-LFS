@@ -21,6 +21,7 @@ public class Key : MonoBehaviour
             AudioSource.Play(); //Rework so sound plays
             isCollected = true;
             puManager.AddKey();
+            puManager.SaveInt("KeyNumber", puManager.keyCount);
             Destroy(gameObject);
         }
     }

@@ -10,7 +10,6 @@ public class RangerWeaponStats : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI ammoText;
 
-
     AmmoPickup aPickup;
 
     public int Damage, AmmoCount;
@@ -19,8 +18,8 @@ public class RangerWeaponStats : MonoBehaviour
     public int RwepInt;
 
     [Header("Weapon Sprite")]
-    public Sprite BlankImage;         // The blank sprite
-    public SpriteRenderer weaponRenderer;   // Assign the weapon's SpriteRenderer here
+    [SerializeField] Sprite BlankImage;         // The blank sprite
+    [SerializeField] SpriteRenderer weaponRenderer;   // Assign the weapon's SpriteRenderer here
 
     private void Start()
     {
@@ -28,34 +27,45 @@ public class RangerWeaponStats : MonoBehaviour
         RangerWeaponTypeSwitch();
     }
 
-   public  void RangerWeaponTypeSwitch()
+
+    private void Update()
+    {
+        RangerWeaponTypeSwitch();
+    }
+
+    public void RangerWeaponTypeSwitch()
     {
 
         switch (RwType)
         {
             case RangerWeaponType.None:
+                ammoText.text = "Melee";
                 //Nothing should be NONE but if it is having this case should prevent errors
+                RwType = RangerWeaponType.None;
                 break;
             case RangerWeaponType.Pistol:
                 ammoText.text = "Ammo:" + AmmoCount.ToString();
 
                 if (weaponRenderer != null && BlankImage != null)
                     weaponRenderer.sprite = BlankImage;
-                RwepInt = 1;
+                RwepInt = 0;
+                //Debug.Log(RwepInt);
                 break;
             case RangerWeaponType.Shotgun:
                 ammoText.text = "Ammo:" + AmmoCount.ToString();
 
                 if (weaponRenderer != null && BlankImage != null)
                     weaponRenderer.sprite = BlankImage;
-                RwepInt = 2;
+                RwepInt = 1;
+                //Debug.Log(RwepInt);
                 break;
             case RangerWeaponType.Bow:
                 ammoText.text = "Ammo:" + AmmoCount.ToString();
 
                 if (weaponRenderer != null && BlankImage != null)
                     weaponRenderer.sprite = BlankImage;
-                RwepInt = 3;
+                RwepInt = 2;
+                //Debug.Log(RwepInt);
 
                 break;
             case RangerWeaponType.Launcher:
@@ -63,16 +73,11 @@ public class RangerWeaponStats : MonoBehaviour
 
                 if (weaponRenderer != null && BlankImage != null)
                     weaponRenderer.sprite = BlankImage;
-                RwepInt = 4;
+                RwepInt = 3;
+                //Debug.Log(RwepInt);
                 break;
         }
     }
-    private void Update()
-    {
-        RangerWeaponTypeSwitch();
-        Debug.Log(RwepInt);
-    }
-
 }
 
 public enum RangerWeaponType

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Damage : MonoBehaviour
 {
-    public PlayerHealth pHealth;
-    public float damage = 10f;
+    private PlayerHealth pHealth;
+    public int damage = 10;
 
     // Start is called before the first frame update
     void Start()
@@ -20,19 +20,13 @@ public class Damage : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
             if (pHealth != null)
             {
-                pHealth.TakeDamage((int)damage); // Cast float to int
+                pHealth.TakeDamage(damage); // Cast float to int
             }
         }
     }

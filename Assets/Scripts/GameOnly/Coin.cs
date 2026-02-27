@@ -21,6 +21,7 @@ public class Coin : MonoBehaviour
             isCollected = true; // Mark as collected to prevent multiple triggers
             puManager.AddCoin();
             audioSource.Play(); // Play the coin collection sound
+            puManager.SaveInt("CoinNumber", puManager.coinCount);
             StartCoroutine(DestroyAfterSound()); // Destroy the coin after the sound plays
         }
     }

@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
     private PlayerStamina playerStamina;
     private bool isGrounded;
     private bool isCrouching;
-    private bool isRunning;
+    private bool isRunningPM;
     private float moveDirection; // For capturing horizontal input
     private bool isTakingDamage;
     private shootScript S_Script;
@@ -77,8 +77,17 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // Handle running input
-        isRunning = Input.GetKey(KeyCode.LeftShift) && playerStamina.currentStamina > 0;
-        playerStamina.SetRunning(isRunning);
+        isRunningPM = Input.GetKey(KeyCode.LeftShift) && playerStamina.currentStamina > 0;
+
+        if(isRunningPM && moveDirection > 0)
+        {
+            playerStamina.SetRunning(isRunningPM);
+        } 
+        //else if (!isRunningPM)
+        //{
+        //    playerStamina.SetRunning(!isRunningPM);
+        //}
+
 
         // Handle jump input (space bar and W key)
         if ((Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.W)) && isGrounded)
@@ -92,7 +101,7 @@ public class PlayerMovement : MonoBehaviour
         S_Script = FindAnyObjectByType<shootScript>();
 
         // Set the movement speed based on the current state
-        float speed = isCrouching ? crouchSpeed : (isRunning ? runSpeed : moveSpeed);
+        float speed = isCrouching ? crouchSpeed : (isRunningPM ? runSpeed : moveSpeed);
 
         // Flip character sprite based on movement direction
         if (moveDirection < 0)
@@ -176,8 +185,18 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("isTakingDamage", playerHealth.isTakingDamage);
 
 
-        animator.SetBool("isFiring", S_Script.weaponFired);
-        animator.SetInteger("RangerWeaponInt", RwStats.RwepInt);
+        if (RwStats.RwType == RangerWeaponType.None)
+        {
+            animator.SetBool("isFiring", false);
+        }
+        else
+        {
+            animator.SetBool("isFiring", S_Script.weaponFired);
+        }
+
+        animator.SetInteger("WeaponInt", RwStats.RwepInt);
+        //Debug.Log(RwStats.RwepInt);
+        //Debug.Log(RwStats.RwType);
 
     }
 
