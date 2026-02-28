@@ -107,6 +107,7 @@ public enum WeaponType
     Launcher,
     Bomb,
     Hammer,
-    Chainsaw
-   
+    Chainsaw,
+    Spear,
+    Shuriken
 }

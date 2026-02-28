@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.Audio;
 
-public class Coin : MonoBehaviour
+public class Token : MonoBehaviour
 {
     private bool isCollected = false;
     private AudioSource audioSource;
@@ -19,9 +19,9 @@ public class Coin : MonoBehaviour
         if (!isCollected && other.CompareTag("Player"))
         {
             isCollected = true; // Mark as collected to prevent multiple triggers
-            puManager.AddCoin();
+            puManager.AddToken();
             audioSource.Play(); // Play the coin collection sound
-            puManager.SaveInt("CoinNumber", puManager.coinCount);
+            puManager.SaveInt("TokenNumber", puManager.tokenCount);
             StartCoroutine(DestroyAfterSound()); // Destroy the coin after the sound plays
         }
     }
