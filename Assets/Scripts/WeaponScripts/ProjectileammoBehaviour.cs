@@ -5,21 +5,21 @@ public class ProjectileAmmoBehaviour : MonoBehaviour
 {
 
     public Rigidbody2D rb;
-    RangerWeaponStats RwStats;
+    WeaponStats wStats;
 
     [SerializeField] private float ActiveTime;
 
     // Start is called before the first frame update
     void Start()
     {
-        RwStats = FindAnyObjectByType<RangerWeaponStats>();
+        wStats = FindAnyObjectByType<WeaponStats>();
         rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        rb.linearVelocity = transform.right * RwStats.ProjectileSpeed;
+        rb.linearVelocity = transform.right * wStats.ProjectileSpeed;
 
         ActiveTime -= Time.deltaTime;
 
@@ -34,9 +34,9 @@ public class ProjectileAmmoBehaviour : MonoBehaviour
         if (collision.collider.CompareTag("Enemy"))
         {
             EnemyHealth eHealth = collision.collider.GetComponent<EnemyHealth>();
-            if (eHealth != null && RwStats != null)
+            if (eHealth != null && wStats != null)
             {
-                eHealth.TakeDamage(RwStats.Damage);
+                eHealth.TakeDamage(wStats.Damage);
                 Destroy(gameObject);
             }
         }

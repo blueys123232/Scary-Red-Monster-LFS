@@ -37,27 +37,33 @@ public class WeaponStats : MonoBehaviour
                 //Nothing should be NONE but if it is having this case should prevent errors
                 break;
              
-                break;
             case WeaponType.Pistol:
                 ammoText.text = "Ammo:" + AmmoCount.ToString();
 
                 if (weaponRenderer != null && BlankImage != null)
                     weaponRenderer.sprite = BlankImage;
-                wepInt = 1;
+
+                if(wType == WeaponType.Pistol)
+                {
+                    Meleetext = null;
+                    ThrowableText = null;
+                }
+
+                wepInt = 0;
                 break;
             case WeaponType.Shotgun:
                 ammoText.text = "Ammo:" + AmmoCount.ToString();
 
                 if (weaponRenderer != null && BlankImage != null)
                     weaponRenderer.sprite = BlankImage;
-                wepInt = 2;
+                wepInt = 1;
                 break;
             case WeaponType.Bow:
                 ammoText.text = "Ammo:" + AmmoCount.ToString();
 
                 if (weaponRenderer != null && BlankImage != null)
                     weaponRenderer.sprite = BlankImage;
-                wepInt = 3;
+                wepInt = 2;
 
                 break;
             case WeaponType.Launcher:
@@ -65,7 +71,7 @@ public class WeaponStats : MonoBehaviour
 
                 if (weaponRenderer != null && BlankImage != null)
                     weaponRenderer.sprite = BlankImage;
-                wepInt = 4;
+                wepInt = 3;
                 break;
             case WeaponType.Sword:
                 Meleetext.text = "Damage:" + MeleeDamage.ToString();
@@ -98,8 +104,8 @@ public class WeaponStats : MonoBehaviour
 
 public enum WeaponType
 {
-    Dagger,
     None,
+    Dagger,
     Sword,
     Pistol,
     Shotgun,

@@ -11,12 +11,6 @@ public class PickUpmanager : MonoBehaviour
     public int tokenCount, hPotCount, keyCount;
     WeaponStats wStats;
 
-   
-
-    
-
-
-
     // Start is called before the first frame update
     void Start()
     {
