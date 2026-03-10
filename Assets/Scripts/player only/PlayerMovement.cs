@@ -186,16 +186,16 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("isTakingDamage", playerHealth.isTakingDamage);
 
 
-        //if (wStats.wType == WeaponType.None)
-        //{
-        //    animator.SetBool("isFiring", false);
-        //}
-        //else
-        //{
-        //    animator.SetBool("isFiring", S_Script.weaponFired);
-        //}
+        if (wStats.wType == WeaponType.None)
+        {
+            animator.SetBool("isFiring", false);
+        }
+        else 
+        {
+            animator.SetBool("isFiring", S_Script.weaponFired);
+        }
 
-        animator.SetBool("isFiring", S_Script.weaponFired);
+        //animator.SetBool("isFiring", S_Script.weaponFired);
 
         animator.SetInteger("WeaponInt", wStats.wepInt);
 

@@ -55,7 +55,7 @@ public class PickUpmanager : MonoBehaviour
         UpdatePickupText();
     }
 
-    public void AddThrowables (int ThrowabletoAdd)
+    public void AddThrowables(int ThrowabletoAdd)
     {
         wStats.ThrowableWeapons = wStats.ThrowableWeapons + ThrowabletoAdd;
         UpdatePickupText();

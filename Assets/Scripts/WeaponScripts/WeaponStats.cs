@@ -13,7 +13,7 @@ public class WeaponStats : MonoBehaviour
     [SerializeField] TextMeshProUGUI Meleetext;
     [SerializeField] TextMeshProUGUI ThrowableText;
     AmmoPickup aPickup;
-    
+
 
     public int Damage, AmmoCount, ThrowableWeapons, MeleeDamage;
     public float ProjectileSpeed;
@@ -33,6 +33,7 @@ public class WeaponStats : MonoBehaviour
     {
         switch (wType)
         {
+
             case WeaponType.None:
                 //Nothing should be NONE but if it is having this case should prevent errors
                 break;
@@ -43,27 +44,22 @@ public class WeaponStats : MonoBehaviour
                 if (weaponRenderer != null && BlankImage != null)
                     weaponRenderer.sprite = BlankImage;
 
-                if(wType == WeaponType.Pistol)
-                {
-                    Meleetext = null;
-                    ThrowableText = null;
-                }
 
-                wepInt = 0;
+                wepInt =1;
                 break;
             case WeaponType.Shotgun:
                 ammoText.text = "Ammo:" + AmmoCount.ToString();
 
                 if (weaponRenderer != null && BlankImage != null)
                     weaponRenderer.sprite = BlankImage;
-                wepInt = 1;
+                wepInt = 2;
                 break;
             case WeaponType.Bow:
                 ammoText.text = "Ammo:" + AmmoCount.ToString();
 
                 if (weaponRenderer != null && BlankImage != null)
                     weaponRenderer.sprite = BlankImage;
-                wepInt = 2;
+                wepInt = 3;
 
                 break;
             case WeaponType.Launcher:
@@ -71,7 +67,7 @@ public class WeaponStats : MonoBehaviour
 
                 if (weaponRenderer != null && BlankImage != null)
                     weaponRenderer.sprite = BlankImage;
-                wepInt = 3;
+                wepInt = 4;
                 break;
             case WeaponType.Sword:
                 Meleetext.text = "Damage:" + MeleeDamage.ToString();
@@ -98,6 +94,25 @@ public class WeaponStats : MonoBehaviour
     {
         WeaponTypeSwitch();
         //Debug.Log(wepInt);
+        if(gameObject.tag == "Ranged")
+        {
+            Meleetext = null;
+            ThrowableText = null;
+        }
+
+        if(gameObject.tag == "Melee")
+        {
+            ammoText = null;
+            ThrowableText = null;
+        }
+
+        if(gameObject.tag == "Thrown")
+        {
+            Meleetext = null;
+            ammoText = null;
+        }
+
+        Debug.Log(Meleetext);
     }
 
 }
