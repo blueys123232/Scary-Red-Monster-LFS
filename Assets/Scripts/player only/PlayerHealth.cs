@@ -21,9 +21,13 @@ public class PlayerHealth : MonoBehaviour
     [Header("State")]
     public bool isTakingDamage;
 
+    GameManagerScript gameManagerScript;
+
     private Animator animator;
+
     void Start()
     {
+        gameManagerScript = FindAnyObjectByType<GameManagerScript>();
         animator = GetComponent<Animator>();
         currentHealth = maxHealth;
         isTakingDamage = false;
@@ -97,6 +101,7 @@ public class PlayerHealth : MonoBehaviour
     {
         if (currentHealth <= 0)
         {
+            //gameManagerScript.RespawnPlayer();
             ShowGameOverPanel();
         }
     }
