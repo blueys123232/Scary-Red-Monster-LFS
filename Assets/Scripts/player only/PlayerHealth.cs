@@ -25,8 +25,11 @@ public class PlayerHealth : MonoBehaviour
 
     private Animator animator;
 
+    private int respawnAmount;
+
     void Start()
     {
+        respawnAmount = 3;
         gameManagerScript = FindAnyObjectByType<GameManagerScript>();
         animator = GetComponent<Animator>();
         currentHealth = maxHealth;
@@ -101,7 +104,15 @@ public class PlayerHealth : MonoBehaviour
     {
         if (currentHealth <= 0)
         {
-            //gameManagerScript.RespawnPlayer();
+            gameManagerScript.RespawnPlayer();
+            currentHealth = 50; 
+            UpdateHealthBar();
+            UpdatedHealthText();
+            respawnAmount -= 1;
+        }
+
+        if (respawnAmount == 0)
+        {
             ShowGameOverPanel();
         }
     }

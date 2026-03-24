@@ -13,6 +13,7 @@ public class Checkpoint_Script : MonoBehaviour
     {   
         spRenderer = GetComponent<SpriteRenderer>();
         gameManagerScript = FindAnyObjectByType<GameManagerScript>();
+        //activate = GetComponent<AudioSource>();
        
     }
 
@@ -23,8 +24,8 @@ public class Checkpoint_Script : MonoBehaviour
             //if we trigger a checkpoint set it to be our respawn point
             if(gameManagerScript.respawnPoint != this.gameObject.transform.position)
             {
-
                 gameManagerScript.respawnPoint = this.gameObject.transform.position;
+                //activate.Play();
             }
             //go through all checkpoints and "reset" them
             Checkpoint_Script[] checkpoints = FindObjectsOfType<Checkpoint_Script>();
@@ -36,11 +37,5 @@ public class Checkpoint_Script : MonoBehaviour
             //this should only activate the one we walk through and "deactivate" previous one
             spRenderer.color = Color.green;
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 }

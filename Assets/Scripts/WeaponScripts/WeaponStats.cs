@@ -112,7 +112,6 @@ public class WeaponStats : MonoBehaviour
             ammoText = null;
         }
 
-        Debug.Log(Meleetext);
     }
 
 }

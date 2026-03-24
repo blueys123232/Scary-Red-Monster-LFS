@@ -18,6 +18,8 @@ public class PickUpmanager : MonoBehaviour
         hPotCount = 0;
         keyCount = 0;
 
+        LoadInt();
+
 
         UpdatePickupText();
     }
