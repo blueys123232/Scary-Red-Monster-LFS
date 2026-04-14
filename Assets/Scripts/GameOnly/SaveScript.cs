@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class SaveScript : MonoBehaviour
 {
+    [HideInInspector] public string SavedLevelName;
+    [HideInInspector] public int SavedLevelIndex;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -11,18 +14,25 @@ public class SaveScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
-    public void SaveLevelProgress(string KeyName, string KeyIndex, int levelIndex, string levelName = "")
+    public void SaveLevelProgress(string KeyName, int levelIndex)
     {
-        PlayerPrefs.SetInt(KeyIndex, levelIndex);
+        PlayerPrefs.SetInt(KeyName, levelIndex);
 
-        if (!string.IsNullOrEmpty(levelName))
-            PlayerPrefs.SetString(KeyName, levelName);
+        if (!string.IsNullOrEmpty(KeyName))
+            PlayerPrefs.SetString(KeyName, KeyName);
+
+        SavedLevelName = KeyName;
+        SavedLevelIndex = levelIndex;
+
+        //PlayerPrefs.GetInt(SavedLevelName, SavedLevelIndex);
+        //PlayerPrefs.GetString(SavedLevelName, SavedLevelName);
+
         PlayerPrefs.Save();
-
-        PlayerPrefs.GetInt(KeyIndex, levelIndex);
-        PlayerPrefs.GetString(KeyName, levelName);
     }
+
+
 }
+
