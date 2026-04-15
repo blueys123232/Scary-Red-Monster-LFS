@@ -24,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
     private float moveDirection; // For capturing horizontal input
     private bool isTakingDamage;
     private shootScript S_Script;
-    private RangerWeaponStats RwStats;
+    private WeaponStats wStats;
 
 
 
@@ -38,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
         //find components on other objects
         puManager = FindAnyObjectByType<PickUpmanager>();
         S_Script = FindAnyObjectByType<shootScript>();
-        RwStats = FindAnyObjectByType<RangerWeaponStats>();
+        wStats = FindAnyObjectByType<WeaponStats>();
         // Check for component assignments
         if (rb == null) Debug.LogError("Rigidbody2D component not found on " + gameObject.name);
         if (animator == null) Debug.LogError("Animator component not found on " + gameObject.name);
@@ -79,10 +79,10 @@ public class PlayerMovement : MonoBehaviour
         // Handle running input
         isRunningPM = Input.GetKey(KeyCode.LeftShift) && playerStamina.currentStamina > 0;
 
-        if(isRunningPM && moveDirection > 0)
+        if (isRunningPM && moveDirection > 0)
         {
             playerStamina.SetRunning(isRunningPM);
-        } 
+        }
         //else if (!isRunningPM)
         //{
         //    playerStamina.SetRunning(!isRunningPM);
@@ -98,6 +98,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Move()
     {
+        wStats = FindAnyObjectByType<WeaponStats>();
         S_Script = FindAnyObjectByType<shootScript>();
 
         // Set the movement speed based on the current state
@@ -174,7 +175,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (S_Script != null)
         {
-            animator.SetInteger("WeaponInt", RwStats.RwepInt);
+            animator.SetInteger("WeaponInt", wStats.wepInt);
         }
         else
         {
@@ -185,7 +186,7 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("isTakingDamage", playerHealth.isTakingDamage);
 
 
-        if (RwStats.RwType == RangerWeaponType.None)
+        if (wStats.wType == WeaponType.None)
         {
             animator.SetBool("isFiring", false);
         }
@@ -194,9 +195,9 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("isFiring", S_Script.weaponFired);
         }
 
-        animator.SetInteger("WeaponInt", RwStats.RwepInt);
-        //Debug.Log(RwStats.RwepInt);
-        //Debug.Log(RwStats.RwType);
+        //animator.SetBool("isFiring", S_Script.weaponFired);
+
+        animator.SetInteger("WeaponInt", wStats.wepInt);
 
     }
 

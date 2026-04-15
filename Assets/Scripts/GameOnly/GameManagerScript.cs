@@ -1,0 +1,54 @@
+using System.Collections;
+using UnityEngine;
+
+public class GameManagerScript : MonoBehaviour
+{
+    //time before dying/respawning after death
+    [SerializeField] private float RespawnDelay;
+
+    [HideInInspector] public bool curRespawning;
+
+    private PlayerMovement pMovement;
+
+    public Vector3 respawnPoint;
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+        pMovement = FindAnyObjectByType<PlayerMovement>();
+
+        //initial respawn point when we start the game
+        respawnPoint = pMovement.transform.position;
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
+    public void RespawnPlayer()
+    {
+        //this will be called when the player dies
+        //if we are not currently respawning then respawn
+        if (!curRespawning)
+        {
+            curRespawning = true;
+
+            StartCoroutine(respawn());
+        }
+    }
+
+    public IEnumerator respawn()
+    {
+        //Maybe add screen fade for respawning?
+
+        yield return new WaitForSeconds(RespawnDelay);
+
+        pMovement.transform.position = respawnPoint;
+        curRespawning = false;
+
+
+    }
+}

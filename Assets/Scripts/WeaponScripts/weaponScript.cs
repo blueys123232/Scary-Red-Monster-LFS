@@ -14,14 +14,14 @@ public class weaponScript : MonoBehaviour
     [SerializeField] GameObject[] WeaponsUI;
     [SerializeField] GameObject weaponHolder, weaponUIHolder, currentWeapon;
 
-    RangerWeaponStats RwStats;
+    WeaponStats wStats;
 
     void Start()
     {
         totalWeapons = weaponHolder.transform.childCount;
         Weapons = new GameObject[totalWeapons];
         WeaponsUI = new GameObject[totalWeapons];
-        RwStats = FindAnyObjectByType<RangerWeaponStats>();
+        wStats = FindAnyObjectByType<WeaponStats>();
 
         for (int i = 0; i < totalWeapons; i++)
         {
@@ -68,8 +68,8 @@ public class weaponScript : MonoBehaviour
                 WeaponsUI[CurrentWeaponIndex].SetActive(true);
                 currentWeapon = Weapons[CurrentWeaponIndex];
 
-                RwStats.RwType = Weapons[CurrentWeaponIndex].GetComponent<RangerWeaponStats>().RwType;
-                RwStats.RangerWeaponTypeSwitch();
+                wStats.wType = Weapons[CurrentWeaponIndex].GetComponent<WeaponStats>().wType;
+                wStats.WeaponTypeSwitch();
 
             }
         }
@@ -86,8 +86,8 @@ public class weaponScript : MonoBehaviour
                 WeaponsUI[CurrentWeaponIndex].SetActive(true);
                 currentWeapon = Weapons[CurrentWeaponIndex];
 
-                RwStats.RwType = Weapons[CurrentWeaponIndex].GetComponent<RangerWeaponStats>().RwType;
-                RwStats.RangerWeaponTypeSwitch();
+                wStats.wType = Weapons[CurrentWeaponIndex].GetComponent<WeaponStats>().wType;
+                wStats.WeaponTypeSwitch();
             }
         }
     }

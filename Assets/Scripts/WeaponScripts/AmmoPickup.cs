@@ -11,10 +11,6 @@ public class AmmoPickup : MonoBehaviour
 
     private WeaponStats wStats;
 
-
-
-
-
     // Start is called before the first frame update
     void Start()
     {

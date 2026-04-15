@@ -13,7 +13,7 @@ public class WeaponStats : MonoBehaviour
     [SerializeField] TextMeshProUGUI Meleetext;
     [SerializeField] TextMeshProUGUI ThrowableText;
     AmmoPickup aPickup;
-    
+
 
     public int Damage, AmmoCount, ThrowableWeapons, MeleeDamage;
     public float ProjectileSpeed;
@@ -33,16 +33,20 @@ public class WeaponStats : MonoBehaviour
     {
         switch (wType)
         {
+
             case WeaponType.None:
                 //Nothing should be NONE but if it is having this case should prevent errors
                 break;
-             
+
+            case WeaponType.Hand:
                 break;
             case WeaponType.Pistol:
                 ammoText.text = "Ammo:" + AmmoCount.ToString();
 
                 if (weaponRenderer != null && BlankImage != null)
                     weaponRenderer.sprite = BlankImage;
+
+
                 wepInt = 1;
                 break;
             case WeaponType.Shotgun:
@@ -74,13 +78,13 @@ public class WeaponStats : MonoBehaviour
                     weaponRenderer.sprite = BlankImage;
                 break;
             case WeaponType.Hammer:
-                ammoText.text = "Ammo:" + MeleeDamage.ToString();
+                Meleetext.text = "Ammo:" + MeleeDamage.ToString();
 
                 if (weaponRenderer != null && BlankImage != null)
                     weaponRenderer.sprite = BlankImage;
                 break;
             case WeaponType.Chainsaw:
-                ammoText.text = "Ammo:" + MeleeDamage.ToString();
+                Meleetext.text = "Damage:" + MeleeDamage.ToString();
 
                 if (weaponRenderer != null && BlankImage != null)
                     weaponRenderer.sprite = BlankImage;
@@ -92,14 +96,32 @@ public class WeaponStats : MonoBehaviour
     {
         WeaponTypeSwitch();
         //Debug.Log(wepInt);
+        if (gameObject.tag == "Ranged")
+        {
+            Meleetext = null;
+            ThrowableText = null;
+        }
+
+        if (gameObject.tag == "Melee")
+        {
+            ammoText = null;
+            ThrowableText = null;
+        }
+
+        if (gameObject.tag == "Thrown")
+        {
+            Meleetext = null;
+            ammoText = null;
+        }
+
     }
 
 }
 
 public enum WeaponType
 {
-    Dagger,
     None,
+    Dagger,
     Sword,
     Pistol,
     Shotgun,
@@ -109,5 +131,6 @@ public enum WeaponType
     Hammer,
     Chainsaw,
     Spear,
-    Shuriken
+    Shuriken,
+    Hand
 }

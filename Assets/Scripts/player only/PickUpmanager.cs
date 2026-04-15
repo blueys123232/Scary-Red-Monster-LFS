@@ -69,7 +69,7 @@ public class PickUpmanager : MonoBehaviour
     }
     public void UpdatePickupText()
     {
-        tokenText.text = "Coins: " + tokenCount.ToString();
+        tokenText.text = "Tokens: " + tokenCount.ToString();
         hPotText.text = "Healing Potions: " + hPotCount.ToString();
         keyText.text = "Keys: " + keyCount.ToString();
     }
