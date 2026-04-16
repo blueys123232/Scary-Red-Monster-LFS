@@ -38,16 +38,17 @@ public class WeaponStats : MonoBehaviour
                 //Nothing should be NONE but if it is having this case should prevent errors
                 break;
 
+
             case WeaponType.Hand:
                 break;
+
             case WeaponType.Pistol:
                 ammoText.text = "Ammo:" + AmmoCount.ToString();
 
                 if (weaponRenderer != null && BlankImage != null)
                     weaponRenderer.sprite = BlankImage;
+                wepInt =1;
 
-
-                wepInt = 1;
                 break;
             case WeaponType.Shotgun:
                 ammoText.text = "Ammo:" + AmmoCount.ToString();
@@ -96,19 +97,22 @@ public class WeaponStats : MonoBehaviour
     {
         WeaponTypeSwitch();
         //Debug.Log(wepInt);
-        if (gameObject.tag == "Ranged")
+
+        if(gameObject.tag == "Ranged")
+
         {
             Meleetext = null;
             ThrowableText = null;
         }
+        if(gameObject.tag == "Melee")
 
-        if (gameObject.tag == "Melee")
         {
             ammoText = null;
             ThrowableText = null;
         }
 
-        if (gameObject.tag == "Thrown")
+        if(gameObject.tag == "Thrown")
+
         {
             Meleetext = null;
             ammoText = null;

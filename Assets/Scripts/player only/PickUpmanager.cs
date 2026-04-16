@@ -11,18 +11,14 @@ public class PickUpmanager : MonoBehaviour
     public int tokenCount, hPotCount, keyCount;
     WeaponStats wStats;
 
-   
-
-    
-
-
-
     // Start is called before the first frame update
     void Start()
     {
         tokenCount = 0;
         hPotCount = 0;
         keyCount = 0;
+
+        LoadInt();
 
 
         UpdatePickupText();
@@ -61,7 +57,7 @@ public class PickUpmanager : MonoBehaviour
         UpdatePickupText();
     }
 
-    public void AddThrowables (int ThrowabletoAdd)
+    public void AddThrowables(int ThrowabletoAdd)
     {
         wStats.ThrowableWeapons = wStats.ThrowableWeapons + ThrowabletoAdd;
         UpdatePickupText();

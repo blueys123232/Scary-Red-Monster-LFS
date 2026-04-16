@@ -105,7 +105,7 @@ public class PlayerHealth : MonoBehaviour
         if (currentHealth <= 0)
         {
             gameManagerScript.RespawnPlayer();
-            currentHealth = 50;
+            currentHealth = 50; 
             UpdateHealthBar();
             UpdatedHealthText();
             respawnAmount -= 1;

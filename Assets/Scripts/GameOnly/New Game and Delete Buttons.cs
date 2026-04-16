@@ -12,14 +12,26 @@ public class NewGameandDeleteButtons : MonoBehaviour
     // -------- Global (backward-compat) keys --------
     const string KEY_LAST_INDEX = "LastLevelIndex";
     const string KEY_LAST_NAME = "LastLevelName";
+
+    int KEY_Current_index = 0;
+
     [Header("UI")]
     private TextMeshProUGUI SavedLevelName;
 
     [Header("Save File and Delete Buttons")]
     [SerializeField] private GameObject[] SaveFileButtons;
     [SerializeField] private GameObject[] DeleteButtons;
+
+
     private void Start()
     {
+
+
+        PlayerPrefs.GetString("SaveLevelName");
+        
+
+
+
         SavedLevelName = FindAnyObjectByType<TextMeshProUGUI>();
 
         if (SaveFileButtons != null)
@@ -99,6 +111,13 @@ public class NewGameandDeleteButtons : MonoBehaviour
 
         if (SavedLevelName != null)
             SavedLevelName.text = "None";
+    }
+
+    private void Update()
+    {
+        KEY_Current_index = PlayerPrefs.GetInt("KeyName");
+
+        Debug.Log(KEY_Current_index);
     }
 
 }

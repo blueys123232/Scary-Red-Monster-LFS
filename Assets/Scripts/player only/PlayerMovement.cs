@@ -190,7 +190,7 @@ public class PlayerMovement : MonoBehaviour
         {
             animator.SetBool("isFiring", false);
         }
-        else
+        else 
         {
             animator.SetBool("isFiring", S_Script.weaponFired);
         }

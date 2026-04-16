@@ -8,12 +8,12 @@ public class shootScript : MonoBehaviour
     [SerializeField] private GameObject projectilePreFab;
     public Transform firePoint;
     private PickUpmanager puManager;
-    RangerWeaponStats RangerWeaponStats;
+    WeaponStats weaponStats;
     public bool weaponFired;
     public AudioSource Shooting;
     private void Start()
     {
-        RangerWeaponStats = GetComponent<RangerWeaponStats>();
+        weaponStats = GetComponent<WeaponStats>();
         puManager = FindAnyObjectByType<PickUpmanager>();
     }
 
@@ -21,13 +21,13 @@ public class shootScript : MonoBehaviour
     // shoots when left mouse button is pressed and cooldown had passed
     void Update()
     {
-        if (Input.GetButtonDown("Fire1") && RangerWeaponStats.AmmoCount > 0)
+        if (Input.GetButtonDown("Fire1") && weaponStats.AmmoCount > 0)
         {
             weaponFired = true;
             StartCoroutine(Shoot());
         }
 
-        else if (RangerWeaponStats.AmmoCount == 0)
+        else if (weaponStats.AmmoCount == 0)
 
         {
             Debug.Log("Out of Ammo");
@@ -37,11 +37,14 @@ public class shootScript : MonoBehaviour
     {
         {
             {
+
                 Instantiate(projectilePreFab, firePoint.transform.position, firePoint.rotation);
                 puManager.AmmoLoss();
-                yield return null;
-                //When sound effect added use that as timer for weaponfired boolean
+
+                yield return new WaitForSeconds(0.1f);
                 weaponFired = false;
+                //When sound effect added use that as timer for weaponfired boolean
+
             }
         }
     }

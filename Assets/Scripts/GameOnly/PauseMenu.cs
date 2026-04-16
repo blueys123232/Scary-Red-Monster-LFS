@@ -48,8 +48,11 @@ public class PauseMenu : MonoBehaviour
     {
         Time.timeScale = 1f;
 
-        sScript.SaveLevelProgress(SceneManager.GetActiveScene().name, SceneManager.GetActiveScene().buildIndex.ToString(),
-            SceneManager.GetActiveScene().buildIndex, SceneManager.GetActiveScene().name);
+        Debug.Log(SceneManager.GetActiveScene().name);
+        Debug.Log(SceneManager.GetActiveScene().buildIndex);
+
+        sScript.SaveLevelProgress(SceneManager.GetActiveScene().name,SceneManager.GetActiveScene().buildIndex);
+
 
         SceneManager.LoadScene("Main Menu");
 
