@@ -1,0 +1,4 @@
+	Rework UI to remove some of the canvases in order to improve performance.
+Take a look at the physics.2D stuff, related to above.
+
+Rework enemies so they don't have Canvases on each one.
