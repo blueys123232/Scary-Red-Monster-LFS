@@ -5,6 +5,7 @@ public class PauseMenu : MonoBehaviour
 {
     [SerializeField] private static bool GameIsPaused = false;
     [SerializeField] private GameObject pauseMenuUI;
+    [SerializeField] GameObject OtherUI;
 
     SaveScript sScript;
 
@@ -32,6 +33,7 @@ public class PauseMenu : MonoBehaviour
     {
         Debug.Log("Resuming game"); // Debug log
         pauseMenuUI.SetActive(false);
+        OtherUI.SetActive(true);
         Time.timeScale = 1f;
         GameIsPaused = false;
     }
@@ -40,6 +42,7 @@ public class PauseMenu : MonoBehaviour
     {
         Debug.Log("Pausing game"); // Debug log
         pauseMenuUI.SetActive(true);
+        OtherUI.SetActive(false);
         Time.timeScale = 0f;
         GameIsPaused = true;
     }

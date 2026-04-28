@@ -9,6 +9,7 @@ public class weaponScript : MonoBehaviour
 
     int totalWeapons;
     public int CurrentWeaponIndex;
+    public WeaponType w_Stats;
 
     [SerializeField] GameObject[] Weapons;
     [SerializeField] GameObject[] WeaponsUI;
@@ -69,6 +70,7 @@ public class weaponScript : MonoBehaviour
                 currentWeapon = Weapons[CurrentWeaponIndex];
 
                 wStats.wType = Weapons[CurrentWeaponIndex].GetComponent<WeaponStats>().wType;
+                wStats.wType = WeaponType.Pistol;
                 wStats.WeaponTypeSwitch();
 
             }

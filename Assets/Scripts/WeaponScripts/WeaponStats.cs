@@ -51,7 +51,7 @@ public class WeaponStats : MonoBehaviour
 
                 break;
             case WeaponType.Shotgun:
-                ammoText.text = "Ammo:" + AmmoCount.ToString();
+                ammoText.text = "Shells" + AmmoCount.ToString();
 
                 if (weaponRenderer != null && BlankImage != null)
                     weaponRenderer.sprite = BlankImage;
