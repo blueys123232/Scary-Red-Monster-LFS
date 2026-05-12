@@ -10,12 +10,17 @@ public class WeaponStats : MonoBehaviour
     public WeaponType wType;
 
     [SerializeField] TextMeshProUGUI ammoText;
-    [SerializeField] TextMeshProUGUI Meleetext;
-    [SerializeField] TextMeshProUGUI ThrowableText;
     AmmoPickup aPickup;
 
+    //Weapon Text for Ranged/throwable weapons = Ammo
+    //Weapon text for Melee Weapons = Damage
+    //[SerializeField] TextMeshProUGUI WeaponText;
 
-    public int Damage, AmmoCount, ThrowableWeapons, MeleeDamage;
+
+
+
+    public int Damage, AmmoCount;
+    [HideInInspector] public int ThrowableWeapons, MeleeDamage;
     public float ProjectileSpeed;
     public int wepInt;
 
@@ -31,9 +36,10 @@ public class WeaponStats : MonoBehaviour
 
     public void WeaponTypeSwitch()
     {
+
         switch (wType)
         {
-
+            
             case WeaponType.None:
                 //Nothing should be NONE but if it is having this case should prevent errors
                 break;
@@ -73,23 +79,23 @@ public class WeaponStats : MonoBehaviour
                 wepInt = 4;
                 break;
             case WeaponType.Sword:
-                Meleetext.text = "Damage:" + MeleeDamage.ToString();
+                ammoText.text = "Damage:" + MeleeDamage.ToString();
 
                 if (weaponRenderer != null && BlankImage != null)
                     weaponRenderer.sprite = BlankImage;
                 break;
-            case WeaponType.Hammer:
-                Meleetext.text = "Ammo:" + MeleeDamage.ToString();
+                //case WeaponType.Hammer:
+                //    Meleetext.text = "Ammo:" + MeleeDamage.ToString();
 
-                if (weaponRenderer != null && BlankImage != null)
-                    weaponRenderer.sprite = BlankImage;
-                break;
-            case WeaponType.Chainsaw:
-                Meleetext.text = "Damage:" + MeleeDamage.ToString();
+                //    if (weaponRenderer != null && BlankImage != null)
+                //        weaponRenderer.sprite = BlankImage;
+                //    break;
+                //case WeaponType.Chainsaw:
+                //    Meleetext.text = "Damage:" + MeleeDamage.ToString();
 
-                if (weaponRenderer != null && BlankImage != null)
-                    weaponRenderer.sprite = BlankImage;
-                break;
+                //    if (weaponRenderer != null && BlankImage != null)
+                //        weaponRenderer.sprite = BlankImage;
+                //    break;
 
         }
     }
@@ -98,25 +104,25 @@ public class WeaponStats : MonoBehaviour
         WeaponTypeSwitch();
         //Debug.Log(wepInt);
 
-        if(gameObject.tag == "Ranged")
+        //if(gameObject.tag == "Ranged")
 
-        {
-            Meleetext = null;
-            ThrowableText = null;
-        }
-        if(gameObject.tag == "Melee")
+        //{
+        //    Meleetext = null;
+        //    ThrowableText = null;
+        //}
+        //if(gameObject.tag == "Melee")
 
-        {
-            ammoText = null;
-            ThrowableText = null;
-        }
+        //{
+        //    ammoText = null;
+        //    ThrowableText = null;
+        //}
 
-        if(gameObject.tag == "Thrown")
+        //if(gameObject.tag == "Thrown")
 
-        {
-            Meleetext = null;
-            ammoText = null;
-        }
+        //{
+        //    Meleetext = null;
+        //    ammoText = null;
+        //}
 
     }
 
