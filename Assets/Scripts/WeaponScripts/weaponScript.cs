@@ -9,6 +9,7 @@ public class weaponScript : MonoBehaviour
 
     int totalWeapons;
     public int CurrentWeaponIndex;
+    public WeaponType w_Stats;
 
     [SerializeField] GameObject[] Weapons;
     [SerializeField] GameObject[] WeaponsUI;

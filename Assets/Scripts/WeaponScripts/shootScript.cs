@@ -9,10 +9,11 @@ public class shootScript : MonoBehaviour
     public Transform firePoint;
     private PickUpmanager puManager;
     WeaponStats weaponStats;
-    public bool weaponFired;
     public AudioSource Shooting;
+    private Animator PlayerAnimator;
     private void Start()
     {
+        PlayerAnimator = FindAnyObjectByType<PlayerMovement>().GetComponent<Animator>();
         weaponStats = GetComponent<WeaponStats>();
         puManager = FindAnyObjectByType<PickUpmanager>();
     }
@@ -23,7 +24,7 @@ public class shootScript : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire1") && weaponStats.AmmoCount > 0)
         {
-            weaponFired = true;
+            PlayerAnimator.SetBool("isFiring", true);
             StartCoroutine(Shoot());
         }
 
@@ -41,8 +42,8 @@ public class shootScript : MonoBehaviour
                 Instantiate(projectilePreFab, firePoint.transform.position, firePoint.rotation);
                 puManager.AmmoLoss();
 
-                yield return new WaitForSeconds(0.1f);
-                weaponFired = false;
+                yield return new WaitForSeconds(4f);
+                PlayerAnimator.SetBool("isFiring", false);
                 //When sound effect added use that as timer for weaponfired boolean
 
             }
