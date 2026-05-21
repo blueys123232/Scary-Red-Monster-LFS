@@ -4,119 +4,156 @@ using UnityEngine.UI;
 
 public class SettingsMenu : MonoBehaviour
 {
-    public AudioMixer mainMixer;
-    public Slider volumeSlider;
-    public Dropdown qualityDropdown;
-
-    public float defaultVolume = 0.75f;
-    public int defaultQualityIndex = 2;
-
+    [Header("Audio Mixers")]
+    public AudioMixer MusicMixer;
+    public AudioMixer SoundMixer;
+    [Header("UI")]
+    public Slider musicSlider;
+    public Slider soundSlider;
+    public Toggle fullscreenToggle;
+    
+    [Header("Defaults")]
+    public float defaultMusicVolume = 0.75f;
+    public float defaultSoundVolume = 0.75f;
+    public bool defaultFullscreen = true;
     private void Start()
     {
         // Load saved settings on startup
         LoadSettings();
 
         // Initialize the volume slider to the saved or default volume
-        if (volumeSlider != null)
+        if (musicSlider != null)
         {
-            volumeSlider.value = PlayerPrefs.HasKey("volume") ? PlayerPrefs.GetFloat("volume") : defaultVolume;
+            musicSlider.value = PlayerPrefs.HasKey("musicvolume") ? PlayerPrefs.GetFloat("musicvolume") : defaultMusicVolume;
         }
-
-        // Initialize the quality dropdown to the saved or default value
-        if (qualityDropdown != null)
+        if (soundSlider != null)
         {
-            qualityDropdown.value = PlayerPrefs.HasKey("quality") ? PlayerPrefs.GetInt("quality") : defaultQualityIndex;
+            soundSlider.value = PlayerPrefs.HasKey("soundvolume") ? PlayerPrefs.GetFloat("soundvolume") : defaultSoundVolume;
         }
+        if (fullscreenToggle != null)
+        {
+            fullscreenToggle.isOn = PlayerPrefs.HasKey("fullscreen") ? PlayerPrefs.GetInt("fullscreen") == 1 : defaultFullscreen;
+        }
+       
     }
 
-    public void SetVolume(float volume)
+    public void SetMusicVolume(float musicvolume)
     {
         // If the volume is at the slider's minimum, mute the audio by setting a very low value
-        if (volumeSlider != null && volumeSlider.value == volumeSlider.minValue)
+        if (musicSlider != null && musicSlider.value == musicSlider.minValue)
         {
-            mainMixer.SetFloat("volume", -80f);  // Mute
+            MusicMixer.SetFloat("musicvolume", -80f);  // Mute
         }
         else
         {
-            mainMixer.SetFloat("volume", volume);
+            MusicMixer.SetFloat("musicvolume", musicvolume);
         }
 
         // Save volume setting
-        PlayerPrefs.SetFloat("volume", volume);
+        PlayerPrefs.SetFloat("musicvolume", musicvolume);
         PlayerPrefs.Save();
     }
-
-    public void SetQuality(int qualityIndex)
+    public void SetSoundVolume(float Soundvolume)
     {
-        QualitySettings.SetQualityLevel(qualityIndex);
-        // Save quality setting
-        PlayerPrefs.SetInt("quality", qualityIndex);
+        // If the volume is at the slider's minimum, mute the audio by setting a very low value
+        if (musicSlider != null && musicSlider.value == musicSlider.minValue)
+        {
+            MusicMixer.SetFloat("soundvolume", -80f);  // Mute
+        }
+        else
+        {
+            MusicMixer.SetFloat("soundvolume", Soundvolume);
+        }
+
+        // Save volume setting
+        PlayerPrefs.SetFloat("soundvolume", Soundvolume);
+        PlayerPrefs.Save();
+    }
+  public void SetFullscreen(bool isFullscreen)
+    {
+        Screen.fullScreen = isFullscreen;
+        PlayerPrefs.SetInt("fullscreen", isFullscreen ? 1 : 0);
         PlayerPrefs.Save();
     }
 
     public void LoadSettings()
     {
-        // Load volume setting
-        if (PlayerPrefs.HasKey("volume"))
+        // Load Music volume setting
+        if (PlayerPrefs.HasKey("musicvolume"))
         {
-            float volume = PlayerPrefs.GetFloat("volume");
-            if (volumeSlider != null && volume == volumeSlider.minValue)
+            float musicvolume = PlayerPrefs.GetFloat("musicvolume");
+            if (musicSlider != null && musicvolume == musicSlider.minValue)
             {
-                mainMixer.SetFloat("volume", -80f);  // Mute
+                MusicMixer.SetFloat("musicvolume", -80f);  // Mute
             }
             else
             {
-                mainMixer.SetFloat("volume", volume);
+                MusicMixer.SetFloat("musicvolume", musicvolume);
             }
         }
         else
         {
-            mainMixer.SetFloat("volume", defaultVolume);
+            SoundMixer.SetFloat("musicvolume", defaultMusicVolume);
         }
-
-        // Load quality setting
-        if (PlayerPrefs.HasKey("quality"))
+        if (PlayerPrefs.HasKey("soundvolume"))
         {
-            int qualityIndex = PlayerPrefs.GetInt("quality");
-            QualitySettings.SetQualityLevel(qualityIndex);
+            float musicvolume = PlayerPrefs.GetFloat("soundvolume");
+            if (soundSlider != null && musicvolume == musicSlider.minValue)
+            {
+                SoundMixer.SetFloat("soundvolume", -80f);  // Mute
+            }
+            else
+            {
+                SoundMixer.SetFloat("soundvolume", musicvolume);
+            }
         }
         else
         {
-            QualitySettings.SetQualityLevel(defaultQualityIndex);
+            SoundMixer.SetFloat("soundvolume", defaultMusicVolume);
         }
+
     }
 
     public void ResetToDefaults()
     {
-        SetVolume(defaultVolume);
-        SetQuality(defaultQualityIndex);
+        SetMusicVolume(defaultMusicVolume);
+        SetSoundVolume(defaultSoundVolume);
+        SetFullscreen(defaultFullscreen);
 
         // Save default settings as the current settings
         SaveSettings();
 
         // Update UI elements to reflect default values
-        if (volumeSlider != null)
+        if (musicSlider != null)
         {
-            volumeSlider.value = defaultVolume;
+            musicSlider.value = defaultMusicVolume;
+        }
+        if (soundSlider != null)
+        {
+            soundSlider.value = defaultSoundVolume;
+        }
+        if (fullscreenToggle != null)
+        {
+            fullscreenToggle.isOn = defaultFullscreen;
         }
 
-        if (qualityDropdown != null)
-        {
-            qualityDropdown.value = defaultQualityIndex;
-        }
+
     }
 
     public void SaveSettings()
     {
         // Save volume setting
-        float volume;
-        if (mainMixer.GetFloat("volume", out volume))
+        float musicvolume;
+        if (MusicMixer.GetFloat("musicvolume", out musicvolume))
         {
-            PlayerPrefs.SetFloat("volume", volume);
+            PlayerPrefs.SetFloat("musicvolume", musicvolume);
+        }
+        float soundvolume;
+        if (SoundMixer.GetFloat("soundvolume", out soundvolume))
+        {
+            PlayerPrefs.SetFloat("soundvolume", soundvolume);
         }
 
-        // Save quality setting
-        PlayerPrefs.SetInt("quality", QualitySettings.GetQualityLevel());
 
         // Ensure PlayerPrefs are saved to disk
         PlayerPrefs.Save();
@@ -125,18 +162,18 @@ public class SettingsMenu : MonoBehaviour
     public void LoadDefaults()
     {
         // Load default settings
-        SetVolume(defaultVolume);
-        SetQuality(defaultQualityIndex);
-
+        SetMusicVolume(defaultMusicVolume);
+        
+        SetSoundVolume(defaultSoundVolume);
         // Update UI elements to reflect default values
-        if (volumeSlider != null)
+        if (musicSlider != null)
         {
-            volumeSlider.value = defaultVolume;
+            musicSlider.value = defaultMusicVolume;
+        }
+        if (soundSlider != null)
+        {
+            soundSlider.value = defaultSoundVolume;
         }
 
-        if (qualityDropdown != null)
-        {
-            qualityDropdown.value = defaultQualityIndex;
-        }
     }
 }

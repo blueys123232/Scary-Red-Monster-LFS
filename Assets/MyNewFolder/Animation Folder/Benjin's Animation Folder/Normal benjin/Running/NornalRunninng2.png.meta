@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 1bf8f2e23370da940992b9786d8df1f6
+guid: 82586b9395ccf814d9fa7f6ea43235e5
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3241615753541524426
-    second: Stolenchainsawanimation3_0
+      213: -6323189851944537177
+    second: NornalRunninng2_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -178,13 +178,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Stolenchainsawanimation3_0
+      name: NornalRunninng2_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 85
-        height: 81
+        width: 75
+        height: 80
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -193,8 +193,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: acb17206a588cfc20800000000000000
-      internalID: 3241615753541524426
+      spriteID: 7a3bd73d4548f38a0800000000000000
+      internalID: -6323189851944537177
       vertices: []
       indices: 
       edges: []
@@ -213,7 +213,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Stolenchainsawanimation3_0: 3241615753541524426
+      NornalRunninng2_0: -6323189851944537177
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

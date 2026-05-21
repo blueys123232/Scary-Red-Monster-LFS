@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Runtime.InteropServices.WindowsRuntime;
 
 public class PlayerStamina : MonoBehaviour
 {
@@ -9,36 +10,38 @@ public class PlayerStamina : MonoBehaviour
     [SerializeField] float staminaRegenRate = 5f;
     [SerializeField] float staminaDrainRate = 10f;
     public Image staminaBar;
+    PlayerMovement PM;
 
     public TextMeshProUGUI staminatext;
 
     private bool isRunning = false;
-
     void Start()
     {
+        PM = GetComponent<PlayerMovement>();
         currentStamina = maxStamina;
         UpdateStaminaBar();
         UpdateStaminaText();
+
     }
 
     void Update()
     {
         HandleStamina();
-        UpdateStaminaBar();
-        UpdateStaminaText();
+        Debug.Log(PM.isRunningPM);
     }
 
     void HandleStamina()
     {
-        if (isRunning && currentStamina > 0)
+        if (PM.isRunningPM == true && currentStamina > 0)
         {
             currentStamina -= staminaDrainRate * Time.deltaTime;
             if (currentStamina < 0)
             {
                 currentStamina = 0;
+                PM.isRunningPM = false;
             }
         }
-        else if (!isRunning && currentStamina < maxStamina)
+        else if (!PM.isRunningPM && currentStamina < maxStamina)
         {
             currentStamina += staminaRegenRate * Time.deltaTime;
             if (currentStamina > maxStamina)
@@ -46,6 +49,9 @@ public class PlayerStamina : MonoBehaviour
                 currentStamina = maxStamina;
             }
         }
+
+        UpdateStaminaBar();
+        UpdateStaminaText();
     }
 
     public void UpdateStaminaBar()
@@ -63,8 +69,10 @@ public class PlayerStamina : MonoBehaviour
         }
     }
 
-    public void SetRunning(bool running)
+    public bool SetRunning(bool running)
     {
         isRunning = running;
+        return running;
     }
 }
+

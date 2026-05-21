@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 1bf8f2e23370da940992b9786d8df1f6
+guid: 6ec0dfa2aab6ee140991147b7a2405d6
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3241615753541524426
-    second: Stolenchainsawanimation3_0
+      213: 3560489732804861054
+    second: NormalDashAnimation3_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -178,13 +178,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Stolenchainsawanimation3_0
+      name: NormalDashAnimation3_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 85
-        height: 81
+        height: 80
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -193,8 +193,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: acb17206a588cfc20800000000000000
-      internalID: 3241615753541524426
+      spriteID: e7c52463c86696130800000000000000
+      internalID: 3560489732804861054
       vertices: []
       indices: 
       edges: []
@@ -213,7 +213,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Stolenchainsawanimation3_0: 3241615753541524426
+      NormalDashAnimation3_0: 3560489732804861054
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -8,7 +8,8 @@ public class RestartGame : MonoBehaviour
 
     public GameObject gameoverPanel;
     public GameObject pausemenuPanel;
-    
+    [SerializeField] GameObject OtherUI;
+
     public void Restart()
    
     {
@@ -22,6 +23,11 @@ public class RestartGame : MonoBehaviour
             pausemenuPanel.SetActive(false);
         }
 
+
+        if (OtherUI != null)
+        {
+            OtherUI.SetActive(false);
+        }
 
 
 
@@ -43,6 +49,12 @@ public class RestartGame : MonoBehaviour
             pausemenuPanel.SetActive(false);
         }
 
+        if (OtherUI != null)
+        {
+            OtherUI.SetActive(false);
+        }
+
+       
 
 
         SceneManager.LoadScene("Main Menu"); // Replace "MainMenu" with the actual name of your main menu scene

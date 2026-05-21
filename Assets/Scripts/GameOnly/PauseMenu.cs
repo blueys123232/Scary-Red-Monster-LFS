@@ -5,6 +5,7 @@ public class PauseMenu : MonoBehaviour
 {
     [SerializeField] private static bool GameIsPaused = false;
     [SerializeField] private GameObject pauseMenuUI;
+    [SerializeField] GameObject OtherUI;
 
     SaveScript sScript;
 
@@ -32,6 +33,7 @@ public class PauseMenu : MonoBehaviour
     {
         Debug.Log("Resuming game"); // Debug log
         pauseMenuUI.SetActive(false);
+        OtherUI.SetActive(true);
         Time.timeScale = 1f;
         GameIsPaused = false;
     }
@@ -40,6 +42,7 @@ public class PauseMenu : MonoBehaviour
     {
         Debug.Log("Pausing game"); // Debug log
         pauseMenuUI.SetActive(true);
+        OtherUI.SetActive(false);
         Time.timeScale = 0f;
         GameIsPaused = true;
     }
@@ -51,7 +54,7 @@ public class PauseMenu : MonoBehaviour
         Debug.Log(SceneManager.GetActiveScene().name);
         Debug.Log(SceneManager.GetActiveScene().buildIndex);
 
-        sScript.SaveLevelProgress(SceneManager.GetActiveScene().name,SceneManager.GetActiveScene().buildIndex);
+        sScript.SaveLevelProgress(SceneManager.GetActiveScene().name, SceneManager.GetActiveScene().buildIndex);
 
 
         SceneManager.LoadScene("Main Menu");
@@ -63,9 +66,8 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
-    public void QuitGame()
+  public void NewandLoad()
     {
-        Debug.Log("Quitting game"); // Debug log
-        Application.Quit();
+        SceneManager.LoadScene("New And Load");
     }
 }

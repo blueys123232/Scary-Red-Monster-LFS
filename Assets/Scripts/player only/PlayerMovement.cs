@@ -17,10 +17,10 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody2D rb;
     private Animator animator;
-    private PlayerStamina playerStamina;
+    //private PlayerStamina playerStamina;
     private bool isGrounded;
     private bool isCrouching;
-    private bool isRunningPM;
+    public bool isRunningPM = false;
     private float moveDirection; // For capturing horizontal input
     private bool isTakingDamage;
     private shootScript S_Script;
@@ -33,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
         // Get required components
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        playerStamina = GetComponent<PlayerStamina>();
+        //playerStamina = GetComponent<PlayerStamina>();
         playerHealth = GetComponent<PlayerHealth>();
         //find components on other objects
         puManager = FindAnyObjectByType<PickUpmanager>();
@@ -42,7 +42,7 @@ public class PlayerMovement : MonoBehaviour
         // Check for component assignments
         if (rb == null) Debug.LogError("Rigidbody2D component not found on " + gameObject.name);
         if (animator == null) Debug.LogError("Animator component not found on " + gameObject.name);
-        if (playerStamina == null) Debug.LogError("PlayerStamina component not found on " + gameObject.name);
+        //if (playerStamina == null) Debug.LogError("PlayerStamina component not found on " + gameObject.name);
         if (groundCheck == null) Debug.LogError("GroundCheck Transform not assigned in the Inspector on " + gameObject.name);
     }
 
@@ -60,11 +60,11 @@ public class PlayerMovement : MonoBehaviour
 
     void HandleInput()
     {
-        if (playerStamina == null)
-        {
-            Debug.LogError("PlayerStamina component is not assigned.");
-            return;
-        }
+        //if (playerStamina == null)
+        //{
+        //    Debug.LogError("PlayerStamina component is not assigned.");
+        //    return;
+        //}
 
         // Handle movement input
         moveDirection = Input.GetAxisRaw("Horizontal");
@@ -76,18 +76,19 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("isCrouching", isCrouching);
         }
 
-        // Handle running input
-        isRunningPM = Input.GetKey(KeyCode.LeftShift) && playerStamina.currentStamina > 0;
 
-        if (isRunningPM && moveDirection > 0)
-        {
-            playerStamina.SetRunning(isRunningPM);
-        }
-        //else if (!isRunningPM)
+        // Handle running input
+        isRunningPM = Input.GetKey(KeyCode.LeftShift);
+
+        //if (isRunningPM && moveDirection > 0)
+        //{
+        //    playerStamina.SetRunning(isRunningPM);
+        //}
+
+        //if (!isRunningPM)
         //{
         //    playerStamina.SetRunning(!isRunningPM);
         //}
-
 
         // Handle jump input (space bar and W key)
         if ((Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.W)) && isGrounded)
@@ -190,7 +191,7 @@ public class PlayerMovement : MonoBehaviour
         {
             animator.SetBool("isFiring", false);
         }
-        else 
+        else
         {
             animator.SetBool("isFiring", S_Script.weaponFired);
         }
