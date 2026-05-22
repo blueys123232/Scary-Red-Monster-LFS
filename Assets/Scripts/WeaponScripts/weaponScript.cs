@@ -9,20 +9,17 @@ public class weaponScript : MonoBehaviour
 
     int totalWeapons;
     public int CurrentWeaponIndex;
-    public WeaponType w_Stats;
 
     [SerializeField] GameObject[] Weapons;
     [SerializeField] GameObject[] WeaponsUI;
     [SerializeField] GameObject weaponHolder, weaponUIHolder, currentWeapon;
 
-    WeaponStats wStats;
 
     void Start()
     {
         totalWeapons = weaponHolder.transform.childCount;
         Weapons = new GameObject[totalWeapons];
         WeaponsUI = new GameObject[totalWeapons];
-        wStats = FindAnyObjectByType<WeaponStats>();
 
         for (int i = 0; i < totalWeapons; i++)
         {
@@ -69,9 +66,6 @@ public class weaponScript : MonoBehaviour
                 WeaponsUI[CurrentWeaponIndex].SetActive(true);
                 currentWeapon = Weapons[CurrentWeaponIndex];
 
-                wStats.wType = Weapons[CurrentWeaponIndex].GetComponent<WeaponStats>().wType;
-                wStats.WeaponTypeSwitch();
-
             }
         }
         if (Input.GetKeyDown(KeyCode.Q))
@@ -87,8 +81,6 @@ public class weaponScript : MonoBehaviour
                 WeaponsUI[CurrentWeaponIndex].SetActive(true);
                 currentWeapon = Weapons[CurrentWeaponIndex];
 
-                wStats.wType = Weapons[CurrentWeaponIndex].GetComponent<WeaponStats>().wType;
-                wStats.WeaponTypeSwitch();
             }
         }
     }

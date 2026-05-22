@@ -42,7 +42,7 @@ public class shootScript : MonoBehaviour
                 Instantiate(projectilePreFab, firePoint.transform.position, firePoint.rotation);
                 puManager.AmmoLoss();
 
-                yield return new WaitForSeconds(4f);
+                yield return new WaitForSeconds(0.1f);
                 PlayerAnimator.SetBool("isFiring", false);
                 //When sound effect added use that as timer for weaponfired boolean
 

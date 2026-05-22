@@ -8,25 +8,20 @@ using UnityEngine.UI;
 public class WeaponStats : MonoBehaviour
 {
     public WeaponType wType;
-
-    [SerializeField] TextMeshProUGUI ammoText;
     AmmoPickup aPickup;
 
     //Weapon Text for Ranged/throwable weapons = Ammo
     //Weapon text for Melee Weapons = Damage
-    //[SerializeField] TextMeshProUGUI WeaponText;
+    [SerializeField] TextMeshProUGUI WeaponText;
 
 
 
 
     public int Damage, AmmoCount;
-    [HideInInspector] public int ThrowableWeapons, MeleeDamage;
+    [HideInInspector] public int ThrowableWeapons;
     public float ProjectileSpeed;
     public int wepInt;
 
-    [Header("Weapon Sprite")]
-    public Sprite BlankImage;         // The blank sprite
-    public SpriteRenderer weaponRenderer;   // Assign the weapon's 
     private void Start()
     {
 
@@ -46,55 +41,40 @@ public class WeaponStats : MonoBehaviour
 
 
             case WeaponType.Hand:
+                WeaponText.text = "Damage: " + Damage.ToString();
+                wepInt = 0;
                 break;
 
             case WeaponType.Pistol:
-                ammoText.text = "Ammo:" + AmmoCount.ToString();
+                WeaponText.text = "Ammo:" + AmmoCount.ToString();
 
-                if (weaponRenderer != null && BlankImage != null)
-                    weaponRenderer.sprite = BlankImage;
-                wepInt =1;
+                wepInt = 1;
 
                 break;
             case WeaponType.Shotgun:
-                ammoText.text = "Shells" + AmmoCount.ToString();
+                WeaponText.text = "Shells: " + AmmoCount.ToString();
 
-                if (weaponRenderer != null && BlankImage != null)
-                    weaponRenderer.sprite = BlankImage;
                 wepInt = 2;
                 break;
             case WeaponType.Bow:
-                ammoText.text = "Ammo:" + AmmoCount.ToString();
+                WeaponText.text = "Arrows: " + AmmoCount.ToString();
 
-                if (weaponRenderer != null && BlankImage != null)
-                    weaponRenderer.sprite = BlankImage;
                 wepInt = 3;
 
                 break;
             case WeaponType.Launcher:
-                ammoText.text = "Ammo:" + AmmoCount.ToString();
-
-                if (weaponRenderer != null && BlankImage != null)
-                    weaponRenderer.sprite = BlankImage;
+                WeaponText.text = "Explosives: " + AmmoCount.ToString();
                 wepInt = 4;
                 break;
             case WeaponType.Sword:
-                ammoText.text = "Damage:" + MeleeDamage.ToString();
+                WeaponText.text = "Damage:" + Damage.ToString();
 
-                if (weaponRenderer != null && BlankImage != null)
-                    weaponRenderer.sprite = BlankImage;
                 break;
                 //case WeaponType.Hammer:
-                //    Meleetext.text = "Ammo:" + MeleeDamage.ToString();
-
-                //    if (weaponRenderer != null && BlankImage != null)
-                //        weaponRenderer.sprite = BlankImage;
+                //    WeaponText.text = "Ammo:" + MeleeDamage.ToString();
                 //    break;
                 //case WeaponType.Chainsaw:
-                //    Meleetext.text = "Damage:" + MeleeDamage.ToString();
-
-                //    if (weaponRenderer != null && BlankImage != null)
-                //        weaponRenderer.sprite = BlankImage;
+                //    WeaponText.text = "Damage:" + MeleeDamage.ToString();
                 //    break;
 
         }
