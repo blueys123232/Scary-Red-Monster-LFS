@@ -36,17 +36,11 @@ public class shootScript : MonoBehaviour
     }
     private IEnumerator Shoot()
     {
-        {
-            {
+        Instantiate(projectilePreFab, firePoint.transform.position, firePoint.rotation);
+        puManager.AmmoLoss();
 
-                Instantiate(projectilePreFab, firePoint.transform.position, firePoint.rotation);
-                puManager.AmmoLoss();
-
-                yield return new WaitForSeconds(0.1f);
-                PlayerAnimator.SetBool("isFiring", false);
-                //When sound effect added use that as timer for weaponfired boolean
-
-            }
-        }
+        yield return new WaitForSeconds(0.1f);
+        PlayerAnimator.SetBool("isFiring", false);
+        //When sound effect added use that as timer for weaponfired boolean
     }
 }

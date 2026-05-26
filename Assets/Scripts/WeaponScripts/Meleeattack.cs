@@ -4,14 +4,20 @@ using UnityEngine;
 
 public class Meleeattack : MonoBehaviour
 {
-    WeaponStats weaponStats;
+
     private Animator PlayerAnimator;
+    public GameObject HitBox;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         PlayerAnimator = FindAnyObjectByType<PlayerMovement>().GetComponent<Animator>();
-        weaponStats = GetComponent<WeaponStats>();
+
+        if (HitBox.gameObject.active)
+        {
+            HitBox.gameObject.SetActive(false);
+        }
+
     }
 
     // Update is called once per frame
@@ -27,7 +33,11 @@ public class Meleeattack : MonoBehaviour
     private IEnumerator e_MeleeAttack()
     {
         PlayerAnimator.SetBool("isMelee", true);
+        HitBox.SetActive(true);
         yield return new WaitForSeconds(0.2f);
         PlayerAnimator.SetBool("isMelee", false);
+        HitBox.SetActive(false);
     }
+
+
 }
