@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -10,13 +11,10 @@ public class EnemyHealth : MonoBehaviour
     public float maxHealth = 100f;
     public float currentHealth;
     [SerializeField] private TextMeshPro damageNumber;
-    // Start is called before the first frame update
-    //[Header("Health Bar UI")]
-    //public Image healthBarImage;
     private void Start()
     {
+        damageNumber.text = "";
         currentHealth = maxHealth;
-       //UpdateHealthBar();
     }
 
     public IEnumerator TakeDamage(float amount, float delay)
@@ -24,30 +22,19 @@ public class EnemyHealth : MonoBehaviour
         currentHealth -= amount;
         currentHealth = Mathf.Clamp(currentHealth, 0f, maxHealth);
         damageNumber.text = amount.ToString();
-        yield return new WaitForSeconds(delay);
+        yield return new WaitForSeconds(0.5f);
         damageNumber.text = "";
     }
 
     private void Update()
     {
+        
+
         if (currentHealth <= 0f)
         {
             Die();
         }
     }
-
-    //private void UpdateHealthBar()
-    //{
-    //    if (healthBarImage != null)
-    //    {
-    //        float fillValue = currentHealth / maxHealth;
-    //        healthBarImage.fillAmount = fillValue;
-    //    }
-    //    else
-    //    {
-    //        Debug.LogWarning("Health Bar Fill is not assigned in EnemyHealth for " + gameObject.name);
-    //    }
-    //}
 
     private void Die()
     {
