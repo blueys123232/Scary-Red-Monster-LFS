@@ -26,11 +26,7 @@ public class PickUpmanager : MonoBehaviour
 
     private void Update()
     {
-
         wStats = FindAnyObjectByType<WeaponStats>();
-       
-
-       
     }
 
     public void AddToken()

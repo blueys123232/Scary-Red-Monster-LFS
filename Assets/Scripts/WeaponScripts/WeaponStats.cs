@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,9 +15,6 @@ public class WeaponStats : MonoBehaviour
     //Weapon text for Melee Weapons = Damage
     [SerializeField] TextMeshProUGUI WeaponText;
 
-
-
-
     public int Damage, AmmoCount;
     [HideInInspector] public int ThrowableWeapons;
     public float ProjectileSpeed;
@@ -28,6 +26,8 @@ public class WeaponStats : MonoBehaviour
         aPickup = FindAnyObjectByType<AmmoPickup>();
         WeaponTypeSwitch();
     }
+
+    
 
     public void WeaponTypeSwitch()
     {
@@ -68,6 +68,7 @@ public class WeaponStats : MonoBehaviour
                 break;
             case WeaponType.Sword:
                 WeaponText.text = "Damage:" + Damage.ToString();
+                wepInt = 5;
 
                 break;
                 //case WeaponType.Hammer:
@@ -82,28 +83,6 @@ public class WeaponStats : MonoBehaviour
     private void Update()
     {
         WeaponTypeSwitch();
-        //Debug.Log(wepInt);
-
-        //if(gameObject.tag == "Ranged")
-
-        //{
-        //    Meleetext = null;
-        //    ThrowableText = null;
-        //}
-        //if(gameObject.tag == "Melee")
-
-        //{
-        //    ammoText = null;
-        //    ThrowableText = null;
-        //}
-
-        //if(gameObject.tag == "Thrown")
-
-        //{
-        //    Meleetext = null;
-        //    ammoText = null;
-        //}
-
     }
 
 }

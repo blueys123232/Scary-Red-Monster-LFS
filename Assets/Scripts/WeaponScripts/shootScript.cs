@@ -11,6 +11,7 @@ public class shootScript : MonoBehaviour
     WeaponStats weaponStats;
     public AudioSource Shooting;
     private Animator PlayerAnimator;
+
     private void Start()
     {
         PlayerAnimator = FindAnyObjectByType<PlayerMovement>().GetComponent<Animator>();

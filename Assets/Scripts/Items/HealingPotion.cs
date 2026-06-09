@@ -22,15 +22,14 @@ public class HealingPotion : MonoBehaviour
             puManager.AddPotion();
             AudioSource.Play();
             puManager.SaveInt("PotionNumber", puManager.hPotCount);
-            StartCoroutine(DestroyAfterSound()); // Destroy the coin after the sound plays
+            StartCoroutine(DestroyAfterSound()); // Destroy the HPot after the sound plays
         }
     }
 
     private IEnumerator DestroyAfterSound()
     {
-        //yield return new WaitForSeconds(AudioSource.clip.length);
-        yield return new WaitForSeconds(0.5f);
-        Destroy(gameObject); // Destroy the coin after the sound has played
+        yield return new WaitForSeconds(AudioSource.clip.length);
+        Destroy(gameObject); // Destroy the HPot after the sound has played
     }
 }
 

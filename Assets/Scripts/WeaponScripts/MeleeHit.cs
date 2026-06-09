@@ -18,7 +18,7 @@ public class MeleeHit : MonoBehaviour
             collision.collider.GetComponent<Rigidbody2D>().AddForce(gameObject.transform.forward * 2f, ForceMode2D.Force);
             if (e_Health != null && weaponStats != null)
             {
-                StartCoroutine(e_Health.TakeDamage(weaponStats.Damage, 1f));
+                e_Health.TakeDamage(weaponStats.Damage);
             }
         }
 
