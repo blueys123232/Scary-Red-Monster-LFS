@@ -102,27 +102,6 @@ public class WeaponStats : MonoBehaviour
     private void Update()
     {
         WeaponTypeSwitch();
-        //Debug.Log(wepInt);
-
-        //if(gameObject.tag == "Ranged")
-
-        //{
-        //    Meleetext = null;
-        //    ThrowableText = null;
-        //}
-        //if(gameObject.tag == "Melee")
-
-        //{
-        //    ammoText = null;
-        //    ThrowableText = null;
-        //}
-
-        //if(gameObject.tag == "Thrown")
-
-        //{
-        //    Meleetext = null;
-        //    ammoText = null;
-        //}
 
     }
 
