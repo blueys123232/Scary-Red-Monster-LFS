@@ -63,16 +63,8 @@ public class PlayerHealth : MonoBehaviour
         UpdateHealthBar();
         UpdatedHealthText();
         CheckIfDead();
-
         StartCoroutine(DamageReset());
 
-        //ResetDamageState();
-
-    }
-    public void ResetDamageState()
-    {
-        //animator.SetBool("isTakingDamage", false);
-        isTakingDamage = false;
     }
 
     public void Heal(int amount)

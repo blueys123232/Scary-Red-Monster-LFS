@@ -8,19 +8,12 @@ public class UIManager : MonoBehaviour
     //fade speed
     public float fadeTime;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
         if (fadeOut)
         {
             //have to create a new color as you cant just set the Alpha/a to be 1
-            RespawnScreen.color = new Color(0,0,0, Mathf.MoveTowards(RespawnScreen.color.a, 1f, fadeTime * Time.deltaTime));
+            RespawnScreen.color = new Color(0, 0, 0, Mathf.MoveTowards(RespawnScreen.color.a, 1f, fadeTime * Time.deltaTime));
         }
         //fade back in to game when respawning
         if (fadeIn)
@@ -28,4 +21,18 @@ public class UIManager : MonoBehaviour
             RespawnScreen.color = new Color(0, 0, 0, Mathf.MoveTowards(RespawnScreen.color.a, 0f, fadeTime * Time.deltaTime));
         }
     }
+
+    public void FadeOut()
+    {
+        fadeOut = true;
+        fadeIn = false;
+    }
+
+    public void FadeIn()
+    {
+        fadeOut = false;
+        fadeIn = true;
+    }
+
+
 }

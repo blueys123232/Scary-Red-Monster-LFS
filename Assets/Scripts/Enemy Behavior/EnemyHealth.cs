@@ -1,3 +1,5 @@
+using NUnit.Framework.Internal.Filters;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -9,45 +11,44 @@ public class EnemyHealth : MonoBehaviour
     [Header("Enemy Health Settings")]
     public float maxHealth = 100f;
     public float currentHealth;
+    private float textTimer;
+    bool damaged;
     [SerializeField] private TextMeshPro damageNumber;
-    // Start is called before the first frame update
-    //[Header("Health Bar UI")]
-    //public Image healthBarImage;
+
     private void Start()
     {
+        textTimer = 10f;
+        damageNumber.text = "";
         currentHealth = maxHealth;
-       //UpdateHealthBar();
     }
 
-    public IEnumerator TakeDamage(float amount, float delay)
+    public void TakeDamage(float amount)
     {
         currentHealth -= amount;
         currentHealth = Mathf.Clamp(currentHealth, 0f, maxHealth);
         damageNumber.text = amount.ToString();
-        yield return new WaitForSeconds(delay);
-        damageNumber.text = "";
+        damaged = true;
     }
 
     private void Update()
     {
+        if (damaged)
+        {
+            textTimer--;
+        }
+
+        if(textTimer <= 0)
+        {
+            damageNumber.text = "";
+            damaged = false;
+            textTimer = 10f;
+        }
+
         if (currentHealth <= 0f)
         {
             Die();
         }
     }
-
-    //private void UpdateHealthBar()
-    //{
-    //    if (healthBarImage != null)
-    //    {
-    //        float fillValue = currentHealth / maxHealth;
-    //        healthBarImage.fillAmount = fillValue;
-    //    }
-    //    else
-    //    {
-    //        Debug.LogWarning("Health Bar Fill is not assigned in EnemyHealth for " + gameObject.name);
-    //    }
-    //}
 
     private void Die()
     {

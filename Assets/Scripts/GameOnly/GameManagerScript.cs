@@ -9,6 +9,7 @@ public class GameManagerScript : MonoBehaviour
     [HideInInspector] public bool curRespawning;
 
     private PlayerMovement pMovement;
+    private UIManager uiMan;
 
     public Vector3 respawnPoint;
 
@@ -16,16 +17,10 @@ public class GameManagerScript : MonoBehaviour
     void Start()
     {
         pMovement = FindAnyObjectByType<PlayerMovement>();
+        uiMan = FindAnyObjectByType<UIManager>(); 
 
         //initial respawn point when we start the game
-        respawnPoint = pMovement.transform.position;
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        respawnPoint = pMovement.transform.position;   
     }
 
     public void RespawnPlayer()
@@ -42,13 +37,12 @@ public class GameManagerScript : MonoBehaviour
 
     public IEnumerator respawn()
     {
-        //Maybe add screen fade for respawning?
+        uiMan.FadeOut();
 
         yield return new WaitForSeconds(RespawnDelay);
 
         pMovement.transform.position = respawnPoint;
         curRespawning = false;
-
-
+        uiMan.FadeIn();
     }
 }

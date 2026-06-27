@@ -11,6 +11,7 @@ public class shootScript : MonoBehaviour
     WeaponStats weaponStats;
     public AudioSource Shooting;
     private Animator PlayerAnimator;
+
     private void Start()
     {
         PlayerAnimator = FindAnyObjectByType<PlayerMovement>().GetComponent<Animator>();
@@ -36,17 +37,11 @@ public class shootScript : MonoBehaviour
     }
     private IEnumerator Shoot()
     {
-        {
-            {
+        Instantiate(projectilePreFab, firePoint.transform.position, firePoint.rotation);
+        puManager.AmmoLoss();
 
-                Instantiate(projectilePreFab, firePoint.transform.position, firePoint.rotation);
-                puManager.AmmoLoss();
-
-                yield return new WaitForSeconds(4f);
-                PlayerAnimator.SetBool("isFiring", false);
-                //When sound effect added use that as timer for weaponfired boolean
-
-            }
-        }
+        yield return new WaitForSeconds(0.1f);
+        PlayerAnimator.SetBool("isFiring", false);
+        //When sound effect added use that as timer for weaponfired boolean
     }
 }

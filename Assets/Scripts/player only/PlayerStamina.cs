@@ -27,7 +27,6 @@ public class PlayerStamina : MonoBehaviour
     void Update()
     {
         HandleStamina();
-        Debug.Log(PM.isRunningPM);
     }
 
     void HandleStamina()

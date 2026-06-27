@@ -36,7 +36,7 @@ public class ProjectileAmmoBehaviour : MonoBehaviour
             EnemyHealth eHealth = collision.collider.GetComponent<EnemyHealth>();
             if (eHealth != null && wStats != null)
             {
-                StartCoroutine(eHealth.TakeDamage(wStats.Damage, 1f));
+                eHealth.TakeDamage(wStats.Damage);
                 Destroy(gameObject);
             }
         }
