@@ -26,12 +26,11 @@ public class PauseMenu : MonoBehaviour
             {
                 Pause();
             }
-        }
+        } 
     }
 
     public void Resume()
     {
-        Debug.Log("Resuming game"); // Debug log
         pauseMenuUI.SetActive(false);
         OtherUI.SetActive(true);
         Time.timeScale = 1f;
@@ -40,7 +39,6 @@ public class PauseMenu : MonoBehaviour
 
     public void Pause()
     {
-        Debug.Log("Pausing game"); // Debug log
         pauseMenuUI.SetActive(true);
         OtherUI.SetActive(false);
         Time.timeScale = 0f;
@@ -66,7 +64,7 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
-  public void NewandLoad()
+    public void NewandLoad()
     {
         SceneManager.LoadScene("New And Load");
     }

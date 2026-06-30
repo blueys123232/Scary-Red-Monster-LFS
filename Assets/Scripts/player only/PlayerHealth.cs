@@ -37,8 +37,6 @@ public class PlayerHealth : MonoBehaviour
         UpdateHealthBar();
         UpdatedHealthText();
 
-        
-
         if (gameoverPanel != null)
         {
             gameoverPanel.SetActive(false);

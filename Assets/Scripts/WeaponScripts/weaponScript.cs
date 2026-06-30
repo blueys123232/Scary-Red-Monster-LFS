@@ -1,3 +1,4 @@
+using Newtonsoft.Json.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,12 +9,13 @@ public class weaponScript : MonoBehaviour
     // Start is called before the first frame update
 
     int totalWeapons;
-    public int CurrentWeaponIndex;
+    [SerializeField] int CurrentWeaponIndex;
 
     [SerializeField] GameObject[] Weapons;
     [SerializeField] GameObject[] WeaponsUI;
     [SerializeField] GameObject weaponHolder, weaponUIHolder, currentWeapon;
 
+    shootScript S_Script;
 
     void Start()
     {
@@ -32,6 +34,9 @@ public class weaponScript : MonoBehaviour
         //Weapons[0] should by default be unarmed
         Weapons[0].SetActive(true);
         WeaponsUI[0].SetActive(true);
+
+        //LoadInt();
+
     }
     // Update is called once per frame
     void Update()
@@ -40,11 +45,24 @@ public class weaponScript : MonoBehaviour
         Weapons = new GameObject[totalWeapons];
         WeaponsUI = new GameObject[totalWeapons];
 
+        //if(Input.GetKeyDown(KeyCode.Comma))
+        //{
+        //    SaveWeaponsHeld("WeaponsHeld", CurrentWeaponIndex);
+        //    Debug.Log("Saved Weapons" + CurrentWeaponIndex);
+        //}
+
         WeaponSwitch();
     }
 
     void WeaponSwitch()
     {
+
+        S_Script = FindAnyObjectByType<shootScript>();
+
+        /* 
+         Update the weapons fire point in here somewhere?
+        so that it doesnt just update whenever we move
+         */
 
         for (int i = 0; i < totalWeapons; i++)
         {
@@ -84,4 +102,17 @@ public class weaponScript : MonoBehaviour
             }
         }
     }
+
+    //void SaveWeaponsHeld(string curWeapons, int totWeapons)
+    //{
+    //    PlayerPrefs.SetInt(curWeapons, totWeapons);
+    //    PlayerPrefs.Save();
+    //}
+
+    //public void LoadInt()
+    //{
+    //    CurrentWeaponIndex = PlayerPrefs.GetInt("WeaponsHeld");
+    //    Debug.Log("loaded Weapons");
+    //}
+
 }

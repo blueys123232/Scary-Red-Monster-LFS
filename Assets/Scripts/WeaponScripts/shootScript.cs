@@ -34,6 +34,8 @@ public class shootScript : MonoBehaviour
         {
             Debug.Log("Out of Ammo");
         }
+
+        
     }
     private IEnumerator Shoot()
     {
@@ -44,4 +46,6 @@ public class shootScript : MonoBehaviour
         PlayerAnimator.SetBool("isFiring", false);
         //When sound effect added use that as timer for weaponfired boolean
     }
+
+    
 }
