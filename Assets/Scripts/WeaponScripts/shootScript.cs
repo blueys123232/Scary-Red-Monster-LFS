@@ -17,6 +17,7 @@ public class shootScript : MonoBehaviour
         PlayerAnimator = FindAnyObjectByType<PlayerMovement>().GetComponent<Animator>();
         weaponStats = GetComponent<WeaponStats>();
         puManager = FindAnyObjectByType<PickUpmanager>();
+        firePoint = GameObject.Find("FirePoint").transform;
     }
 
     private float nextFireTime = 0f;
@@ -39,7 +40,7 @@ public class shootScript : MonoBehaviour
     }
     private IEnumerator Shoot()
     {
-        Instantiate(projectilePreFab, firePoint.transform.position, firePoint.rotation);
+        Instantiate(projectilePreFab, weaponStats.transform.position, firePoint.rotation);
         puManager.AmmoLoss();
 
         yield return new WaitForSeconds(0.1f);

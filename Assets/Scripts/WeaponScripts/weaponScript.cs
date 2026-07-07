@@ -35,7 +35,7 @@ public class weaponScript : MonoBehaviour
         Weapons[0].SetActive(true);
         WeaponsUI[0].SetActive(true);
 
-        //LoadInt();
+        LoadInt();
 
     }
     // Update is called once per frame
@@ -45,24 +45,29 @@ public class weaponScript : MonoBehaviour
         Weapons = new GameObject[totalWeapons];
         WeaponsUI = new GameObject[totalWeapons];
 
-        //if(Input.GetKeyDown(KeyCode.Comma))
-        //{
-        //    SaveWeaponsHeld("WeaponsHeld", CurrentWeaponIndex);
-        //    Debug.Log("Saved Weapons" + CurrentWeaponIndex);
-        //}
-
         WeaponSwitch();
+
+        if (Input.GetKeyDown(KeyCode.Comma))
+        {
+            for (int i = 0; i < totalWeapons; i++)
+            {
+                Weapons[i] = weaponHolder.transform.GetChild(i).gameObject;
+                WeaponsUI[i] = weaponUIHolder.transform.GetChild(i).gameObject;
+
+
+                SaveWeaponsHeld("WeaponsHeld", weaponHolder.transform.childCount);
+                Debug.Log("Saved Weapons" + weaponHolder.transform.childCount);
+            }
+
+        }
+
+
     }
 
     void WeaponSwitch()
     {
 
         S_Script = FindAnyObjectByType<shootScript>();
-
-        /* 
-         Update the weapons fire point in here somewhere?
-        so that it doesnt just update whenever we move
-         */
 
         for (int i = 0; i < totalWeapons; i++)
         {
@@ -103,16 +108,16 @@ public class weaponScript : MonoBehaviour
         }
     }
 
-    //void SaveWeaponsHeld(string curWeapons, int totWeapons)
-    //{
-    //    PlayerPrefs.SetInt(curWeapons, totWeapons);
-    //    PlayerPrefs.Save();
-    //}
+    void SaveWeaponsHeld(string curWeapons, int totWeapons)
+    {
+        PlayerPrefs.SetInt(curWeapons, totWeapons);
+        PlayerPrefs.Save();
+    }
 
-    //public void LoadInt()
-    //{
-    //    CurrentWeaponIndex = PlayerPrefs.GetInt("WeaponsHeld");
-    //    Debug.Log("loaded Weapons");
-    //}
+    public void LoadInt()
+    {
+        totalWeapons = PlayerPrefs.GetInt("WeaponsHeld");
+        Debug.Log("loaded Weapons");
+    }
 
 }

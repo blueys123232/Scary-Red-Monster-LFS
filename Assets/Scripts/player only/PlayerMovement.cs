@@ -41,6 +41,8 @@ public class PlayerMovement : MonoBehaviour
         if (rb == null) Debug.LogError("Rigidbody2D component not found on " + gameObject.name);
         if (animator == null) Debug.LogError("Animator component not found on " + gameObject.name);
         if (groundCheck == null) Debug.LogError("GroundCheck Transform not assigned in the Inspector on " + gameObject.name);
+
+        
     }
 
     void Update()
