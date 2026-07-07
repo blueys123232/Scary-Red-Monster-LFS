@@ -24,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isTakingDamage;
     private shootScript S_Script;
     private WeaponStats wStats;
+    private PlayerStamina playerStamina;
 
 
 
@@ -37,6 +38,7 @@ public class PlayerMovement : MonoBehaviour
         puManager = FindAnyObjectByType<PickUpmanager>();
         S_Script = FindAnyObjectByType<shootScript>();
         wStats = FindAnyObjectByType<WeaponStats>();
+        playerStamina = FindAnyObjectByType<PlayerStamina>();
         // Check for component assignments
         if (rb == null) Debug.LogError("Rigidbody2D component not found on " + gameObject.name);
         if (animator == null) Debug.LogError("Animator component not found on " + gameObject.name);

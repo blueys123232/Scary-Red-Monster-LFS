@@ -19,12 +19,16 @@ public class WeaponStats : MonoBehaviour
     [HideInInspector] public int ThrowableWeapons;
     public float ProjectileSpeed;
     public int wepInt;
+    public string wepId;
+    public SpriteRenderer weaponRenderer;
+    public Sprite BlankImage;
 
     private void Start()
     {
 
         aPickup = FindAnyObjectByType<AmmoPickup>();
         WeaponTypeSwitch();
+        PlayerPrefs.GetString(wepId);
     }
 
     
@@ -47,29 +51,41 @@ public class WeaponStats : MonoBehaviour
 
             case WeaponType.Pistol:
                 WeaponText.text = "Ammo:" + AmmoCount.ToString();
-
+                if (weaponRenderer != null && BlankImage != null)
+                    weaponRenderer.sprite = BlankImage;
                 wepInt = 1;
-
+                wepId = this.GetInstanceID().ToString();
+                PlayerPrefs.SetString("WeaponID", wepId);
                 break;
             case WeaponType.Shotgun:
                 WeaponText.text = "Shells: " + AmmoCount.ToString();
-
+                if (weaponRenderer != null && BlankImage != null)
+                    weaponRenderer.sprite = BlankImage;
                 wepInt = 2;
+                wepId = this.GetInstanceID().ToString();
+                PlayerPrefs.SetString("WeaponID", wepId);
                 break;
             case WeaponType.Bow:
                 WeaponText.text = "Arrows: " + AmmoCount.ToString();
-
+                if (weaponRenderer != null && BlankImage != null)
+                    weaponRenderer.sprite = BlankImage;
                 wepInt = 3;
-
+                wepId = this.GetInstanceID().ToString();
+                PlayerPrefs.SetString("WeaponID", wepId);
                 break;
             case WeaponType.Launcher:
                 WeaponText.text = "Explosives: " + AmmoCount.ToString();
+                if (weaponRenderer != null && BlankImage != null)
+                    weaponRenderer.sprite = BlankImage;
                 wepInt = 4;
+                wepId = this.GetInstanceID().ToString();
+                PlayerPrefs.SetString("WeaponID", wepId);
                 break;
             case WeaponType.Sword:
                 WeaponText.text = "Damage:" + Damage.ToString();
                 wepInt = 5;
-
+                wepId = this.GetInstanceID().ToString();
+                PlayerPrefs.SetString("WeaponID", wepId);
                 break;
                 //case WeaponType.Hammer:
                 //    WeaponText.text = "Ammo:" + MeleeDamage.ToString();
@@ -79,6 +95,7 @@ public class WeaponStats : MonoBehaviour
                 //    break;
 
         }
+        PlayerPrefs.Save();
     }
     private void Update()
     {
@@ -102,5 +119,6 @@ public enum WeaponType
     Chainsaw,
     Spear,
     Shuriken,
-    Hand
+    Hand,
+    Cannon
 }

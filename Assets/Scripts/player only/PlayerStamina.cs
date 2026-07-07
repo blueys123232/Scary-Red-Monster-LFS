@@ -1,20 +1,22 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-
+using System.Collections;
 
 public class PlayerStamina : MonoBehaviour
 {
     public float currentStamina;
+
     [SerializeField] float maxStamina = 100f;
     [SerializeField] float staminaRegenRate = 5f;
     [SerializeField] float staminaDrainRate = 10f;
+
     public Image staminaBar;
     PlayerMovement PM;
-
+    private Animator animator;
     public TextMeshProUGUI staminatext;
 
-    private bool isRunning = false;
+    public bool isRunning = false;
     void Start()
     {
         PM = GetComponent<PlayerMovement>();
