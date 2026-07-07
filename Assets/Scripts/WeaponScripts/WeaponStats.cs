@@ -23,6 +23,7 @@ public class WeaponStats : MonoBehaviour
     public SpriteRenderer weaponRenderer;
     public Sprite BlankImage;
 
+
     private void Start()
     {
 
@@ -39,6 +40,8 @@ public class WeaponStats : MonoBehaviour
         switch (wType)
         {
             
+
+
             case WeaponType.None:
                 //Nothing should be NONE but if it is having this case should prevent errors
                 break;
@@ -72,6 +75,7 @@ public class WeaponStats : MonoBehaviour
                 wepInt = 3;
                 wepId = this.GetInstanceID().ToString();
                 PlayerPrefs.SetString("WeaponID", wepId);
+
                 break;
             case WeaponType.Launcher:
                 WeaponText.text = "Explosives: " + AmmoCount.ToString();
@@ -86,13 +90,16 @@ public class WeaponStats : MonoBehaviour
                 wepInt = 5;
                 wepId = this.GetInstanceID().ToString();
                 PlayerPrefs.SetString("WeaponID", wepId);
+
                 break;
                 //case WeaponType.Hammer:
-                //    WeaponText.text = "Ammo:" + MeleeDamage.ToString();
+                //    WeaponText.text = "Damage:" + MeleeDamage.ToString();
                 //    break;
                 //case WeaponType.Chainsaw:
                 //    WeaponText.text = "Damage:" + MeleeDamage.ToString();
                 //    break;
+
+
 
         }
         PlayerPrefs.Save();

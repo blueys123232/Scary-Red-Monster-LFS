@@ -17,7 +17,6 @@ public class Meleeattack : MonoBehaviour
 
         weaponStats = GetComponent<WeaponStats>();
 
-
         if (HitBox.gameObject.active)
         {
             HitBox.gameObject.SetActive(false);

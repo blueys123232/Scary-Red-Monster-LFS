@@ -150,6 +150,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
     buildTarget: WindowsStoreApps
+<<<<<<< HEAD
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -163,6 +164,8 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
     buildTarget: VisionOS
+=======
+>>>>>>> 419bc2755e537b9fe5654ebde71064807a0d1a08
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
