@@ -34,7 +34,7 @@ public class Meleeattack : MonoBehaviour
         if (Input.GetButtonDown("Fire1"))
         {
 
-            if (MeleeSound != null)
+            if (MeleeSound != null) 
             {
                 MeleeSound.Play();
             }

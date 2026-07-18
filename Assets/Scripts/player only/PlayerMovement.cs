@@ -83,6 +83,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 Jumpsound.Play();
             }
+
             Jump();
         }
     }
