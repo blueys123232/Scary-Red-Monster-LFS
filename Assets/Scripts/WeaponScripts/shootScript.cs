@@ -9,7 +9,7 @@ public class shootScript : MonoBehaviour
     public Transform firePoint;
     private PickUpmanager puManager;
     WeaponStats weaponStats;
-    public AudioSource Shooting;
+    public AudioSource ShootSound;
     private Animator PlayerAnimator;
 
     private void Start()
@@ -26,8 +26,15 @@ public class shootScript : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire1") && weaponStats.AmmoCount > 0)
         {
+
+            if (ShootSound != null)
+            {
+                ShootSound.Play();
+            }
+
             PlayerAnimator.SetBool("isFiring", true);
             StartCoroutine(Shoot());
+            
         }
 
         else if (weaponStats.AmmoCount == 0)

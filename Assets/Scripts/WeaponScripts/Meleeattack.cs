@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,8 @@ public class Meleeattack : MonoBehaviour
     WeaponStats weaponStats;
     private Animator PlayerAnimator;
     public GameObject HitBox;
+    public AudioSource MeleeSound;
+
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -21,7 +24,7 @@ public class Meleeattack : MonoBehaviour
         {
             HitBox.gameObject.SetActive(false);
         }
-
+        
 
     }
 
@@ -30,11 +33,18 @@ public class Meleeattack : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire1"))
         {
+
+            if (MeleeSound != null)
+            {
+                MeleeSound.Play();
+            }
+           
+
             StartCoroutine(e_MeleeAttack());
         }
 
     }
-
+       
 
     private IEnumerator e_MeleeAttack()
     {

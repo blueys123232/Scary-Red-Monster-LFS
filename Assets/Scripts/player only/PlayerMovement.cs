@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float crouchSpeed = 5f; // Crouch speed
     [SerializeField] private float jumpForce = 15f; // Jump force
     [SerializeField] private int healAmount = 50; //how much potions heal
-
+    [SerializeField] public AudioSource Jumpsound;
     [SerializeField] Transform groundCheck; // Ground check position
     [SerializeField] LayerMask groundLayer; // Layer mask for ground
 
@@ -25,7 +25,7 @@ public class PlayerMovement : MonoBehaviour
     private shootScript S_Script;
     private WeaponStats wStats;
     private PlayerStamina playerStamina;
-
+    
 
 
     void Start()
@@ -79,6 +79,10 @@ public class PlayerMovement : MonoBehaviour
         // Handle jump input (space bar and W key)
         if ((Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.W)) && isGrounded)
         {
+             if (Jumpsound != null)
+            {
+                Jumpsound.Play();
+            }
             Jump();
         }
     }
