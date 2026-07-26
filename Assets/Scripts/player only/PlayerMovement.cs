@@ -1,20 +1,33 @@
 using UnityEngine;
-
+using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
-
+    [Header("Movement")]
     [SerializeField] private float moveSpeed = 10f; // Movement speed
     [SerializeField] private float runSpeed = 20f; // Running speed
     [SerializeField] private float crouchSpeed = 5f; // Crouch speed
     [SerializeField] private float jumpForce = 15f; // Jump force
+
+    [Header("Healing")]
     [SerializeField] private int healAmount = 50; //how much potions heal
+
+    [Header("Audio Clips")]
     [SerializeField] public AudioSource Jumpsound;
+
+    [Header("Ground Check")]
     [SerializeField] Transform groundCheck; // Ground check position
     [SerializeField] LayerMask groundLayer; // Layer mask for ground
 
+    [Header("Input Actions")]
+    [SerializeField] private InputActionReference moveAction;
+    [SerializeField] private InputActionReference jumpAction;
+    [SerializeField] private InputActionReference runAction;
+    [SerializeField] private InputActionReference crouchAction;
+    [SerializeField] private InputActionReference healAction;
+
+
     private PlayerHealth playerHealth;
     private PickUpmanager puManager;
-
     private Rigidbody2D rb;
     private Animator animator;
     private bool isGrounded;
@@ -25,9 +38,8 @@ public class PlayerMovement : MonoBehaviour
     private shootScript S_Script;
     private WeaponStats wStats;
     private PlayerStamina playerStamina;
+
     
-
-
     void Start()
     {
         // Get required components
@@ -46,13 +58,29 @@ public class PlayerMovement : MonoBehaviour
 
         
     }
+    private void OnEnable()
+    {
+        moveAction.action.Enable();
+        jumpAction.action.Enable();
+        runAction.action.Enable();
+        crouchAction.action.Enable();
+        healAction.action.Enable();
+    }
 
+    private void OnDisable()
+    {
+        moveAction.action.Disable();
+        jumpAction.action.Disable();
+        runAction.action.Disable();
+        crouchAction.action.Disable();
+        healAction.action.Disable();
+    }
     void Update()
     {
         HandleInput();
         UpdateAnimations();
         HealPlayer();
-
+        
     }
     void FixedUpdate()
     {
@@ -63,10 +91,11 @@ public class PlayerMovement : MonoBehaviour
     {
 
         // Handle movement input
+        Vector2 movementInput = moveAction.action.ReadValue<Vector2>();
         moveDirection = Input.GetAxisRaw("Horizontal");
 
         // Handle crouch input
-        isCrouching = Input.GetKey(KeyCode.S);
+        isCrouching = Input.GetKey(KeyCode.S) || (Input.GetButton("Crouch"));
         if (animator != null)
         {
             animator.SetBool("isCrouching", isCrouching);
@@ -88,11 +117,11 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void Move()
+    public void Move()
     {
+
         wStats = FindAnyObjectByType<WeaponStats>();
         S_Script = FindAnyObjectByType<shootScript>();
-
         // Set the movement speed based on the current state
         float speed = isCrouching ? crouchSpeed : (isRunningPM ? runSpeed : moveSpeed);
 
@@ -130,7 +159,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void Jump()
+    public void Jump()
     {
         if (groundCheck == null)
         {
@@ -151,7 +180,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void UpdateAnimations()
+   private void UpdateAnimations()
     {
         if (animator == null)
         {
@@ -163,7 +192,7 @@ public class PlayerMovement : MonoBehaviour
         animator.SetFloat("xVelocity", Mathf.Abs(rb.linearVelocity.x));
         animator.SetFloat("yVelocity", rb.linearVelocity.y);
         animator.SetBool("isJumping", !isGrounded);
-
+        animator.SetBool("isCrouching", isCrouching);
 
         if (S_Script != null)
         {
@@ -200,7 +229,7 @@ public class PlayerMovement : MonoBehaviour
             isGrounded = false;
         }
     }
-    void HealPlayer()
+    public void HealPlayer()
     {
         // Click the Healing Potion on any Slot
         //can only use potions if we have more than 0
