@@ -19,8 +19,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] LayerMask groundLayer; // Layer mask for ground
 
     [Header("Input Actions")]
-    [SerializeField] private InputActionReference moveAction;
-    [SerializeField] private InputActionReference jumpAction;
+    [SerializeField] private InputActionReference moveAction, jumpAction;
     [SerializeField] private InputActionReference runAction;
     [SerializeField] private InputActionReference crouchAction;
     [SerializeField] private InputActionReference healAction;
@@ -33,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isGrounded;
     private bool isCrouching;
     public bool isRunningPM = false;
-    private float moveDirection; // For capturing horizontal input
+    private Vector2 moveDirection; // For capturing horizontal input
     private bool isTakingDamage;
     private shootScript S_Script;
     private WeaponStats wStats;
@@ -92,10 +91,10 @@ public class PlayerMovement : MonoBehaviour
 
         // Handle movement input
         Vector2 movementInput = moveAction.action.ReadValue<Vector2>();
-        moveDirection = Input.GetAxisRaw("Horizontal");
-
+        moveDirection = movementInput;
+ 
         // Handle crouch input
-        isCrouching = Input.GetKey(KeyCode.S) || (Input.GetButton("Crouch"));
+        isCrouching = crouchAction.action.IsPressed();
         if (animator != null)
         {
             animator.SetBool("isCrouching", isCrouching);
@@ -103,10 +102,10 @@ public class PlayerMovement : MonoBehaviour
 
 
         // Handle running input
-        isRunningPM = Input.GetKey(KeyCode.LeftShift);
+        isRunningPM = runAction.action.IsPressed();
 
         // Handle jump input (space bar and W key)
-        if ((Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.W)) && isGrounded)
+        if (jumpAction.action.WasPressedThisFrame() && isGrounded)
         {
              if (Jumpsound != null)
             {
@@ -126,7 +125,7 @@ public class PlayerMovement : MonoBehaviour
         float speed = isCrouching ? crouchSpeed : (isRunningPM ? runSpeed : moveSpeed);
 
         // Flip character sprite based on movement direction
-        if (moveDirection < 0)
+        if (moveDirection.x < 0)
         {
             transform.localScale = new Vector3(-1, 1, 1);
 
@@ -139,7 +138,7 @@ public class PlayerMovement : MonoBehaviour
                 S_Script.firePoint.transform.eulerAngles = new Vector3(0f, 180f, 0f);
             }
         }
-        else if (moveDirection > 0)
+        else if (moveDirection.x > 0)
         {
             transform.localScale = new Vector3(1, 1, 1);
             if (S_Script == null)
@@ -155,7 +154,7 @@ public class PlayerMovement : MonoBehaviour
         // Apply horizontal velocity
         if (rb != null)
         {
-            rb.linearVelocity = new Vector2(moveDirection * speed, rb.linearVelocity.y);
+            rb.linearVelocity = new Vector2(moveDirection.x * speed, rb.linearVelocity.y);
         }
     }
 
@@ -233,7 +232,7 @@ public class PlayerMovement : MonoBehaviour
     {
         // Click the Healing Potion on any Slot
         //can only use potions if we have more than 0
-        if (Input.GetKeyDown(KeyCode.H) && puManager.hPotCount > 0 && playerHealth.currentHealth < playerHealth.maxHealth)
+        if (healAction.action.WasPressedThisFrame() && puManager.hPotCount > 0 && playerHealth.currentHealth < playerHealth.maxHealth)
         {
             puManager.UsePotion();
             if (playerHealth != null)

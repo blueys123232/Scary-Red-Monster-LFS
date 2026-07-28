@@ -17,12 +17,12 @@
                 },
                 {
                     "name": "Movement",
-                    "type": "PassThrough",
+                    "type": "Value",
                     "id": "06ce54f3-3e37-437e-8dbb-e3e6917fb310",
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Shoot Attack and Throw",
@@ -46,6 +46,15 @@
                     "name": "Healing Action",
                     "type": "Button",
                     "id": "30b64a4b-6e8c-487d-806c-c385fcfe7af1",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Sprint",
+                    "type": "Button",
+                    "id": "d3982fee-db27-4515-8404-c3d5803a0215",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -153,9 +162,9 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "1D Axis",
+                    "name": "2D Vector",
                     "id": "09de1614-0cef-4562-b829-e82caf077399",
-                    "path": "1DAxis",
+                    "path": "2DVector",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -164,7 +173,7 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "negative",
+                    "name": "Left",
                     "id": "56f19e57-7e60-4742-b327-fcff68d562e0",
                     "path": "<Gamepad>/dpad/left",
                     "interactions": "",
@@ -175,7 +184,7 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "positive",
+                    "name": "Right",
                     "id": "082e14a5-cd7a-4c03-ae50-abf13e8552d9",
                     "path": "<Gamepad>/dpad/right",
                     "interactions": "",
@@ -186,9 +195,9 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "1D Axis",
-                    "id": "ccb4c154-cf75-469e-8b93-5255bc734426",
-                    "path": "1DAxis",
+                    "name": "LeRi",
+                    "id": "69f12d57-f656-47b3-b45d-5b16b9e1ff8d",
+                    "path": "2DVector",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -197,9 +206,9 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "negative",
-                    "id": "d3998cde-4ccc-4908-8c58-97fec9bb599e",
-                    "path": "<Gamepad>/leftStick/left",
+                    "name": "Right",
+                    "id": "08781ab5-da77-48e0-867f-9c2187251139",
+                    "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -208,9 +217,9 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "positive",
-                    "id": "80870cb5-6d53-416f-9889-5e9f6637b93b",
-                    "path": "<Gamepad>/leftStick/right",
+                    "name": "Left",
+                    "id": "400d6e54-1ed4-4ff7-9dc0-cb703a30389b",
+                    "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -237,6 +246,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Healing Action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4d14735d-b236-4dc5-b4f2-bd7141087e4c",
+                    "path": "<Keyboard>/leftShift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Sprint",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "34506a34-f0bc-4bbf-b9c9-0857ae6b3c3d",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Sprint",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

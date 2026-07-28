@@ -2,9 +2,13 @@ using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Meleeattack : MonoBehaviour
 {
+
+    [SerializeField]
+    private InputActionReference MeleeAction;
 
     WeaponStats weaponStats;
     private Animator PlayerAnimator;
@@ -31,7 +35,7 @@ public class Meleeattack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (MeleeAction.action.WasPressedThisFrame())
         {
 
             if (MeleeSound != null) 

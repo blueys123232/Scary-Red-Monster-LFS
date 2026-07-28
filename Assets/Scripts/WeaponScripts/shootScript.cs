@@ -2,8 +2,12 @@ using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 public class shootScript : MonoBehaviour
 {
+
+    [SerializeField]
+    private InputActionReference ShootAction;
 
     [SerializeField] private GameObject projectilePreFab;
     public Transform firePoint;
@@ -24,7 +28,7 @@ public class shootScript : MonoBehaviour
     // shoots when left mouse button is pressed and cooldown had passed
     void Update()
     {
-        if (Input.GetButtonDown("Fire1") && weaponStats.AmmoCount > 0)
+        if (ShootAction.action.WasPressedThisFrame() && weaponStats.AmmoCount > 0)
         {
 
             if (ShootSound != null)
