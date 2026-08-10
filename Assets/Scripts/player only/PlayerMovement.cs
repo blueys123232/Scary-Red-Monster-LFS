@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
@@ -11,6 +13,10 @@ public class PlayerMovement : MonoBehaviour
     [Header("Healing")]
     [SerializeField] private int healAmount = 50; //how much potions heal
 
+
+
+    //[Header("Trail Renenderer")]
+    //[SerializeField] private TrailRenderer tr;
     [Header("Audio Clips")]
     [SerializeField] public AudioSource Jumpsound;
 
@@ -19,27 +25,35 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] LayerMask groundLayer; // Layer mask for ground
 
     [Header("Input Actions")]
-    [SerializeField] private InputActionReference moveAction;
-    [SerializeField] private InputActionReference jumpAction;
+    [SerializeField] private InputActionReference moveAction, jumpAction;
     [SerializeField] private InputActionReference runAction;
     [SerializeField] private InputActionReference crouchAction;
     [SerializeField] private InputActionReference healAction;
+    [SerializeField] private InputActionReference dashAction;
+
+    [Header("Bools")]
+    public bool isRunningPM = false;
+    private bool isGrounded;
+    private bool isCrouching;
+    private bool isTakingDamage;
+    private bool CanDash = true;
+    private float dashingPower = 24f;
+    private float dashingTime = 0.2f;
+    private float dashingCooldown = 1f;
+    private bool isDashing;
+
 
 
     private PlayerHealth playerHealth;
     private PickUpmanager puManager;
     private Rigidbody2D rb;
     private Animator animator;
-    private bool isGrounded;
-    private bool isCrouching;
-    public bool isRunningPM = false;
-    private float moveDirection; // For capturing horizontal input
-    private bool isTakingDamage;
+    private Vector2 moveDirection; // For capturing horizontal input
     private shootScript S_Script;
     private WeaponStats wStats;
     private PlayerStamina playerStamina;
 
-    
+
     void Start()
     {
         // Get required components
@@ -56,7 +70,7 @@ public class PlayerMovement : MonoBehaviour
         if (animator == null) Debug.LogError("Animator component not found on " + gameObject.name);
         if (groundCheck == null) Debug.LogError("GroundCheck Transform not assigned in the Inspector on " + gameObject.name);
 
-        
+
     }
     private void OnEnable()
     {
@@ -80,7 +94,7 @@ public class PlayerMovement : MonoBehaviour
         HandleInput();
         UpdateAnimations();
         HealPlayer();
-        
+
     }
     void FixedUpdate()
     {
@@ -92,23 +106,32 @@ public class PlayerMovement : MonoBehaviour
 
         // Handle movement input
         Vector2 movementInput = moveAction.action.ReadValue<Vector2>();
-        moveDirection = Input.GetAxisRaw("Horizontal");
+        moveDirection = movementInput;
 
         // Handle crouch input
-        isCrouching = Input.GetKey(KeyCode.S) || (Input.GetButton("Crouch"));
+        isCrouching = crouchAction.action.IsPressed();
         if (animator != null)
         {
             animator.SetBool("isCrouching", isCrouching);
         }
 
+        //isDashing = dashAction.action.IsPressed() && CanDash;
+        //if (animator != null)
+        //{
+        //    StartCoroutine(Dash());
+        //    animator.SetBool("isDashing", isDashing);
+        //}
 
         // Handle running input
-        isRunningPM = Input.GetKey(KeyCode.LeftShift);
-
-        // Handle jump input (space bar and W key)
-        if ((Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.W)) && isGrounded)
+        isRunningPM = runAction.action.IsPressed();
+        if (animator != null)
         {
-             if (Jumpsound != null)
+            animator.SetBool("isRunning", isRunningPM);
+        }
+        // Handle jump input (space bar and W key)
+        if (jumpAction.action.WasPressedThisFrame() && isGrounded)
+        {
+            if (Jumpsound != null)
             {
                 Jumpsound.Play();
             }
@@ -126,7 +149,7 @@ public class PlayerMovement : MonoBehaviour
         float speed = isCrouching ? crouchSpeed : (isRunningPM ? runSpeed : moveSpeed);
 
         // Flip character sprite based on movement direction
-        if (moveDirection < 0)
+        if (moveDirection.x < 0)
         {
             transform.localScale = new Vector3(-1, 1, 1);
 
@@ -139,7 +162,7 @@ public class PlayerMovement : MonoBehaviour
                 S_Script.firePoint.transform.eulerAngles = new Vector3(0f, 180f, 0f);
             }
         }
-        else if (moveDirection > 0)
+        else if (moveDirection.x > 0)
         {
             transform.localScale = new Vector3(1, 1, 1);
             if (S_Script == null)
@@ -155,7 +178,7 @@ public class PlayerMovement : MonoBehaviour
         // Apply horizontal velocity
         if (rb != null)
         {
-            rb.linearVelocity = new Vector2(moveDirection * speed, rb.linearVelocity.y);
+            rb.linearVelocity = new Vector2(moveDirection.x * speed, rb.linearVelocity.y);
         }
     }
 
@@ -180,7 +203,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-   private void UpdateAnimations()
+    private void UpdateAnimations()
     {
         if (animator == null)
         {
@@ -233,7 +256,7 @@ public class PlayerMovement : MonoBehaviour
     {
         // Click the Healing Potion on any Slot
         //can only use potions if we have more than 0
-        if (Input.GetKeyDown(KeyCode.H) && puManager.hPotCount > 0 && playerHealth.currentHealth < playerHealth.maxHealth)
+        if (healAction.action.WasPressedThisFrame() && puManager.hPotCount > 0 && playerHealth.currentHealth < playerHealth.maxHealth)
         {
             puManager.UsePotion();
             if (playerHealth != null)
@@ -242,5 +265,19 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
-
 }
+//    private IEnumerator Dash()
+//    {
+//        CanDash = false;
+//        isDashing = true;
+//        float originalGravity = rb.gravityScale;
+//        rb.linearVelocity = new Vector2(transform.localScale.x * dashingPower, 0f);
+//        tr.emitting = true;
+//        yield return new WaitForSeconds(dashingTime);
+//        tr.emitting = false;
+//        rb.gravityScale = originalGravity;
+//        isDashing = false;
+//        yield return new WaitForSeconds(dashingCooldown);
+//        CanDash = true;
+//    }
+//}

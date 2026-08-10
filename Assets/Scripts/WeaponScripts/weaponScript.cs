@@ -2,6 +2,7 @@ using Newtonsoft.Json.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class weaponScript : MonoBehaviour
@@ -10,6 +11,9 @@ public class weaponScript : MonoBehaviour
 
     int totalWeapons;
     [SerializeField] int CurrentWeaponIndex;
+
+    [SerializeField]
+    private InputActionReference SwitchAction;
 
     [SerializeField] GameObject[] Weapons;
     [SerializeField] GameObject[] WeaponsUI;

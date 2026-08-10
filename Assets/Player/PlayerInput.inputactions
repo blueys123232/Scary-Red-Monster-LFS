@@ -17,12 +17,12 @@
                 },
                 {
                     "name": "Movement",
-                    "type": "PassThrough",
+                    "type": "Value",
                     "id": "06ce54f3-3e37-437e-8dbb-e3e6917fb310",
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Shoot Attack and Throw",
@@ -46,6 +46,33 @@
                     "name": "Healing Action",
                     "type": "Button",
                     "id": "30b64a4b-6e8c-487d-806c-c385fcfe7af1",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Sprint",
+                    "type": "Button",
+                    "id": "d3982fee-db27-4515-8404-c3d5803a0215",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "WeaponSwitch",
+                    "type": "Button",
+                    "id": "757ba5e1-66c8-478b-8d96-594b7b56fbf8",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Dash",
+                    "type": "Button",
+                    "id": "da5833af-317d-4ffa-9a79-a4b8787d50c8",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -153,9 +180,9 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "1D Axis",
+                    "name": "2D Vector",
                     "id": "09de1614-0cef-4562-b829-e82caf077399",
-                    "path": "1DAxis",
+                    "path": "2DVector",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -164,7 +191,7 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "negative",
+                    "name": "Left",
                     "id": "56f19e57-7e60-4742-b327-fcff68d562e0",
                     "path": "<Gamepad>/dpad/left",
                     "interactions": "",
@@ -175,7 +202,7 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "positive",
+                    "name": "Right",
                     "id": "082e14a5-cd7a-4c03-ae50-abf13e8552d9",
                     "path": "<Gamepad>/dpad/right",
                     "interactions": "",
@@ -186,9 +213,9 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "1D Axis",
-                    "id": "ccb4c154-cf75-469e-8b93-5255bc734426",
-                    "path": "1DAxis",
+                    "name": "LeRi",
+                    "id": "69f12d57-f656-47b3-b45d-5b16b9e1ff8d",
+                    "path": "2DVector",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -197,9 +224,9 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "negative",
-                    "id": "d3998cde-4ccc-4908-8c58-97fec9bb599e",
-                    "path": "<Gamepad>/leftStick/left",
+                    "name": "Right",
+                    "id": "08781ab5-da77-48e0-867f-9c2187251139",
+                    "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -208,9 +235,9 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "positive",
-                    "id": "80870cb5-6d53-416f-9889-5e9f6637b93b",
-                    "path": "<Gamepad>/leftStick/right",
+                    "name": "Left",
+                    "id": "400d6e54-1ed4-4ff7-9dc0-cb703a30389b",
+                    "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -237,6 +264,83 @@
                     "processors": "",
                     "groups": "",
                     "action": "Healing Action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4d14735d-b236-4dc5-b4f2-bd7141087e4c",
+                    "path": "<Keyboard>/leftShift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Sprint",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "34506a34-f0bc-4bbf-b9c9-0857ae6b3c3d",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Sprint",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "1D Axis",
+                    "id": "1154c0a2-47c6-4eb7-af8f-616e2c90478c",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "WeaponSwitch",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "e59787d0-aa61-4108-b7b3-c763ad59378e",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "WeaponSwitch",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "5708623f-8409-4227-8668-274d2f52b88f",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "WeaponSwitch",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "440af6f2-3049-4e8d-bbb4-0f203d31dc48",
+                    "path": "<Keyboard>/ctrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c5065de0-3718-4a18-82c2-162dbd43e068",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Dash",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

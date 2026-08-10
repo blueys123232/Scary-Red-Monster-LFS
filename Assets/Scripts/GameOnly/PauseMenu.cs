@@ -1,13 +1,31 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class PauseMenu : MonoBehaviour
 {
+
     [SerializeField] private static bool GameIsPaused = false;
     [SerializeField] private GameObject pauseMenuUI;
     [SerializeField] GameObject OtherUI;
 
     SaveScript sScript;
+
+    [Header("Input for Pause Menu")]
+    [SerializeField] private InputActionReference PauseMenuOpen;
+
+
+
+
+
+    private void OnEnable()
+    {
+        PauseMenuOpen.action.Enable();
+    }
+    private void OnDisable()
+    {
+        PauseMenuOpen.action.Disable();
+    }
 
     private void Awake()
     {
@@ -16,7 +34,7 @@ public class PauseMenu : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (PauseMenuOpen.action.IsPressed())
         {
             if (GameIsPaused)
             {
