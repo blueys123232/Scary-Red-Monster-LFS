@@ -31,13 +31,20 @@ public class Meleeattack : MonoBehaviour
 
 
     }
+    private void OnEnable()
+    {
+        MeleeAction.action.Enable();
+    }
+    private void OnDisable()
+    {
+        MeleeAction.action.Disable();
+    }
 
     // Update is called once per frame
     void Update()
     {
         if (MeleeAction.action.WasPressedThisFrame())
         {
-
             if (MeleeSound != null)
             {
                 MeleeSound.Play();

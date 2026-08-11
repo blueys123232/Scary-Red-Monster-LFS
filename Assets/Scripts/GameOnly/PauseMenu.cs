@@ -34,7 +34,7 @@ public class PauseMenu : MonoBehaviour
 
     void Update()
     {
-        if (PauseMenuOpen.action.IsPressed())
+        if (PauseMenuOpen.action.WasPressedThisFrame())
         {
             if (GameIsPaused)
             {

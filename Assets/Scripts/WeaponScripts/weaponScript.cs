@@ -13,7 +13,7 @@ public class weaponScript : MonoBehaviour
     [SerializeField] int CurrentWeaponIndex;
 
     [SerializeField]
-    private InputActionReference SwitchAction;
+    private InputActionReference SwitchActionLeft, SwitchActionRight;
 
     [SerializeField] GameObject[] Weapons;
     [SerializeField] GameObject[] WeaponsUI;
@@ -40,6 +40,18 @@ public class weaponScript : MonoBehaviour
         WeaponsUI[0].SetActive(true);
 
         LoadInt();
+
+    }
+
+    private void OnEnable()
+    {
+        SwitchActionLeft.action.Enable();
+        SwitchActionRight.action.Enable();
+    }
+    private void OnDisable()
+    {
+        SwitchActionLeft.action.Disable();
+        SwitchActionRight.action.Disable();
 
     }
     // Update is called once per frame
@@ -79,7 +91,7 @@ public class weaponScript : MonoBehaviour
             WeaponsUI[i] = weaponUIHolder.transform.GetChild(i).gameObject;
         }
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (SwitchActionRight.action.WasPressedThisFrame())
         {
             // Next weapon
             if (CurrentWeaponIndex < totalWeapons - 1)
@@ -95,7 +107,7 @@ public class weaponScript : MonoBehaviour
 
             }
         }
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (SwitchActionLeft.action.WasPressedThisFrame())
         {
             // Previous Weapon
             if (CurrentWeaponIndex > 0)
