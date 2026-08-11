@@ -48,6 +48,7 @@ public class PlayerMovement : MonoBehaviour
     private PickUpmanager puManager;
     private Rigidbody2D rb;
     private Animator animator;
+
     private Vector2 moveDirection; // For capturing horizontal input
     private shootScript S_Script;
     private WeaponStats wStats;
@@ -124,7 +125,13 @@ public class PlayerMovement : MonoBehaviour
 
         // Handle running input
         isRunningPM = runAction.action.IsPressed();
+
         if (animator != null)
+
+
+        // Handle jump input (space bar and W key)
+        if (jumpAction.action.WasPressedThisFrame() && isGrounded)
+
         {
             animator.SetBool("isRunning", isRunningPM);
         }
