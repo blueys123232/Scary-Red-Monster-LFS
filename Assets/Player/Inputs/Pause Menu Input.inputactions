@@ -27,70 +27,48 @@
             ],
             "bindings": [
                 {
-                    "name": "Two Modifiers",
-                    "id": "83d8bebf-2073-465b-a96e-9ab91acaf1aa",
-                    "path": "TwoModifiers",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Open",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "modifier1",
-                    "id": "c3750fbb-32dd-40be-86d1-782b91e84e01",
-                    "path": "<Gamepad>/start",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Open",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "modifier2",
-                    "id": "979525e7-e92f-4fe6-a779-177390d379ee",
+                    "name": "",
+                    "id": "345ce6ee-e098-492d-acfd-e281e608c662",
                     "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Open",
                     "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "Two Modifiers",
-                    "id": "05689666-2c04-4338-ae18-941a7922e14b",
-                    "path": "TwoModifiers",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Close",
-                    "isComposite": true,
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "modifier1",
-                    "id": "33cea0dd-faea-4bca-9d42-43c9e2f4b31a",
+                    "name": "",
+                    "id": "b9dfed81-d09b-4ea7-85a6-4a714a31e30e",
                     "path": "<Gamepad>/start",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Close",
+                    "action": "Open",
                     "isComposite": false,
-                    "isPartOfComposite": true
+                    "isPartOfComposite": false
                 },
                 {
-                    "name": "modifier2",
-                    "id": "6464f882-c711-4d4b-952f-df35fea23460",
+                    "name": "",
+                    "id": "76b2fa45-2ac4-45d4-a9e5-6bfa9bc63f5a",
                     "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Close",
                     "isComposite": false,
-                    "isPartOfComposite": true
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9ddf2338-c332-4b92-a97e-762bfa018614",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Close",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

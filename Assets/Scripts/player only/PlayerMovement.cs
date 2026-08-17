@@ -9,20 +9,23 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float runSpeed = 20f; // Running speed
     [SerializeField] private float crouchSpeed = 5f; // Crouch speed
     [SerializeField] private float jumpForce = 15f; // Jump force
+    [SerializeField] private float dashingPower = 24f;
+    [SerializeField] private float dashingTime = 0.2f;
+    [SerializeField] private float dashingCooldown = 1f;
 
     [Header("Healing")]
     [SerializeField] private int healAmount = 50; //how much potions heal
 
-
-
-    //[Header("Trail Renenderer")]
-    //[SerializeField] private TrailRenderer tr;
     [Header("Audio Clips")]
     [SerializeField] public AudioSource Jumpsound;
 
     [Header("Ground Check")]
     [SerializeField] Transform groundCheck; // Ground check position
     [SerializeField] LayerMask groundLayer; // Layer mask for ground
+
+    [SerializeField] private TrailRenderer tr;
+
+
 
     [Header("Input Actions")]
     [SerializeField] private InputActionReference moveAction, jumpAction;
@@ -37,11 +40,8 @@ public class PlayerMovement : MonoBehaviour
     private bool isCrouching;
     private bool isTakingDamage;
     private bool CanDash = true;
-    private float dashingPower = 24f;
-    private float dashingTime = 0.2f;
-    private float dashingCooldown = 1f;
     private bool isDashing;
-
+    
 
 
     private PlayerHealth playerHealth;
@@ -80,6 +80,7 @@ public class PlayerMovement : MonoBehaviour
         runAction.action.Enable();
         crouchAction.action.Enable();
         healAction.action.Enable();
+        dashAction.action.Enable();
     }
 
     private void OnDisable()
@@ -89,6 +90,7 @@ public class PlayerMovement : MonoBehaviour
         runAction.action.Disable();
         crouchAction.action.Disable();
         healAction.action.Disable();
+        dashAction.action.Disable();
     }
     void Update()
     {
@@ -97,13 +99,22 @@ public class PlayerMovement : MonoBehaviour
         HealPlayer();
 
     }
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         Move();
+        if (isDashing)
+        {
+            return;
+        }
+
     }
 
     void HandleInput()
     {
+        if (isDashing)
+        {
+            return;
+        }
 
         // Handle movement input
         Vector2 movementInput = moveAction.action.ReadValue<Vector2>();
@@ -116,22 +127,20 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("isCrouching", isCrouching);
         }
 
-        //isDashing = dashAction.action.IsPressed() && CanDash;
-        //if (animator != null)
-        //{
-        //    StartCoroutine(Dash());
-        //    animator.SetBool("isDashing", isDashing);
-        //}
+      
+        
+            if (dashAction.action.WasPressedThisFrame() && CanDash)
+            {
+                StartCoroutine(Dash());
+              
+            }
 
         // Handle running input
         isRunningPM = runAction.action.IsPressed();
 
-        if (animator != null)
-
 
         // Handle jump input (space bar and W key)
-        if (jumpAction.action.WasPressedThisFrame() && isGrounded)
-
+        if (runAction.action.WasPressedThisFrame() && isGrounded)
         {
             animator.SetBool("isRunning", isRunningPM);
         }
@@ -272,19 +281,19 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
+
+    private IEnumerator Dash()
+    {
+        CanDash = false;
+        isDashing = true;
+        float originalGravity = rb.gravityScale;
+        rb.linearVelocity = new Vector2(transform.localScale.x * dashingPower, 0f);
+        tr.emitting = true;
+        yield return new WaitForSeconds(dashingTime);
+        tr.emitting = false;
+        rb.gravityScale = originalGravity;
+        isDashing = false;
+        yield return new WaitForSeconds(dashingCooldown);
+        CanDash = true;
+    }
 }
-//    private IEnumerator Dash()
-//    {
-//        CanDash = false;
-//        isDashing = true;
-//        float originalGravity = rb.gravityScale;
-//        rb.linearVelocity = new Vector2(transform.localScale.x * dashingPower, 0f);
-//        tr.emitting = true;
-//        yield return new WaitForSeconds(dashingTime);
-//        tr.emitting = false;
-//        rb.gravityScale = originalGravity;
-//        isDashing = false;
-//        yield return new WaitForSeconds(dashingCooldown);
-//        CanDash = true;
-//    }
-//}

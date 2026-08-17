@@ -24,6 +24,15 @@ public class shootScript : MonoBehaviour
         firePoint = GameObject.Find("FirePoint").transform;
     }
 
+    private void OnEnable()
+    {
+        ShootAction.action.Enable();
+    }
+    private void OnDisable()
+    {
+        ShootAction.action.Disable();
+    }
+
     private float nextFireTime = 0f;
     // shoots when left mouse button is pressed and cooldown had passed
     void Update()

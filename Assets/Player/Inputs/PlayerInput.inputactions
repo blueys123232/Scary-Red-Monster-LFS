@@ -25,7 +25,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Shoot Attack and Throw",
+                    "name": "Attack",
                     "type": "Button",
                     "id": "9acfc15d-60e3-4fc2-a448-f01a5d6638a6",
                     "expectedControlType": "",
@@ -64,6 +64,24 @@
                     "name": "Dashing Action",
                     "type": "Button",
                     "id": "a3af0a28-0a7a-41e8-9e4c-7f49f111af29",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Switch Weapons Left Action",
+                    "type": "Button",
+                    "id": "d036a1e3-1f22-42fd-8070-f5eed4d4e021",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Switch Weapons Right Action",
+                    "type": "Button",
+                    "id": "2e25eb75-67ed-44af-bbfc-8af33cd89cef",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -111,7 +129,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Shoot Attack and Throw",
+                    "action": "Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -122,7 +140,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Shoot Attack and Throw",
+                    "action": "Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -283,7 +301,7 @@
                 {
                     "name": "",
                     "id": "44e8bbc7-a3ff-486a-8f28-17ef39d151ae",
-                    "path": "<Keyboard>/ctrl",
+                    "path": "<Keyboard>/leftCtrl",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -294,11 +312,55 @@
                 {
                     "name": "",
                     "id": "58023486-71a8-4c66-ba18-9866b008b218",
-                    "path": "<Gamepad>/buttonSouth",
+                    "path": "<Gamepad>/buttonEast",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Dashing Action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f934e03b-8747-4c4d-8a43-f6ae98c31d82",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Switch Weapons Left Action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7266ee22-8ecc-4cd7-8268-4a4259e1259e",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Switch Weapons Left Action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e8927342-2fbe-47bb-b1f7-76dfab271f9d",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Switch Weapons Right Action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "892c7b42-82a1-412e-bf92-3b61d1f86559",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Switch Weapons Right Action",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
