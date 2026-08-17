@@ -44,6 +44,7 @@ public class PlayerMovement : MonoBehaviour
     
 
 
+
     private PlayerHealth playerHealth;
     private PickUpmanager puManager;
     private Rigidbody2D rb;
@@ -127,6 +128,7 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("isCrouching", isCrouching);
         }
 
+
       
         
             if (dashAction.action.WasPressedThisFrame() && CanDash)
@@ -134,6 +136,17 @@ public class PlayerMovement : MonoBehaviour
                 StartCoroutine(Dash());
               
             }
+
+        if (animator != null)
+        {
+            if (dashAction.action.WasPressedThisFrame() && CanDash) 
+            {
+                StartCoroutine(Dash());
+                animator.SetBool("isDashing", isDashing);
+            }
+
+        }
+
 
         // Handle running input
         isRunningPM = runAction.action.IsPressed();
@@ -291,6 +304,9 @@ public class PlayerMovement : MonoBehaviour
         tr.emitting = true;
         yield return new WaitForSeconds(dashingTime);
         tr.emitting = false;
+        //tr.emitting = true;
+        yield return new WaitForSeconds(dashingTime);
+        //tr.emitting = false;
         rb.gravityScale = originalGravity;
         isDashing = false;
         yield return new WaitForSeconds(dashingCooldown);
