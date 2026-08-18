@@ -4,11 +4,13 @@ using UnityEngine.InputSystem;
 
 public class PauseMenu : MonoBehaviour
 {
-
-    [SerializeField] private static bool GameIsPaused = false;
+    [Header("Pause Menu UI")]
+    private static bool GameIsPaused = false;
     [SerializeField] private GameObject pauseMenuUI;
     [SerializeField] GameObject OtherUI;
     [SerializeField] GameObject AudioObjects;
+
+
     SaveScript sScript;
 
     [Header("Input for Pause Menu")]
@@ -27,13 +29,33 @@ public class PauseMenu : MonoBehaviour
         PauseMenuOpen.action.Disable();
     }
 
-    private void Awake()
-    {
+    private void Start()
+    { 
         sScript = FindAnyObjectByType<SaveScript>();
+
+
+        Time.timeScale = 1f;
+        GameIsPaused = false;
+        if (pauseMenuUI == null)
+        {
+            Debug.LogError("PauseMenuUI is missing! Assign the Pause Menu Panel " + "to the Pause Menu field in the Inspector");
+        }
+        if (OtherUI == null)
+        {
+            Debug.LogError("OtherUI has not been assigned in the Inspector");
+        }
+        if (AudioObjects == null)
+        {
+            Debug.LogError("OtherUI has not been assigned in the Inspector");
+        }
     }
 
     void Update()
     {
+        if (PauseMenuOpen == null)
+        {
+            return;
+        }
         if (PauseMenuOpen.action.WasPressedThisFrame())
         {
             if (GameIsPaused)
@@ -68,14 +90,13 @@ public class PauseMenu : MonoBehaviour
     public void LoadMainMenu()
     {
         Time.timeScale = 1f;
-
         Debug.Log(SceneManager.GetActiveScene().name);
         Debug.Log(SceneManager.GetActiveScene().buildIndex);
 
         sScript.SaveLevelProgress(SceneManager.GetActiveScene().name, SceneManager.GetActiveScene().buildIndex);
 
 
-        SceneManager.LoadScene("Main Menu ");
+        SceneManager.LoadScene("Main Menu");
 
     }
     public void RestartGame()
