@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Transform groundCheck; // Ground check position
     [SerializeField] LayerMask groundLayer; // Layer mask for ground
 
-    [SerializeField] private TrailRenderer tr;
+    //[SerializeField] private TrailRenderer tr;
 
 
 
@@ -128,19 +128,11 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("isCrouching", isCrouching);
         }
 
-
-      
-        
-            if (dashAction.action.WasPressedThisFrame() && CanDash)
-            {
-                StartCoroutine(Dash());
-              
-            }
-
         if (animator != null)
         {
             if (dashAction.action.WasPressedThisFrame() && CanDash) 
             {
+                Debug.Log("Starting Dash");
                 StartCoroutine(Dash());
                 animator.SetBool("isDashing", isDashing);
             }
@@ -298,17 +290,17 @@ public class PlayerMovement : MonoBehaviour
     private IEnumerator Dash()
     {
         CanDash = false;
-        isDashing = true;
-        float originalGravity = rb.gravityScale;
-        rb.linearVelocity = new Vector2(transform.localScale.x * dashingPower, 0f);
-        tr.emitting = true;
-        yield return new WaitForSeconds(dashingTime);
-        tr.emitting = false;
-        //tr.emitting = true;
-        yield return new WaitForSeconds(dashingTime);
-        //tr.emitting = false;
-        rb.gravityScale = originalGravity;
-        isDashing = false;
+        //rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce); // y velocity for jumping
+        rb.linearVelocity = new Vector2(dashingPower, jumpForce / 2);
+
+        //isDashing = true;
+        //float originalGravity = rb.gravityScale;
+
+        ////tr.emitting = true;
+        //yield return new WaitForSeconds(dashingTime);
+        ////tr.emitting = false;
+        //rb.gravityScale = originalGravity;
+        //isDashing = false;
         yield return new WaitForSeconds(dashingCooldown);
         CanDash = true;
     }

@@ -9,11 +9,15 @@ public class ProjectileAmmoBehaviour : MonoBehaviour
 
     [SerializeField] private float ActiveTime;
 
+
     // Start is called before the first frame update
     void Start()
     {
         wStats = FindAnyObjectByType<WeaponStats>();
         rb = GetComponent<Rigidbody2D>();
+
+        Physics2D.IgnoreCollision(this.GetComponent<Collider2D>(), GameObject.Find("Player").GetComponent<Collider2D>(), true);
+        Physics2D.IgnoreCollision(this.GetComponent<Collider2D>(), GameObject.FindGameObjectWithTag("Projectile").GetComponent<Collider2D>(), true);
     }
 
     // Update is called once per frame
@@ -27,6 +31,9 @@ public class ProjectileAmmoBehaviour : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+       
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -45,6 +52,8 @@ public class ProjectileAmmoBehaviour : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        
 
     }
 }
