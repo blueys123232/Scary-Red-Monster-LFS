@@ -141,13 +141,12 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-        
-    
-
         if (animator != null)
         {
             if (dashAction.action.WasPressedThisFrame() && CanDash)
             {
+                Debug.Log("Starting Dash");
+                StartCoroutine(Dash());
                 animator.SetBool("isDashing", isDashing);
             }
 

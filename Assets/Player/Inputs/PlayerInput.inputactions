@@ -322,6 +322,17 @@
                 },
                 {
                     "name": "",
+                    "id": "8298082f-1f2a-4cb9-8f26-fecc01e3686b",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Dashing Action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "f934e03b-8747-4c4d-8a43-f6ae98c31d82",
                     "path": "<Keyboard>/q",
                     "interactions": "",
