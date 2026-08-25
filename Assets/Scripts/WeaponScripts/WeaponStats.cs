@@ -90,7 +90,14 @@ public class WeaponStats : MonoBehaviour
                 wepInt = 5;
                 wepId = this.GetInstanceID().ToString();
                 PlayerPrefs.SetString("WeaponID", wepId);
-
+                break;
+            case WeaponType.Cannon:
+                WeaponText.text = "Bombs:" + AmmoCount.ToString();
+                if (weaponRenderer != null && BlankImage != null)
+                    weaponRenderer.sprite = BlankImage;
+                wepInt = 5;
+                wepId = this.GetInstanceID().ToString();
+                PlayerPrefs.SetString("WeaponID", wepId);
                 break;
                 //case WeaponType.Hammer:
                 //    WeaponText.text = "Damage:" + MeleeDamage.ToString();

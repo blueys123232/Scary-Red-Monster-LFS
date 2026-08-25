@@ -102,12 +102,13 @@ public class PlayerMovement : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        Move();
+        
         if (isDashing)
         {
             return;
         }
 
+        Move();
     }
 
     void HandleInput()
@@ -123,37 +124,41 @@ public class PlayerMovement : MonoBehaviour
 
         // Handle crouch input
         isCrouching = crouchAction.action.IsPressed();
+
+        // Handle running input
+        isRunningPM = runAction.action.IsPressed();
+
+      
+        if (dashAction.action.WasPressedThisFrame() && CanDash)
+        {
+        StartCoroutine(Dash());
+              
+       }
         if (animator != null)
         {
             animator.SetBool("isCrouching", isCrouching);
-        }
+       }
 
 
-      
+
         
-            if (dashAction.action.WasPressedThisFrame() && CanDash)
-            {
-                StartCoroutine(Dash());
-              
-            }
+    
 
         if (animator != null)
         {
-            if (dashAction.action.WasPressedThisFrame() && CanDash) 
+            if (dashAction.action.WasPressedThisFrame() && CanDash)
             {
-                StartCoroutine(Dash());
                 animator.SetBool("isDashing", isDashing);
             }
 
         }
 
 
-        // Handle running input
-        isRunningPM = runAction.action.IsPressed();
+    
 
 
         // Handle jump input (space bar and W key)
-        if (runAction.action.WasPressedThisFrame() && isGrounded)
+        if (runAction.action.IsPressed() && isGrounded)
         {
             animator.SetBool("isRunning", isRunningPM);
         }
@@ -246,6 +251,19 @@ public class PlayerMovement : MonoBehaviour
         animator.SetBool("isJumping", !isGrounded);
         animator.SetBool("isCrouching", isCrouching);
 
+
+        bool isActulallyRunning =
+            isRunningPM &&
+            Mathf.Abs(moveDirection.x) > 0.01f &&
+            isGrounded &&
+            !isCrouching &&
+            !isDashing;
+
+        animator.SetBool("isRunning", isActulallyRunning);
+
+        // Dashanimation
+        animator.SetBool("isDashing", isDashing);
+
         if (S_Script != null)
         {
             animator.SetInteger("WeaponInt", wStats.wepInt);
@@ -300,13 +318,11 @@ public class PlayerMovement : MonoBehaviour
         CanDash = false;
         isDashing = true;
         float originalGravity = rb.gravityScale;
+        rb.gravityScale = 0f;
         rb.linearVelocity = new Vector2(transform.localScale.x * dashingPower, 0f);
         tr.emitting = true;
         yield return new WaitForSeconds(dashingTime);
         tr.emitting = false;
-        //tr.emitting = true;
-        yield return new WaitForSeconds(dashingTime);
-        //tr.emitting = false;
         rb.gravityScale = originalGravity;
         isDashing = false;
         yield return new WaitForSeconds(dashingCooldown);
