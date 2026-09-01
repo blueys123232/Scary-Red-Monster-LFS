@@ -11,13 +11,11 @@ public class EnemyHealth : MonoBehaviour
     [Header("Enemy Health Settings")]
     public float maxHealth = 100f;
     public float currentHealth;
-    private float textTimer;
     bool damaged;
     [SerializeField] private TextMeshPro damageNumber;
 
     private void Start()
     {
-        textTimer = 10f;
         damageNumber.text = "";
         currentHealth = maxHealth;
     }
@@ -27,23 +25,13 @@ public class EnemyHealth : MonoBehaviour
         currentHealth -= amount;
         currentHealth = Mathf.Clamp(currentHealth, 0f, maxHealth);
         damageNumber.text = amount.ToString();
+        damageNumber.color = Color.red;
+        Instantiate(damageNumber, new Vector3(this.transform.position.x, this.transform.position.y + 0.7f), Quaternion.identity);
         damaged = true;
     }
 
     private void Update()
     {
-        if (damaged)
-        {
-            textTimer--;
-        }
-
-        if(textTimer <= 0)
-        {
-            damageNumber.text = "";
-            damaged = false;
-            textTimer = 10f;
-        }
-
         if (currentHealth <= 0f)
         {
             Die();
