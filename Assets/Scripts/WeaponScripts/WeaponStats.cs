@@ -75,37 +75,70 @@ public class WeaponStats : MonoBehaviour
                 wepInt = 3;
                 wepId = this.GetInstanceID().ToString();
                 PlayerPrefs.SetString("WeaponID", wepId);
-
                 break;
+
             case WeaponType.Launcher:
-                WeaponText.text = "Explosives: " + AmmoCount.ToString();
+                WeaponText.text = "Bombs: " + AmmoCount.ToString();
+                if (weaponRenderer != null && BlankImage != null)
+                    weaponRenderer.sprite = BlankImage;
+                wepInt = 5;
+                wepId = this.GetInstanceID().ToString();
+                PlayerPrefs.SetString("WeaponID", wepId);
+                break;
+
+            case WeaponType.Sword:
+                WeaponText.text = "Damage:" + Damage.ToString();
+                wepInt = 6;
+                wepId = this.GetInstanceID().ToString();
+                PlayerPrefs.SetString("WeaponID", wepId);
+                break;
+
+            case WeaponType.Katana:
+                WeaponText.text = "Damage:" + Damage.ToString();
+                wepInt = 7;
+                wepId = this.GetInstanceID().ToString();
+                PlayerPrefs.SetString("WeaponID", wepId);
+                break;
+
+            case WeaponType.Cannon:
+                WeaponText.text = "Bombs:" + AmmoCount.ToString();
                 if (weaponRenderer != null && BlankImage != null)
                     weaponRenderer.sprite = BlankImage;
                 wepInt = 4;
                 wepId = this.GetInstanceID().ToString();
                 PlayerPrefs.SetString("WeaponID", wepId);
                 break;
-            case WeaponType.Sword:
+
+            case WeaponType.Hammer:
                 WeaponText.text = "Damage:" + Damage.ToString();
-                wepInt = 5;
-                wepId = this.GetInstanceID().ToString();
-                PlayerPrefs.SetString("WeaponID", wepId);
+                if (weaponRenderer != null && BlankImage != null)
+                    weaponRenderer.sprite = BlankImage;
+                wepInt = 10;
                 break;
-            case WeaponType.Cannon:
+            case WeaponType.Chainsaw:
+                WeaponText.text = "Damage:" + Damage.ToString();
+                if (weaponRenderer != null && BlankImage != null)
+                    weaponRenderer.sprite = BlankImage;
+                wepInt = 8;
+                break;
+            case WeaponType.Spear:
+                WeaponText.text = "Damage:" + Damage.ToString();
+                if (weaponRenderer != null && BlankImage != null)
+                    weaponRenderer.sprite = BlankImage;
+                wepInt = 7;
+                break;
+            case WeaponType.BombLauncher:
                 WeaponText.text = "Bombs:" + AmmoCount.ToString();
                 if (weaponRenderer != null && BlankImage != null)
                     weaponRenderer.sprite = BlankImage;
-                wepInt = 5;
-                wepId = this.GetInstanceID().ToString();
-                PlayerPrefs.SetString("WeaponID", wepId);
+                wepInt = 9;
                 break;
-                //case WeaponType.Hammer:
-                //    WeaponText.text = "Damage:" + MeleeDamage.ToString();
-                //    break;
-                //case WeaponType.Chainsaw:
-                //    WeaponText.text = "Damage:" + MeleeDamage.ToString();
-                //    break;
-
+            case WeaponType.Axe:
+                WeaponText.text = "Damage:" + Damage.ToString();
+                if (weaponRenderer != null && BlankImage != null)
+                    weaponRenderer.sprite = BlankImage;
+                wepInt = 11;
+                break;
 
 
         }
@@ -122,6 +155,9 @@ public class WeaponStats : MonoBehaviour
 public enum WeaponType
 {
     None,
+    Axe,
+    BombLauncher,
+    Katana,
     Dagger,
     Sword,
     Pistol,
