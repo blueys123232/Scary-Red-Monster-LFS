@@ -23,12 +23,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Transform groundCheck; // Ground check position
     [SerializeField] LayerMask groundLayer; // Layer mask for ground
 
-    [SerializeField] private TrailRenderer tr;
-
-
+    [SerializeField] private TrailRenderer tr; //Trail renderer for the dash
 
     [Header("Input Actions")]
-    [SerializeField] private InputActionReference moveAction, jumpAction;
+    [SerializeField] private InputActionReference moveAction;
+    [SerializeField] private InputActionReference jumpAction;
     [SerializeField] private InputActionReference runAction;
     [SerializeField] private InputActionReference crouchAction;
     [SerializeField] private InputActionReference healAction;
@@ -42,9 +41,6 @@ public class PlayerMovement : MonoBehaviour
     private bool CanDash = true;
     private bool isDashing;
     
-
-
-
     private PlayerHealth playerHealth;
     private PickUpmanager puManager;
     private Rigidbody2D rb;
@@ -71,6 +67,9 @@ public class PlayerMovement : MonoBehaviour
         if (rb == null) Debug.LogError("Rigidbody2D component not found on " + gameObject.name);
         if (animator == null) Debug.LogError("Animator component not found on " + gameObject.name);
         if (groundCheck == null) Debug.LogError("GroundCheck Transform not assigned in the Inspector on " + gameObject.name);
+        if (tr == null) Debug.LogError("TrailRenderer component not found on " + gameObject.name);
+        tr.emitting = false;
+        
 
 
     }
@@ -98,7 +97,6 @@ public class PlayerMovement : MonoBehaviour
         HandleInput();
         UpdateAnimations();
         HealPlayer();
-
     }
     private void FixedUpdate()
     {
@@ -118,50 +116,37 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-        // Handle movement input
+        // Handle movement input (A & D (PC/Keyboard) & LStick, DPad left and right(Controller) )
         Vector2 movementInput = moveAction.action.ReadValue<Vector2>();
         moveDirection = movementInput;
 
-        // Handle crouch input
+        // Handle crouch input (S (PC/Keyboard) & LStickDown, DPad Down (Controller))
         isCrouching = crouchAction.action.IsPressed();
-
-        // Handle running input
-        isRunningPM = runAction.action.IsPressed();
-
-      
-        if (dashAction.action.WasPressedThisFrame() && CanDash)
-        {
-        StartCoroutine(Dash());
-              
-       }
         if (animator != null)
         {
             animator.SetBool("isCrouching", isCrouching);
-       }
+        }
 
-
-
+        //Handle Dash Input (LCtrl & East Button (B (Xbox), O (PS), A(Switch/2)))
         if (animator != null)
         {
             if (dashAction.action.WasPressedThisFrame() && CanDash)
             {
-                Debug.Log("Starting Dash");
                 StartCoroutine(Dash());
                 animator.SetBool("isDashing", isDashing);
             }
 
         }
 
-
-    
-
-
-        // Handle jump input (space bar and W key)
+        // Handle Run Input (LShift(PC) & Right trigger(Controller))
+        isRunningPM = runAction.action.IsPressed();
         if (runAction.action.IsPressed() && isGrounded)
         {
             animator.SetBool("isRunning", isRunningPM);
         }
-        // Handle jump input (space bar and W key)
+
+
+        // Handle jump input (space bar, W key & South button on Controller (A(Xbox), X(PS), B(Switch/2)))
         if (jumpAction.action.WasPressedThisFrame() && isGrounded)
         {
             if (Jumpsound != null)
