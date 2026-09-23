@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SharedBehaviour : MonoBehaviour
 {
-    PatrolPointScript ppScript;
+    //PatrolPointScript ppScript;
     EnemyDetection enemyDetectionScript;
     FlipEnemy flipE;
 
@@ -25,7 +25,7 @@ public class SharedBehaviour : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.FindWithTag("Player").transform;
         flipE = GetComponent<FlipEnemy>();
-        ppScript = GetComponent<PatrolPointScript>();
+        //ppScript = GetComponent<PatrolPointScript>();
         animator = GetComponent<Animator>();
         enemyDetectionScript = GetComponent<EnemyDetection>();
     }
@@ -50,7 +50,7 @@ public class SharedBehaviour : MonoBehaviour
         //if player is outside of the follow range then go back on to patrol
         else
         {
-            ppScript.Patrol();
+            //ppScript.Patrol();
         }
     }
 
