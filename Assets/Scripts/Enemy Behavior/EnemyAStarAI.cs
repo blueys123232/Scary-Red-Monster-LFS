@@ -8,8 +8,6 @@ public class EnemyAStarAI : MonoBehaviour
 {
     //WP = Waypoint
 
-    [SerializeField] private Transform target;
-
     [SerializeField] private float speed = 10f;
     [SerializeField] private float nextWPDist = 3f;
 
@@ -19,6 +17,8 @@ public class EnemyAStarAI : MonoBehaviour
     bool playerInRange = false;
     Seeker seeker;
     Rigidbody2D rb2D;
+
+    public Vector2 newPos;
 
     [SerializeField] BoxCollider2D detectRange;
     public Vector2 startingPos;
@@ -31,17 +31,36 @@ public class EnemyAStarAI : MonoBehaviour
         seeker = GetComponent<Seeker>();
         rb2D = GetComponent<Rigidbody2D>();
         startingPos = transform.position;
+        newPos = startingPos;
 
         InvokeRepeating("UpdatePath", 0f, .5f);
+        InvokeRepeating("changeNewPos", 0f, 5f);
+    }
+
+    void changeNewPos()
+    {
+        newPos = new Vector2(UnityEngine.Random.Range(startingPos.x - 10.0f, startingPos.x + 10.0f), 0);
+        //startingPos = newPos;
     }
 
     void UpdatePath()
     {
+        
         if (playerInRange == true)
         {
             if (seeker.IsDone())
             {
-                seeker.StartPath(rb2D.position, target.position, OnPathComplete);
+                seeker.StartPath(rb2D.position, GameObject.FindWithTag("Player").transform.position, OnPathComplete);
+            }
+        }
+
+        else if (!playerInRange)
+        {
+            
+
+            if (seeker.IsDone())
+            {
+                seeker.StartPath(rb2D.position, startingPos, OnPathComplete);
             }
         }
 
@@ -62,7 +81,7 @@ public class EnemyAStarAI : MonoBehaviour
         if (path == null)
             return;
 
-        if(currentWP >= path.vectorPath.Count)
+        if (currentWP >= path.vectorPath.Count)
         {
             reachedEndOfPath = true;
             return;
@@ -83,14 +102,8 @@ public class EnemyAStarAI : MonoBehaviour
         {
             currentWP++;
         }
-    }
 
-    private void Update()
-    {
-        if (!playerInRange)
-        {
-            transform.position = startingPos;
-        }
+        //Debug.Log(path.vectorPath);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
