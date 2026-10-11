@@ -7,6 +7,7 @@ public class SettingsMenu : MonoBehaviour
     [Header("Audio Mixers")]
     public AudioMixer MusicMixer;
     public AudioMixer SoundMixer;
+
     [Header("UI")]
     public Slider musicSlider;
     public Slider soundSlider;
@@ -16,6 +17,7 @@ public class SettingsMenu : MonoBehaviour
     public float defaultMusicVolume = 0.75f;
     public float defaultSoundVolume = 0.75f;
     public bool defaultFullscreen = true;
+
     private void Start()
     {
         // Load saved settings on startup
@@ -154,6 +156,10 @@ public class SettingsMenu : MonoBehaviour
             PlayerPrefs.SetFloat("soundvolume", soundvolume);
         }
 
+         if (fullscreenToggle != null)
+        {
+            PlayerPrefs.SetInt("fullscreen", fullscreenToggle.isOn ? 1 : 0);
+        }
 
         // Ensure PlayerPrefs are saved to disk
         PlayerPrefs.Save();
@@ -162,18 +168,7 @@ public class SettingsMenu : MonoBehaviour
     public void LoadDefaults()
     {
         // Load default settings
-        SetMusicVolume(defaultMusicVolume);
-        
-        SetSoundVolume(defaultSoundVolume);
-        // Update UI elements to reflect default values
-        if (musicSlider != null)
-        {
-            musicSlider.value = defaultMusicVolume;
-        }
-        if (soundSlider != null)
-        {
-            soundSlider.value = defaultSoundVolume;
-        }
+        ResetToDefaults();
 
     }
 }
