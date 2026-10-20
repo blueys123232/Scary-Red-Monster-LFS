@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEngine.RuleTile.TilingRuleOutput;
 
-public class EnemyAStarAI : MonoBehaviour
+public class EnemyAStarAINonGrounded : MonoBehaviour
 {
     //WP = Waypoint
 
@@ -20,7 +20,9 @@ public class EnemyAStarAI : MonoBehaviour
     Rigidbody2D rb2D;
     public UnityEngine.Transform GFX;
 
-    public Vector2 newPos;
+    public float newPosModifier;
+
+    private Vector2 newPos;
 
     [SerializeField] BoxCollider2D detectRange;
     public Vector2 startingPos;
@@ -41,7 +43,7 @@ public class EnemyAStarAI : MonoBehaviour
 
     void changeNewPos()
     {
-        newPos = new Vector2(UnityEngine.Random.Range(startingPos.x - 3f, startingPos.x + 3f), startingPos.y);
+        newPos = new Vector2(UnityEngine.Random.Range(startingPos.x - newPosModifier, startingPos.x + newPosModifier), (UnityEngine.Random.Range(startingPos.y - newPosModifier, startingPos.y + newPosModifier)));
         startingPos = newPos;
     }
 
