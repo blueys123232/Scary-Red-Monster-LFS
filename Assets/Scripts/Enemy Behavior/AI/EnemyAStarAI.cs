@@ -17,12 +17,15 @@ public class EnemyAStarAI : MonoBehaviour
 
     Pathfinding.Path path;
     int currentWP = 0;
-    bool reachedEndOfPath = false;
+    public bool reachedEndOfPath = false;
     bool playerInRange = false;
     Seeker seeker;
     Rigidbody2D rb2D;
 
     private Vector2 startingPos, newPos;
+    [SerializeField] private Animator anim;
+    [SerializeField] SpriteRenderer spR;
+    [SerializeField] Sprite stopSprite;    
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -36,6 +39,7 @@ public class EnemyAStarAI : MonoBehaviour
         InvokeRepeating("changeNewPos", 0f, 5f);
 
         Physics2D.IgnoreCollision(GetComponent<Collider2D>(), GameObject.Find("Spikes").GetComponent<Collider2D>());
+        if (anim == null) Debug.LogError("Animator component not found");
     }
 
     void changeNewPos()
@@ -71,6 +75,7 @@ public class EnemyAStarAI : MonoBehaviour
         {
             path = p;
             currentWP = 0;
+
         }
     }
 
@@ -90,6 +95,11 @@ public class EnemyAStarAI : MonoBehaviour
             reachedEndOfPath = false;
         }
 
+        if (path.IsDone())
+        {
+           //Look into this and see if it can be used in implementing the stop animation.
+        }
+
         Vector2 direction = ((Vector2)path.vectorPath[currentWP] - rb2D.position).normalized;
         Vector2 force = direction * speed * Time.deltaTime;
 
@@ -102,6 +112,7 @@ public class EnemyAStarAI : MonoBehaviour
             currentWP++;
         }
 
+        //Flip enemy sprite based on Direction
         if (force.x >= 0.01f)
         {
             GFX.localScale = new Vector3(-1f, 1f, 1f);
@@ -119,6 +130,7 @@ public class EnemyAStarAI : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             playerInRange = true;
+            anim.SetBool("playerInRange", playerInRange);
         }
     }
 
@@ -127,9 +139,7 @@ public class EnemyAStarAI : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             playerInRange = false;
+            anim.SetBool("playerInRange", playerInRange);
         }
     }
-
-
-
 }
