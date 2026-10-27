@@ -16,8 +16,9 @@ public class EnemyHealth : MonoBehaviour
 
     private void Start()
     {
-        damageNumber.text = "";
         currentHealth = maxHealth;
+        damageNumber.text = "";
+
     }
 
     public void TakeDamage(float amount)
@@ -39,8 +40,7 @@ public class EnemyHealth : MonoBehaviour
     }
 
     private void Die()
-    {
-        Debug.Log($"{gameObject.name} has been defeated!");
+    { 
         Destroy(gameObject);
     }
 }

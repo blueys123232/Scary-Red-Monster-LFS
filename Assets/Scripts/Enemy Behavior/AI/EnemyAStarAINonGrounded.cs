@@ -1,10 +1,11 @@
+using Pathfinding;
 using System;
 using System.IO;
 using Unity.VisualScripting;
 using UnityEngine;
-using Pathfinding;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
-public class EnemyAStarAI : MonoBehaviour
+public class EnemyAStarAINonGrounded : MonoBehaviour
 {
     //WP = Waypoint
 
@@ -17,13 +18,14 @@ public class EnemyAStarAI : MonoBehaviour
     bool playerInRange = false;
     Seeker seeker;
     Rigidbody2D rb2D;
+    public UnityEngine.Transform GFX;
 
-    public Vector2 newPos;
+    public float newPosModifier;
+
+    private Vector2 newPos;
 
     [SerializeField] BoxCollider2D detectRange;
     public Vector2 startingPos;
-
-
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -35,12 +37,14 @@ public class EnemyAStarAI : MonoBehaviour
 
         InvokeRepeating("UpdatePath", 0f, .5f);
         InvokeRepeating("changeNewPos", 0f, 5f);
+
+        Physics2D.IgnoreCollision(GetComponent<Collider2D>(), GameObject.Find("Spikes").GetComponent<Collider2D>());
     }
 
     void changeNewPos()
     {
-        newPos = new Vector2(UnityEngine.Random.Range(startingPos.x - 10.0f, startingPos.x + 10.0f), 0);
-        //startingPos = newPos;
+        newPos = new Vector2(UnityEngine.Random.Range(startingPos.x - newPosModifier, startingPos.x + newPosModifier), (UnityEngine.Random.Range(startingPos.y - newPosModifier, startingPos.y + newPosModifier)));
+        startingPos = newPos;
     }
 
     void UpdatePath()
@@ -75,11 +79,14 @@ public class EnemyAStarAI : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
         if (path == null)
             return;
+
+        Debug.Log(currentWP + " " + "CurWaypoint");
+        Debug.Log(path.vectorPath.Count + " " + "path count");
+
 
         if (currentWP >= path.vectorPath.Count)
         {
@@ -103,7 +110,16 @@ public class EnemyAStarAI : MonoBehaviour
             currentWP++;
         }
 
-        //Debug.Log(path.vectorPath);
+        if (force.x >= 0.01f)
+        {
+            GFX.localScale = new Vector3(-1f, 1f, 1f);
+        }
+        else if (force.x <= -0.01f)
+        {
+            GFX.localScale = new Vector3(1f, 1f, 1f);
+        }
+
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -121,4 +137,7 @@ public class EnemyAStarAI : MonoBehaviour
             playerInRange = false;
         }
     }
+
+
+
 }
