@@ -25,7 +25,7 @@ public class EnemyAStarAINonGrounded : MonoBehaviour
     private Vector2 newPos;
 
     [SerializeField] BoxCollider2D detectRange;
-    public Vector2 startingPos;
+    private Vector2 startingPos;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

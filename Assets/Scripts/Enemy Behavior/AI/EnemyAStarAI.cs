@@ -24,8 +24,6 @@ public class EnemyAStarAI : MonoBehaviour
 
     private Vector2 startingPos, newPos;
     [SerializeField] private Animator anim;
-    [SerializeField] SpriteRenderer spR;
-    [SerializeField] Sprite stopSprite;    
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -67,6 +65,12 @@ public class EnemyAStarAI : MonoBehaviour
             }
         }
 
+        //if (path.IsDone())
+        //{
+        //    //Look into this and see if it can be used in implementing the stop animation.
+        //}
+
+
     }
 
     void OnPathComplete(Pathfinding.Path p)
@@ -95,10 +99,6 @@ public class EnemyAStarAI : MonoBehaviour
             reachedEndOfPath = false;
         }
 
-        if (path.IsDone())
-        {
-           //Look into this and see if it can be used in implementing the stop animation.
-        }
 
         Vector2 direction = ((Vector2)path.vectorPath[currentWP] - rb2D.position).normalized;
         Vector2 force = direction * speed * Time.deltaTime;
@@ -115,11 +115,11 @@ public class EnemyAStarAI : MonoBehaviour
         //Flip enemy sprite based on Direction
         if (force.x >= 0.01f)
         {
-            GFX.localScale = new Vector3(-1f, 1f, 1f);
+            GFX.localScale = new Vector3(-GFX.localScale.x, GFX.localScale.y, 1f);
         }
         else if (force.x <= -0.01f)
         {
-            GFX.localScale = new Vector3(1f, 1f, 1f);
+            GFX.localScale = new Vector3(GFX.localScale.x, GFX.localScale.y, 1f);
         }
 
 
