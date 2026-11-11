@@ -12,30 +12,38 @@ public class EnemyAStarAI : MonoBehaviour
     public UnityEngine.Transform GFX;
     [SerializeField] BoxCollider2D detectRange;
 
+    [Header("Movement")]
     [SerializeField] private float speed = 10f;
     [SerializeField] private float nextWPDist = 3f;
 
+ 
     Pathfinding.Path path;
     int currentWP = 0;
-    bool reachedEndOfPath = false;
+    public bool reachedEndOfPath = false;
     bool playerInRange = false;
     Seeker seeker;
     Rigidbody2D rb2D;
 
     private Vector2 startingPos, newPos;
 
+    [Header("Animator")]
+    [SerializeField] private Animator anim;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         seeker = GetComponent<Seeker>();
         rb2D = GetComponent<Rigidbody2D>();
+
         startingPos = transform.position;
+
         newPos = startingPos;
 
         InvokeRepeating("UpdatePath", 0f, .5f);
         InvokeRepeating("changeNewPos", 0f, 5f);
 
         Physics2D.IgnoreCollision(GetComponent<Collider2D>(), GameObject.Find("Spikes").GetComponent<Collider2D>());
+        if (anim == null) Debug.LogError("Animator component not found");
     }
 
     void changeNewPos()
@@ -46,7 +54,7 @@ public class EnemyAStarAI : MonoBehaviour
 
     void UpdatePath()
     {
-        
+
         if (playerInRange == true)
         {
             if (seeker.IsDone())
@@ -63,14 +71,21 @@ public class EnemyAStarAI : MonoBehaviour
             }
         }
 
+        //if (path.IsDone())
+        //{
+        //    //Look into this and see if it can be used in implementing the stop animation.
+        //}
+
+
     }
 
     void OnPathComplete(Pathfinding.Path p)
     {
-        if(p.error == false)
+        if (p.error == false)
         {
             path = p;
             currentWP = 0;
+
         }
     }
 
@@ -90,6 +105,7 @@ public class EnemyAStarAI : MonoBehaviour
             reachedEndOfPath = false;
         }
 
+
         Vector2 direction = ((Vector2)path.vectorPath[currentWP] - rb2D.position).normalized;
         Vector2 force = direction * speed * Time.deltaTime;
 
@@ -97,18 +113,19 @@ public class EnemyAStarAI : MonoBehaviour
 
         float distance = Vector2.Distance(rb2D.position, path.vectorPath[currentWP]);
 
-        if(distance < nextWPDist)
+        if (distance < nextWPDist)
         {
             currentWP++;
         }
 
+        //Flip enemy sprite based on Direction
         if (force.x >= 0.01f)
         {
-            GFX.localScale = new Vector3(-1f, 1f, 1f);
+            GFX.localScale = new Vector3(-GFX.localScale.x, GFX.localScale.y, 1f);
         }
         else if (force.x <= -0.01f)
         {
-            GFX.localScale = new Vector3(1f, 1f, 1f);
+            GFX.localScale = new Vector3(GFX.localScale.x, GFX.localScale.y, 1f);
         }
 
 
@@ -119,6 +136,7 @@ public class EnemyAStarAI : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             playerInRange = true;
+            anim.SetBool("playerInRange", playerInRange);
         }
     }
 
@@ -127,9 +145,7 @@ public class EnemyAStarAI : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             playerInRange = false;
+            anim.SetBool("playerInRange", playerInRange);
         }
     }
-
-
-
 }

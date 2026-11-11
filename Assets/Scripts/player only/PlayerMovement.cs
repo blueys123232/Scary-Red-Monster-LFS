@@ -313,3 +313,9 @@ public class PlayerMovement : MonoBehaviour
         CanDash = true;
     }
 }
+
+[System.Serializable]
+public struct PlayerSaveData
+{
+    
+}
