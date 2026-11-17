@@ -1,5 +1,6 @@
 using Pathfinding;
 using System;
+using System.Collections;
 using System.IO;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -25,6 +26,15 @@ public class EnemyAStarAI : MonoBehaviour
     private Vector2 startingPos, newPos;
     [SerializeField] private Animator anim;
 
+    //Variables for damaging players
+    private bool IsAttacking = false;
+    private UnityEngine.Transform player;
+    //All these variables can be adjusted in the inspector so each enemy type can be customised
+    [SerializeField] private float attackRange = 1f;
+    [SerializeField] private int damage = 10;
+    [SerializeField] private float attackCooldown = 1.0f; // Cooldown time between attacks
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -32,6 +42,7 @@ public class EnemyAStarAI : MonoBehaviour
         rb2D = GetComponent<Rigidbody2D>();
         startingPos = transform.position;
         newPos = startingPos;
+        player = GameObject.FindWithTag("Player").transform;
 
         InvokeRepeating("UpdatePath", 0f, .5f);
         InvokeRepeating("changeNewPos", 0f, 5f);
@@ -54,6 +65,7 @@ public class EnemyAStarAI : MonoBehaviour
             if (seeker.IsDone())
             {
                 seeker.StartPath(rb2D.position, GameObject.FindWithTag("Player").transform.position, OnPathComplete);
+                LookAt2D(player);
             }
         }
 
@@ -69,8 +81,6 @@ public class EnemyAStarAI : MonoBehaviour
         //{
         //    //Look into this and see if it can be used in implementing the stop animation.
         //}
-
-
     }
 
     void OnPathComplete(Pathfinding.Path p)
@@ -79,10 +89,22 @@ public class EnemyAStarAI : MonoBehaviour
         {
             path = p;
             currentWP = 0;
-
         }
     }
 
+    private void Update()
+    {
+        //using the boolean from EnemyDetection check if player is in Range
+        if (playerInRange)
+        {
+            //if its in range and is close enough attack
+            //otherwise continue following
+            if (Vector2.Distance(transform.position, player.position) <= attackRange)
+            {
+                AttackPlayer();
+            }
+        }
+    }
     void FixedUpdate()
     {
         if (path == null)
@@ -98,7 +120,6 @@ public class EnemyAStarAI : MonoBehaviour
         {
             reachedEndOfPath = false;
         }
-
 
         Vector2 direction = ((Vector2)path.vectorPath[currentWP] - rb2D.position).normalized;
         Vector2 force = direction * speed * Time.deltaTime;
@@ -121,8 +142,6 @@ public class EnemyAStarAI : MonoBehaviour
         {
             GFX.localScale = new Vector3(GFX.localScale.x, GFX.localScale.y, 1f);
         }
-
-
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -141,5 +160,49 @@ public class EnemyAStarAI : MonoBehaviour
             playerInRange = false;
             anim.SetBool("playerInRange", playerInRange);
         }
+    }
+
+    void AttackPlayer()
+    {
+        //if enemy hasnt already attacked then attack 
+        if (!IsAttacking)
+        {
+            //set isAttacking true so there can  a cooldown
+            IsAttacking = true;
+            //animator.SetBool("IsAttacking", true);
+
+            //access player health and use the TakeDamage function to remove amount of health
+            //Damage to health is determined by Enemy by a variable in the inspector
+            PlayerHealth pHealth = player.GetComponent<PlayerHealth>();
+            if (pHealth != null)
+            {
+                pHealth.TakeDamage(damage);
+            }
+
+            //One enemy has attacked activate this coroutine to reset attack bool so enemy is able to attack again
+            StartCoroutine(resetAttack());
+        }
+    }
+
+    IEnumerator resetAttack()
+    {
+        //use the attack cooldown variable to determine how long before enemy can attack again
+        yield return new WaitForSeconds(attackCooldown);
+        IsAttacking = false;
+        //animator.SetBool("IsAttacking", false);
+    }
+
+    void LookAt2D(UnityEngine.Transform Target)
+    {
+        //Unity has no inbuilt Lookat2D function so made one for us to use
+        //Made it so can give it a different target when we call it 
+
+        //Gets the direction of our target
+        var dir = (Vector2)Target.position - (Vector2)Target.position;
+        //Gets the angle of our target in Radians, that we then convert to Degrees
+        var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+
+        Quaternion newRot = Quaternion.Euler(Vector3.forward * angle);
+        transform.rotation = Quaternion.Slerp(transform.rotation, newRot, 15f * Time.deltaTime);
     }
 }

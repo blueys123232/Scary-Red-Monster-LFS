@@ -18,7 +18,6 @@ public class EnemyHealth : MonoBehaviour
     {
         currentHealth = maxHealth;
         damageNumber.text = "";
-
     }
 
     public void TakeDamage(float amount)
