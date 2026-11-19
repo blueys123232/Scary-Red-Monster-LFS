@@ -28,6 +28,7 @@ public class EnemyAStarAI : MonoBehaviour
 
     //Variables for damaging players
     private bool IsAttacking = false;
+
     private bool returntoStartPosition = false;
     private bool hasStopped = false;
     private UnityEngine.Transform player;
@@ -69,6 +70,7 @@ public class EnemyAStarAI : MonoBehaviour
         {
             if (seeker.IsDone())
             {
+
                 returntoStartPosition = false;
                 hasStopped = false;
 
@@ -81,6 +83,10 @@ public class EnemyAStarAI : MonoBehaviour
                 {
                     anim.SetBool("hasStopped", false);
                 }
+
+                seeker.StartPath(rb2D.position, GameObject.FindWithTag("Player").transform.position, OnPathComplete);
+                LookAt2D(player);
+
             }
         }
         if (seeker.IsDone() && player != null)
@@ -108,7 +114,7 @@ public class EnemyAStarAI : MonoBehaviour
             }
 
         }
-    
+
     }
 
     void OnPathComplete(Pathfinding.Path p)
@@ -117,6 +123,7 @@ public class EnemyAStarAI : MonoBehaviour
         {
             path = p;
             currentWP = 0;
+
 
             reachedEndOfPath = false;
             hasStopped = false;
@@ -128,6 +135,7 @@ public class EnemyAStarAI : MonoBehaviour
             {
                 anim.SetBool("hasStopped", false);
             }
+
         }
     }
 
@@ -208,7 +216,11 @@ public class EnemyAStarAI : MonoBehaviour
         {
             //set isAttacking true so there can  a cooldown
             IsAttacking = true;
+
             anim.SetBool("IsAttacking", true);
+
+            //animator.SetBool("IsAttacking", true);
+
 
             //access player health and use the TakeDamage function to remove amount of health
             //Damage to health is determined by Enemy by a variable in the inspector
@@ -230,21 +242,34 @@ public class EnemyAStarAI : MonoBehaviour
         IsAttacking = false;
 
 
+
         anim.SetBool("IsAttacking", false);
+
+        //animator.SetBool("IsAttacking", false);
+
     }
 
     void LookAt2D(UnityEngine.Transform Target)
     {
+
         if (Target == null)
             return;
 
-        Vector2 dir = (Vector2)Target.position - (Vector2)transform.position;
+ 
+
+        //Unity has no inbuilt Lookat2D function so made one for us to use
+        //Made it so can give it a different target when we call it 
+
         //Gets the direction of our target
-        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        
-        
+        var dir = (Vector2)Target.position - (Vector2)transform.position;
+        //Gets the angle of our target in Radians, that we then convert to Degrees
+        var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+
 
         Quaternion newRot = Quaternion.Euler(Vector3.forward * angle);
         transform.rotation = Quaternion.Slerp(transform.rotation, newRot, 15f * Time.deltaTime);
     }
+
 }
+
+
