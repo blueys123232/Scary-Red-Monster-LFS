@@ -28,6 +28,8 @@ public class EnemyAStarAI : MonoBehaviour
 
     //Variables for damaging players
     private bool IsAttacking = false;
+    private bool returntoStartPosition = false;
+    private bool hasStopped = false;
     private UnityEngine.Transform player;
     //All these variables can be adjusted in the inspector so each enemy type can be customised
     [Header("Attack Settings")]
@@ -67,23 +69,46 @@ public class EnemyAStarAI : MonoBehaviour
         {
             if (seeker.IsDone())
             {
-                seeker.StartPath(rb2D.position, GameObject.FindWithTag("Player").transform.position, OnPathComplete);
-                LookAt2D(player);
+                returntoStartPosition = false;
+                hasStopped = false;
+
+
+                if (anim != null)
+                {
+                    anim.SetBool("returntoStartPosition", false);
+                }
+
+                {
+                    anim.SetBool("hasStopped", false);
+                }
             }
         }
+        if (seeker.IsDone() && player != null)
+        {
+            seeker.StartPath(rb2D.position, player.position, OnPathComplete);
+        }
+    
+
 
         else if (!playerInRange)
         {
+
+            returntoStartPosition = true;
+
+            if (anim != null)
+            {
+                anim.SetBool("returntoStartPosition", true);
+            }
+
             if (seeker.IsDone())
             {
-                seeker.StartPath(rb2D.position, startingPos, OnPathComplete);
-            }
-        }
 
-        //if (path.IsDone())
-        //{
-        //    //Look into this and see if it can be used in implementing the stop animation.
-        //}
+                seeker.StartPath(rb2D.position, startingPos, OnPathComplete);
+
+            }
+
+        }
+    
     }
 
     void OnPathComplete(Pathfinding.Path p)
@@ -92,6 +117,17 @@ public class EnemyAStarAI : MonoBehaviour
         {
             path = p;
             currentWP = 0;
+
+            reachedEndOfPath = false;
+            hasStopped = false;
+            if (anim != null)
+            {
+                anim.SetBool("returntoStartPosition", false);
+            }
+
+            {
+                anim.SetBool("hasStopped", false);
+            }
         }
     }
 
